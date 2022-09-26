@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react';
-
+import { Center } from '@chakra-ui/react';
 export const Home = (props) => {
     return(
         <>
-            TEXT SAMPLE
+            <Center>
+                TEXT SAMPLE
+            </Center>
+
         </>
     );
 };

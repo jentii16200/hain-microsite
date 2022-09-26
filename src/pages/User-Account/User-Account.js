@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Center, Wrap, WrapItem, Box, Container, FormControl, FormLabel, Button, Input, useToast } from '@chakra-ui/react';
+import { Center, Wrap, WrapItem, Box, Container, FormControl, FormLabel, Button, Input, useToast, } from '@chakra-ui/react';
 import './index.css';
 import { Navigate } from 'react-router-dom';
 
@@ -35,7 +35,9 @@ export const UserAccount = (props) => {
         }
     }
     if (goToContact) {
+
         return <Navigate to="/Home" />;
+
     }
     return(
         <div className='bg'>
