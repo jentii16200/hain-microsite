@@ -1,3 +1,14 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+body{
+  min-height: 100vh;
+  overflow-x: auto;
+} 
+
 .bg{
   /* The image used */
    background-color: #5B7168;
@@ -9,4 +20,59 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+}
+
+.navigation{
+  display: flex;
+  position: fixed;
+  height: 100%;
+  width: 260px;
+  background-color: aquamarine;
+  transition: .5%;
+  overflow: auto;
+}
+.navigation ul{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+.navigation ul li{
+  position: relative;
+  width: 100%;
+  list-style: none;
+}
+.navigation ul li:hover{
+  background-color: rgb(62, 87, 79);
+}
+.navigation ul li .links{
+  position: relative;
+  display: block;
+  padding: 0 10px;
+  height: 60px;
+  line-height: 60px;
+  text-align: start;
+  border-bottom: 1px solid rgb(70, 70, 70);
+
+}
+.navigation ul .welcome{
+  background-color: aqua;
+  text-align: center;
+  padding: 15px; 
+  
+}
+.container{
+  display: flex;
+  width: 100%;
+}
+.main{
+  position: absolute;
+  width: calc(100% - 260px);
+  left: 260px; 
+  min-height: 100vh;
+}
+
+.title{
+  size: 10px;
+  text-align: center;
 }

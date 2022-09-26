@@ -36,7 +36,7 @@ export const UserAccount = (props) => {
     }
     if (goToContact) {
 
-        return <Navigate to="/Home" />;
+        return <Navigate to="/menu-management" />;
 
     }
     return(
