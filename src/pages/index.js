@@ -1,5 +1,5 @@
-import { UserAccount } from './User-Account/User-Account';
-import { Navbar } from '../components/NavBar';
+import { UserAccount } from './Login/User-Account';
+import { SideNav } from '../components/SideNav';
 import { ManageAccount } from './Manage-Account/ManageAccount';
 import { ManageAccountNav } from '../components/ManageAccountNav';
 import { AdminAccount } from './Manage-Account/AdminAccount';
@@ -12,5 +12,5 @@ import { OrderingTransaction } from './Ordering-Transaction/OrderingTransaction'
 import { Remarks } from './Remarks/Remarks';
 import { MyAccount } from './My-Account/MyAccount';
 
-export { UserAccount, Navbar, ManageAccount, ManageAccountNav, AdminAccount, CustomerAccount, EmployeeAccount,
+export { UserAccount, SideNav, ManageAccount, ManageAccountNav, AdminAccount, CustomerAccount, EmployeeAccount,
     MenuManagement, OrderLog, RegisterEmployee, OrderingTransaction, Remarks, MyAccount };

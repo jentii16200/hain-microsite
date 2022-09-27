@@ -11,19 +11,14 @@ body{
 
 .bg{
   /* The image used */
-   background-color: #5B7168;
+  width: 100%;
+  position: fixed;
+  background-color: #5B7168;
+  height: 100%;
 
-  /* Full height */
-    height: 100%;
-
-  /* Center and scale the image nicely */
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
 }
 
 .navigation{
-  display: flex;
   position: fixed;
   height: 100%;
   width: 260px;
