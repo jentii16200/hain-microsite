@@ -27,7 +27,7 @@ body{
   position: fixed;
   height: 100%;
   width: 260px;
-  background-color: aquamarine;
+  background-color: rgb(85, 169, 149);
   transition: .5%;
   overflow: auto;
 }
@@ -52,7 +52,7 @@ body{
   height: 60px;
   line-height: 60px;
   text-align: start;
-  border-bottom: 1px solid rgb(70, 70, 70);
+  border-bottom: 1px solid rgb(65, 65, 65);
 
 }
 .navigation ul .welcome{
