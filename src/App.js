@@ -11,7 +11,6 @@ function App() {
                 <Routes>
                     <Route path="/" element={<UserAccount />} />
                     <Route path="/Home" element={<Home />} />
-                    <Route path="/Home" element={<Home />} />
                 </Routes>
             </Router>
         </ChakraProvider>
