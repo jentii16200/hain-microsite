@@ -1,9 +1,10 @@
 
 import React from 'react';
 import { ChakraProvider, extendTheme } from '@chakra-ui/react';
-import { UserAccount, Home, ManageAccount, AdminAccount, CustomerAccount, EmployeeAccount, MenuManagement, OrderLog, RegisterEmployee,
+import { UserAccount, Navbar, ManageAccount, AdminAccount, CustomerAccount, EmployeeAccount, MenuManagement, OrderLog, RegisterEmployee,
     OrderingTransaction, Remarks, MyAccount } from './pages/index';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import '../src/assets/index.css';
 
 function App() {
     return (
@@ -12,7 +13,7 @@ function App() {
                 <Routes>
                     <Route path="/" element={<UserAccount />} />
                 </Routes>
-                <Home />
+                <Navbar />
                 <div className='main'>
                     <Routes>
                         <Route path='manage-account' element={<ManageAccount />}>
