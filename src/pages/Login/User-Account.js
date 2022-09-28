@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Center, Wrap, WrapItem, Box, Container, FormControl, FormLabel, Button, Input, useToast, Spinner } from '@chakra-ui/react';
-import './index.css';
+import { Center, Wrap, WrapItem, Box, Container, FormControl, FormLabel, Button, Input, useToast, } from '@chakra-ui/react';
+import '../../assets/index.css';
 import { Navigate } from 'react-router-dom';
 
 export const UserAccount = (props) => {
@@ -51,7 +51,7 @@ export const UserAccount = (props) => {
     }
     if (goToContact) {
 
-        return <Navigate to="/Home" />;
+        return <Navigate to="/h/manage-account/admin" />;
 
     }
     return(

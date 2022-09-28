@@ -1,21 +1,17 @@
-
 import React from 'react';
-import { ChakraProvider, extendTheme } from '@chakra-ui/react';
-import { UserAccount, Home } from './pages/index';
+import { UserAccount, SideNav } from './pages/index';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import '../src/assets/index.css';
 
 function App() {
     return (
-        <ChakraProvider>
-            <Router>
-                <Routes>
-                    <Route path="/" element={<UserAccount />} />
-                    <Route path="/Home" element={<Home />} />
-                    <Route path="/Home" element={<Home />} />
-                    <Route path="/Home" element={<Home />} />
-                </Routes>
-            </Router>
-        </ChakraProvider>
+        <Router>
+            <Routes>
+                <Route exact path='/' element={<UserAccount />} />
+                <Route exact path='h/*' element={<SideNav />} />
+            </Routes>
+        </Router>
+
     );
 
 }
