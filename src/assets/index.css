@@ -32,6 +32,10 @@ body{
   left: 0;
   width: 100%;
 }
+.navigation ul .welcome{
+  height: 70px;
+  line-height: 35px;
+}
 .navigation ul li{
   position: relative;
   width: 100%;
@@ -68,6 +72,9 @@ body{
 }
 
 .title{
-  size: 10px;
+  height: 90px;
+  padding-top: 10px;
   text-align: center;
+  size: 10px;
 }
+

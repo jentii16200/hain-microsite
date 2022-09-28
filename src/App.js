@@ -1,3 +1,4 @@
+import React from 'react';
 import { UserAccount, SideNav } from './pages/index';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import '../src/assets/index.css';
