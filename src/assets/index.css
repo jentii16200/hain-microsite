@@ -78,3 +78,18 @@ body{
   size: 10px;
 }
 
+.table{
+  margin-inline: 50px;
+  height: 450px;
+}
+.menu{
+  display: flex;
+  height: 200px;
+  border: 1px solid black;
+  margin: 10px;
+  overflow: auto;
+}
+.card{
+  margin-right: 10px;
+}
+

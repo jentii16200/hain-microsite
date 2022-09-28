@@ -9,7 +9,7 @@ export const SideNav = (props) => {
             <div className='navigation'>
                 <ul>
                     <h2 className='welcome'>Welcome</h2>
-                    <li><Link className='links' to='manage-account'>MANAGE ACCOUNT</Link></li>
+                    <li><Link className='links' to='manage-account/customer'>MANAGE ACCOUNT</Link></li>
                     <li><Link className='links' to='menu-management'>MENU MANAGEMENT</Link></li>
                     <li><Link className='links' to='order-log'>ORDER LOG</Link></li>
                     <li><Link className='links' to='register-employee'>REGISTER EMPLOYEE</Link></li>
@@ -21,7 +21,7 @@ export const SideNav = (props) => {
             <div className='main'>
                 <Routes>
                     <Route exact path='manage-account' element={<ManageAccount />}>
-                        <Route exact path='admin' element={<AdminAccount/>}/>
+                        {/* <Route exact path='admin' element={<AdminAccount/>}/> */}
                         <Route exact path='customer' element={<CustomerAccount/>}/>
                         <Route exact path='employee' element={<EmployeeAccount/>}/>
                     </Route>
