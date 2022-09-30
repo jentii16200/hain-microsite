@@ -6,19 +6,26 @@ import { Table, Thead, Tbody, Tfoot, Tr, Th, Td, TableCaption,
 
 export const CustomerAccount = (props) => {
     const [posts, setPosts] = useState([]);
+    const apiDeleteEndPoint = 'https://us-central1-hain-402aa.cloudfunctions.net/api/deleteAccount';
     const apiEndPoint = 'https://us-central1-hain-402aa.cloudfunctions.net/api/getUserAccounts';
     useEffect(() => {
+        handleData();
+    }, []);
+
+    const handleData = () =>{
         axios.get(apiEndPoint).then(res => {
             setPosts(res.data);
+            console.log(res);
         }).catch(err =>{
             console.log(err);
         });
-    }, []);
-
-    const handleDelete = async (post) =>{
-
-        axios.delete(apiEndPoint + '/' + post.userName);
-        setPosts(posts.filter((f) => f.userName !== post.userName));
+    };
+    const handleDelete = async (post) => {
+        axios.post(apiDeleteEndPoint, { accountId: post.id }).then(res =>{
+            console.log(res);
+        }).catch(err =>{
+            console.log(err);
+        });
     };
     return (
         <div>
@@ -39,7 +46,7 @@ export const CustomerAccount = (props) => {
                                 <Td>{post.password}</Td>
                                 <Td isNumeric>
                                     <Button
-                                        onClick={() => handleDelete(post)}
+                                        onClick={() => handleDelete()}
                                         className='delete'>
                                         Delete
                                     </Button>
