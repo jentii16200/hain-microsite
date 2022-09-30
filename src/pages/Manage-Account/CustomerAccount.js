@@ -17,8 +17,9 @@ export const CustomerAccount = (props) => {
 
     const handleDelete = async (post) =>{
 
-        axios.delete(apiEndPoint + '/' + post.userName);
-        setPosts(posts.filter((f) => f.userName !== post.userName));
+        axios.post('https://us-central1-hain-402aa.cloudfunctions.net/api/deleteAccount', { accountId: post.id })
+            .then(function (response) { console.log(response); })
+            .catch(function (error) { console.log(error); });
     };
     return (
         <div>
