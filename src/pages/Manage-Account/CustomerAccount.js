@@ -13,7 +13,7 @@ export const CustomerAccount = (props) => {
         }).catch(err =>{
             console.log(err);
         });
-    }, []);
+    }, [posts]);
 
     const handleDelete = async (post) =>{
 
@@ -21,6 +21,7 @@ export const CustomerAccount = (props) => {
             .then(function (response) { console.log(response); })
             .catch(function (error) { console.log(error); });
     };
+
     return (
         <div>
             <TableContainer paddingInline={20}>
