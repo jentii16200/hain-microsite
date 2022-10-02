@@ -6,15 +6,38 @@ import { Table, Thead, Tbody, Tfoot, Tr, Th, Td, TableCaption,
 
 export const Remarks = () => {
     const [posts, setPosts] = useState([]);
-    const apiEndPoint = '';
-    useEffect(() => {
-        axios.get(apiEndPoint).then(res => {
-            console.log(res);
-            setPosts(res.data);
-        }).catch(err =>{
-            console.log(err);
-        });
-    }, []);
+    // const apiEndPoint = '';
+    // useEffect(() => {
+    //     axios.get(apiEndPoint).then(res => {
+    //         console.log(res);
+    //         setPosts(res.data);
+    //     }).catch(err =>{
+    //         console.log(err);
+    //     });
+    // }, []);
+
+    const remarkData = [
+        {
+            id: '1',
+            remark: 'baho'
+        },
+        {
+            id: '2',
+            remark: 'panget'
+        },
+        {
+            id: '3',
+            remark: 'awit'
+        },
+        {
+            id: '4',
+            remark: 'weeeee'
+        },
+        {
+            id: '5',
+            remark: 'wala lang'
+        },
+    ];
     return (
         <div>
             <Heading className='title'>REMARKS</Heading>
@@ -28,10 +51,10 @@ export const Remarks = () => {
                         </Tr>
                     </Thead>
                     <Tbody>
-                        {posts.map(post =>
-                            <Tr key={post.inquiryNumber}>
-                                <Td>{post.inquiryNumber}</Td>
-                                <Td>{post.remarks}</Td>
+                        {remarkData.map(post =>
+                            <Tr key={post.id}>
+                                <Td>{post.id}</Td>
+                                <Td>{post.remark}</Td>
                             </Tr>)}
                     </Tbody>
                 </Table>
