@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Heading } from '@chakra-ui/react';
+import { Button, Heading } from '@chakra-ui/react';
 import axios from 'axios';
 import { Table, Thead, Tbody, Tfoot, Tr, Th, Td, TableCaption,
     TableContainer } from '@chakra-ui/react';
@@ -47,7 +47,6 @@ export const Remarks = () => {
                         <Tr>
                             <Th>INQUIRY #</Th>
                             <Th>REMARKS</Th>
-                            <Th isNumeric>DELETE</Th>
                         </Tr>
                     </Thead>
                     <Tbody>
@@ -55,6 +54,7 @@ export const Remarks = () => {
                             <Tr key={post.id}>
                                 <Td>{post.id}</Td>
                                 <Td>{post.remark}</Td>
+                                <Td isNumeric><Button>Delete</Button></Td>
                             </Tr>)}
                     </Tbody>
                 </Table>
