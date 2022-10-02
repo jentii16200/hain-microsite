@@ -84,8 +84,8 @@ body{
 .menu{
   display: flex;
   height: 200px;
-  border: 1px solid black;
   margin: 10px;
+  margin-inline: 20px;
   overflow: auto;
 }
 .card{
