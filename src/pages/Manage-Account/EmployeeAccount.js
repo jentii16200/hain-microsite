@@ -42,7 +42,7 @@ export const EmployeeAccount = () => {
     ];
     return (
         <div>
-            <TableContainer paddingInline={20}>
+            <TableContainer className='table'>
                 <Table size='sm'>
                     <Thead>
                         <Tr>
