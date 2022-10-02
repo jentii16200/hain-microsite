@@ -33,6 +33,7 @@ export const CustomerAccount = (props) => {
                 <Table size='sm'>
                     <Thead>
                         <Tr>
+                            <Th>ID #</Th>
                             <Th>USERNAME</Th>
                             <Th>NAME</Th>
                             <Th>PASSWORD</Th>
@@ -40,7 +41,8 @@ export const CustomerAccount = (props) => {
                     </Thead>
                     <Tbody>
                         {posts.map(post =>
-                            <Tr key={post.userName}>
+                            <Tr key={post.id}>
+                                <Td>{post.id}</Td>
                                 <Td>{post.userName}</Td>
                                 <Td>{post.name}</Td>
                                 <Td>{post.password}</Td>
