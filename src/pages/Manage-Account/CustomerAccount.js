@@ -22,7 +22,7 @@ export const CustomerAccount = (props) => {
         });
     };
     const handleDelete = async (post) => {
-        axios.post(apiDeleteEndPoint, { accountId: post.id }).then(res =>{
+        axios.post(apiDeleteEndPoint, { accountId: post }).then(res =>{
             console.log(res);
         }).catch(err =>{
             console.log(err);
@@ -49,7 +49,7 @@ export const CustomerAccount = (props) => {
                                 <Td>{post.password}</Td>
                                 <Td isNumeric>
                                     <IconButton
-                                        onClick={() => handleDelete()}
+                                        onClick={() => handleDelete(post.id)}
                                         variant={'unstyled'}
                                         icon={<DeleteIcon color={'red.500'}/>}/>
                                 </Td>
