@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Center, Wrap, WrapItem, Box, Container, FormControl, FormLabel, Button, Input, useToast, } from '@chakra-ui/react';
 import '../../assets/index.css';
 import { Navigate } from 'react-router-dom';
+import BackGround from '../../assets/bg.png';
 
 export const UserAccount = (props) => {
     const toast = useToast();
@@ -36,7 +37,7 @@ export const UserAccount = (props) => {
     }
     if (goToContact) {
 
-        return <Navigate to="/h/manage-account/admin" />;
+        return <Navigate to="/h/manage-account/customer" />;
 
     }
     return(

@@ -1,3 +1,4 @@
+
 *{
   margin: 0;
   padding: 0;
@@ -13,9 +14,10 @@ body{
   /* The image used */
   width: 100%;
   position: fixed;
-  background-color: #5B7168;
   height: 100%;
-
+  background-image: url('./bg.png');
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .navigation{

@@ -2,7 +2,8 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Table, Thead, Tbody, Tfoot, Tr, Th, Td, TableCaption,
-    TableContainer, Wrap, Box, Spinner, Button } from '@chakra-ui/react';
+    TableContainer, Wrap, Box, Spinner, Button, IconButton } from '@chakra-ui/react';
+import { DeleteIcon } from '@chakra-ui/icons';
 
 export const CustomerAccount = (props) => {
     const [posts, setPosts] = useState([]);
@@ -47,11 +48,10 @@ export const CustomerAccount = (props) => {
                                 <Td>{post.name}</Td>
                                 <Td>{post.password}</Td>
                                 <Td isNumeric>
-                                    <Button
+                                    <IconButton
                                         onClick={() => handleDelete()}
-                                        className='delete'>
-                                        Delete
-                                    </Button>
+                                        variant={'unstyled'}
+                                        icon={<DeleteIcon color={'red.500'}/>}/>
                                 </Td>
                             </Tr>)}
                     </Tbody>

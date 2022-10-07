@@ -46,14 +46,14 @@ export const Pulutan = () => {
                         maxW='sm' borderWidth='1px'
                         borderRadius='lg'
                         overflow='hidden'
-                        width={'150px'}
-                        height ='200px'
+                        width={'180px'}
+                        height ={'170px'}
                         key={post.id} >
                         <Image className='menu-image'
                             src={post.imageUrl}
                             alt={post.imageAlt}
-                            width={'150px'}
-                            height={'100px'}/>
+                            width={'180px'}
+                            height={'130px'}/>
                         <Box className='menu-name'>
                             <Box
                                 mt='1'
