@@ -5,6 +5,7 @@ import { Navigate } from 'react-router-dom';
 import BackGround from '../../assets/bg.png';
 
 export const UserAccount = (props) => {
+
     const toast = useToast();
     const [goToContact, setGoToContact] = useState(false);
     const [email, setEmail] = useState('');
@@ -44,7 +45,7 @@ export const UserAccount = (props) => {
         <div className='bg'>
             <Box h='calc(25vh)' />
             <Wrap justify='center'>
-                <WrapItem>
+                <Wrap Item>
                     <Box w='calc(50vw)' pl = "10" pr = "10">
                         <Center bg="rgba(0,0,0,0.1)" w='300' h='300' color='white' >
                             <Container color='white'>
@@ -72,7 +73,7 @@ export const UserAccount = (props) => {
                             </Container>
                         </Center>
                     </Box>
-                </WrapItem>
+                </Wrap>
             </Wrap>
             <Box h='calc(33vh)'/>
         </div>

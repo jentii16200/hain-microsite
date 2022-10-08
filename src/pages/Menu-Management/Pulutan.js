@@ -6,42 +6,42 @@ import CalamaresFritos from '../../assets/Calamares Fritos.jpg';
 import CrispyPata from '../../assets/Crispy Pata.jpg';
 
 export const Pulutan = () => {
-    // const [posts, setPosts] = useState([]);
-    // const apiEndPoint = '';
-    // useEffect(() => {
-    //     axios.get(apiEndPoint).then(res => {
-    //         console.log(res);
-    //         setPosts(res.data);
-    //     }).catch(err =>{
-    //         console.log(err);
-    //     });
-    // }, []);
+    const [posts, setPosts] = useState([]);
+    const apiEndPoint = 'https://us-central1-hain-402aa.cloudfunctions.net/api/getMenu';
+    useEffect(() => {
+        axios.get(apiEndPoint).then(res => {
+            console.log(res);
+            setPosts(res.data);
+        }).catch(err =>{
+            console.log(err);
+        });
+    }, []);
 
-    const pulutan = [
-        {
-            id: '1',
-            imageUrl: BeefNachos,
-            imageAlt: 'CALAMARES FRITOS',
-            name: 'BEEF NACHOS'
-        },
-        {
-            id: '2',
-            imageUrl: CalamaresFritos,
-            imageAlt: 'CALAMARES FRITOS',
-            name: 'CALAMARES FRITOS'
-        },
-        {
-            id: '3',
-            imageUrl: CrispyPata,
-            imageAlt: 'CALAMARES FRITOS',
-            name: 'CRISPY PATA'
-        },
-    ];
+    // const pulutan = [
+    //     {
+    //         id: '1',
+    //         imageUrl: BeefNachos,
+    //         imageAlt: 'CALAMARES FRITOS',
+    //         name: 'BEEF NACHOS'
+    //     },
+    //     {
+    //         id: '2',
+    //         imageUrl: CalamaresFritos,
+    //         imageAlt: 'CALAMARES FRITOS',
+    //         name: 'CALAMARES FRITOS'
+    //     },
+    //     {
+    //         id: '3',
+    //         imageUrl: CrispyPata,
+    //         imageAlt: 'CALAMARES FRITOS',
+    //         name: 'CRISPY PATA'
+    //     },
+    // ];
     return (
         <>
             <h2>PULUTAN</h2>
             <div className='menu'>
-                {pulutan.map(post =>
+                {posts.map(post =>
                     <Box className='card'
                         maxW='sm' borderWidth='1px'
                         borderRadius='lg'

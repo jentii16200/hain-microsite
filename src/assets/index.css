@@ -81,7 +81,7 @@ body{
 }
 .table{
   margin-inline: 50px;
-  height: 450px;
+  height: 100%;
 }
 .menu{
   display: flex;

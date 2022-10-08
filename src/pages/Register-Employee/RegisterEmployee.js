@@ -1,9 +1,11 @@
 import React from 'react';
 import { Heading } from '@chakra-ui/react';
+import { RegisterEmployeeForms } from './RegisterEmployeeForms';
 export const RegisterEmployee = () => {
     return (
-        <div>
+        <React.Fragment>
             <Heading className='title'>REGISTER EMPLOYEE</Heading>
-        </div>
+            <RegisterEmployeeForms/>
+        </React.Fragment>
     );
 };
