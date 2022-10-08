@@ -38,6 +38,7 @@ export const CustomerAccount = (props) => {
                             <Th>USERNAME</Th>
                             <Th>NAME</Th>
                             <Th>PASSWORD</Th>
+                            <Th> </Th>
                         </Tr>
                     </Thead>
                     <Tbody>

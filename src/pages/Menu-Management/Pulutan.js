@@ -8,35 +8,16 @@ import CrispyPata from '../../assets/Crispy Pata.jpg';
 export const Pulutan = () => {
     const [posts, setPosts] = useState([]);
     const apiEndPoint = 'https://us-central1-hain-402aa.cloudfunctions.net/api/getMenu';
+    const foodType = 'dish';
     useEffect(() => {
-        axios.get(apiEndPoint).then(res => {
-            console.log(res);
+        axios.post(apiEndPoint, { type: 'dish' }).then(res => {
             setPosts(res.data);
+            console.log(res);
         }).catch(err =>{
             console.log(err);
         });
     }, []);
 
-    // const pulutan = [
-    //     {
-    //         id: '1',
-    //         imageUrl: BeefNachos,
-    //         imageAlt: 'CALAMARES FRITOS',
-    //         name: 'BEEF NACHOS'
-    //     },
-    //     {
-    //         id: '2',
-    //         imageUrl: CalamaresFritos,
-    //         imageAlt: 'CALAMARES FRITOS',
-    //         name: 'CALAMARES FRITOS'
-    //     },
-    //     {
-    //         id: '3',
-    //         imageUrl: CrispyPata,
-    //         imageAlt: 'CALAMARES FRITOS',
-    //         name: 'CRISPY PATA'
-    //     },
-    // ];
     return (
         <>
             <h2>PULUTAN</h2>
@@ -48,7 +29,7 @@ export const Pulutan = () => {
                         overflow='hidden'
                         width={'180px'}
                         height ={'170px'}
-                        key={post.id} >
+                        key={post.id}>
                         <Image className='menu-image'
                             src={post.imageUrl}
                             alt={post.imageAlt}
