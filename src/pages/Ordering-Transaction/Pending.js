@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Grid, GridItem } from '@chakra-ui/react';
+import { Grid, GridItem, Table, TableContainer, Thead, Th, Tr, Tbody, Td } from '@chakra-ui/react';
 import { SimpleGrid, Box } from '@chakra-ui/react';
 import { useState } from 'react';
 import axios from 'axios';
@@ -16,6 +16,9 @@ export const Pending = () => {
         });
     }, []);
 
+    const handleAccept = async (post) => {
+        return;
+    };
     return (
         <>
             <Grid templateColumns='repeat(4, 2fr)' gap={.5}
@@ -23,21 +26,38 @@ export const Pending = () => {
                 bg='black'
                 h='84vh'>
                 {posts.map(post =>
-                    <GridItem w='100%' bg='grey' h='300px' key={post.id}>
+                    <GridItem w='100%' bg='white' key={post.id}>
                         <h1>{post.id}</h1>
-                        <h1>{post.orders.map(order =>
-                            <h1 key={order.name}>
-                                <h1>{order.name}</h1>
-                                <h1>{order.quantity}</h1>
-                                <h1>{order.price}</h1>
-                            </h1>)}
-                        </h1>
+                        <TableContainer>
+                            <Table variant={'simple'}>
+                                <Thead>
+                                    <Tr>
+                                        <Th>Name</Th>
+                                        <Th>Quantity</Th>
+                                        <Th>Priceame</Th>
+                                    </Tr>
+                                </Thead>
+                                <Tbody>
+                                    {post.orders.map(order =>
+                                        <Tr key={order.name}>
+                                            <Td>{order.name}</Td>
+                                            <Td>{order.quantity}</Td>
+                                            <Td>{order.price}</Td>
+                                        </Tr>
+                                    )}
+                                </Tbody>
+                            </Table>
+                        </TableContainer>
+                        <Box display={'flex'}>
+                            Total Amount
+                            <Box marginLeft={'163'}>{post.totalAmount}</Box>
+                        </Box>
                         <h1>{post.status}</h1>
-                        <h1>{post.totalAmount}</h1>
-                        <Button>Accept</Button>
+                        <Button
+                            onClick={() => handleAccept(post.status)}>Accept
+                        </Button>
                     </GridItem>
                 )}
-                {/* <GridItem w='100%' bg='grey' />
                 <GridItem w='100%' bg='grey' />
                 <GridItem w='100%' bg='grey' />
                 <GridItem w='100%' bg='grey' />
@@ -45,7 +65,8 @@ export const Pending = () => {
                 <GridItem w='100%' bg='grey' />
                 <GridItem w='100%' bg='grey' />
                 <GridItem w='100%' bg='grey' />
-                <GridItem w='100%' bg='grey' /> */}
+                <GridItem w='100%' bg='grey' />
+                <GridItem w='100%' bg='grey' />
             </Grid>
         </>
     );
