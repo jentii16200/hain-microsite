@@ -27,6 +27,7 @@ export const CustomerAccount = (props) => {
         }).catch(err =>{
             console.log(err);
         });
+        handleData();
     };
     return (
         <div>

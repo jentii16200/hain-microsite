@@ -4,18 +4,31 @@ import { SimpleGrid, Box } from '@chakra-ui/react';
 import { useState } from 'react';
 import axios from 'axios';
 import { Button } from '@chakra-ui/react';
-import { handleAccept } from '../../components/EditStatus';
+
 export const Pending = () => {
     const [posts, setPosts] = useState([]);
     const apiEndPoint = 'https://us-central1-hain-402aa.cloudfunctions.net/api/getOrderLogs';
+    const apiOnProcess = 'https://us-central1-hain-402aa.cloudfunctions.net/api/onGoingOrder';
+
     useEffect(() => {
+        handleData();
+    }, []);
+
+    const handleData = () => {
         axios.get(apiEndPoint).then(res => {
             setPosts(res.data);
             console.log(res);
         }).catch(err =>{
             console.log(err);
         });
-    }, []);
+    };
+    const handleAccept = async (post) => {
+        axios.post(apiOnProcess, { id: post }).then(res =>{
+            console.log(res);
+        }).catch(err =>{
+            console.log(err);
+        });
+    };
 
     return (
         <>
