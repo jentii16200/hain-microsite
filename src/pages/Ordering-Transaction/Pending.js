@@ -4,6 +4,7 @@ import { SimpleGrid, Box } from '@chakra-ui/react';
 import { useState } from 'react';
 import axios from 'axios';
 import { Button } from '@chakra-ui/react';
+import { handleAccept } from '../../components/EditStatus';
 export const Pending = () => {
     const [posts, setPosts] = useState([]);
     const apiEndPoint = 'https://us-central1-hain-402aa.cloudfunctions.net/api/getOrderLogs';
@@ -16,9 +17,6 @@ export const Pending = () => {
         });
     }, []);
 
-    const handleAccept = async (post) => {
-        return;
-    };
     return (
         <>
             <Grid templateColumns='repeat(4, 2fr)' gap={.5}
@@ -54,7 +52,7 @@ export const Pending = () => {
                         </Box>
                         <h1>{post.status}</h1>
                         <Button
-                            onClick={() => handleAccept(post.status)}>Accept
+                            onClick={() => {handleAccept(post.id);}}>Accept
                         </Button>
                     </GridItem>
                 )}
