@@ -6,15 +6,15 @@ import { Table, Thead, Tbody, Tfoot, Tr, Th, Td, TableCaption,
 
 export const Remarks = () => {
     const [posts, setPosts] = useState([]);
-    // const apiEndPoint = '';
-    // useEffect(() => {
-    //     axios.get(apiEndPoint).then(res => {
-    //         console.log(res);
-    //         setPosts(res.data);
-    //     }).catch(err =>{
-    //         console.log(err);
-    //     });
-    // }, []);
+    const apiEndPoint = 'https://us-central1-hain-402aa.cloudfunctions.net/api/getRemarks';
+    useEffect(() => {
+        axios.get(apiEndPoint).then(res => {
+            console.log(res);
+            setPosts(res.data);
+        }).catch(err =>{
+            console.log(err);
+        });
+    }, []);
 
     const remarkData = [
         {

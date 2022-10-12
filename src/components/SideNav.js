@@ -24,7 +24,7 @@ export const SideNav = (props) => {
             <div className='main'>
                 <Routes>
                     <Route exact path='manage-account' element={<ManageAccount />}>
-                        <Route exact path='admin' element={<AdminAccount/>}/>
+                        {/* <Route exact path='admin' element={<AdminAccount/>}/> */}
                         <Route exact path='customer' element={<CustomerAccount/>}/>
                         <Route exact path='employee' element={<EmployeeAccount/>}/>
                     </Route>

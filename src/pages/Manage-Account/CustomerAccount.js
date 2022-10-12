@@ -7,7 +7,7 @@ import { DeleteIcon } from '@chakra-ui/icons';
 import { HandleDeleteAccount } from '../../components/HandleAccounts';
 
 export const CustomerAccount = (props) => {
-    const [posts, setPosts] = useState([]);
+    const [posts, setPosts] = useState();
     const apiEndPoint = 'https://us-central1-hain-402aa.cloudfunctions.net/api/getUserAccounts';
     useEffect(() => {
         axios.get(apiEndPoint).then(res => {

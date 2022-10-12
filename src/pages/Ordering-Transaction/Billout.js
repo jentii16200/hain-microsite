@@ -6,12 +6,20 @@ export const Billout = () => {
     const apiEndPoint = 'https://us-central1-hain-402aa.cloudfunctions.net/api/getOrderLogs';
 
     const [posts, setPosts] = useState([]);
+    const [update, setUpdate] = useState(null);
     useEffect(() => {
+        handleData();
+        return () => {
+            handleData();
+        };
+    }, [update]);
+
+    const handleData = () => {
         axios.get(apiEndPoint).then(res => {
             setPosts(res.data);
             console.log(res);
         }).catch(err => {console.log(err);});
-    }, []);
+    };
     return (
         <>
             <Grid templateColumns='repeat(4, 2fr)' gap={.5}
@@ -47,7 +55,7 @@ export const Billout = () => {
                         </Box>
                         <h1>{post.status}</h1>
                         <Button
-                            onClick={() => {handleDoneOrder(post.id);}}>Accept
+                            onClick={() => {setUpdate(handleDoneOrder(post.id));}}>Accept
                         </Button>
                     </GridItem>
                 )}

@@ -7,12 +7,15 @@ import { Button } from '@chakra-ui/react';
 import { handleAcceptOrder, handleRejectOrder } from '../../components/HandleStatus';
 export const Pending = () => {
     const [posts, setPosts] = useState([]);
+    const [update, setUpdate] = useState(null);
     const apiEndPoint = 'https://us-central1-hain-402aa.cloudfunctions.net/api/getOrderLogs';
 
     useEffect(() => {
         handleData();
-    }, []);
-
+        return () => {
+            handleData();
+        };
+    }, [update]);
     const handleData = () => {
         axios.get(apiEndPoint).then(res => {
             setPosts(res.data);
@@ -34,7 +37,7 @@ export const Pending = () => {
                             <Box display={'flex'}>
                                 {post.userId}
                                 <Button
-                                    onClick={() => {handleRejectOrder(post.id);}}
+                                    onClick={() => {setUpdate(handleRejectOrder(post.id));}}
                                 >x
                                 </Button>
                             </Box>
