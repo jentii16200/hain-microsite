@@ -4,11 +4,10 @@ import { SimpleGrid, Box } from '@chakra-ui/react';
 import { useState } from 'react';
 import axios from 'axios';
 import { Button } from '@chakra-ui/react';
-
+import { handleAcceptOrder, handleRejectOrder } from '../../components/HandleStatus';
 export const Pending = () => {
     const [posts, setPosts] = useState([]);
     const apiEndPoint = 'https://us-central1-hain-402aa.cloudfunctions.net/api/getOrderLogs';
-    const apiOnProcess = 'https://us-central1-hain-402aa.cloudfunctions.net/api/onGoingOrder';
 
     useEffect(() => {
         handleData();
@@ -22,14 +21,6 @@ export const Pending = () => {
             console.log(err);
         });
     };
-    const handleAccept = async (post) => {
-        axios.post(apiOnProcess, { id: post }).then(res =>{
-            console.log(res);
-        }).catch(err =>{
-            console.log(err);
-        });
-    };
-
     return (
         <>
             <Grid templateColumns='repeat(4, 2fr)' gap={.5}
@@ -37,37 +28,48 @@ export const Pending = () => {
                 bg='black'
                 h='84vh'>
                 {posts.map(post =>
-                    <GridItem w='100%' bg='white' key={post.id}>
-                        <h1>{post.id}</h1>
-                        <TableContainer>
-                            <Table variant={'simple'}>
-                                <Thead>
-                                    <Tr>
-                                        <Th>Name</Th>
-                                        <Th>Quantity</Th>
-                                        <Th>Priceame</Th>
-                                    </Tr>
-                                </Thead>
-                                <Tbody>
-                                    {post.orders.map(order =>
-                                        <Tr key={order.name}>
-                                            <Td>{order.name}</Td>
-                                            <Td>{order.quantity}</Td>
-                                            <Td>{order.price}</Td>
+                {if(post.status === 'pending'){
+                    return (
+                        <GridItem w='100%' bg='white' key={post.id}>
+                            <Box display={'flex'}>
+                                {post.userId}
+                                <Button
+                                    onClick={() => {handleRejectOrder(post.id);}}
+                                >x
+                                </Button>
+                            </Box>
+                            <TableContainer>
+                                <Table variant={'simple'}>
+                                    <Thead>
+                                        <Tr>
+                                            <Th>Name</Th>
+                                            <Th>Quantity</Th>
+                                            <Th>Priceame</Th>
                                         </Tr>
-                                    )}
-                                </Tbody>
-                            </Table>
-                        </TableContainer>
-                        <Box display={'flex'}>
-                            Total Amount
-                            <Box marginLeft={'163'}>{post.totalAmount}</Box>
-                        </Box>
-                        <h1>{post.status}</h1>
-                        <Button
-                            onClick={() => {handleAccept(post.id);}}>Accept
-                        </Button>
-                    </GridItem>
+                                    </Thead>
+                                    <Tbody>
+                                        {post.orders.map(order =>
+                                            <Tr key={order.name}>
+                                                <Td>{order.name}</Td>
+                                                <Td>{order.quantity}</Td>
+                                                <Td>{order.price}</Td>
+                                            </Tr>
+                                        )}
+                                    </Tbody>
+                                </Table>
+                            </TableContainer>
+                            <Box display={'flex'}>
+                                Total Amount
+                                <Box marginLeft={'163'}>{post.totalAmount}</Box>
+                            </Box>
+                            <h1>{post.status}</h1>
+                            <Button
+                                onClick={() => {handleAcceptOrder(post.id);}}>Accept
+                            </Button>
+                        </GridItem>
+                    );
+                }}
+
                 )}
                 <GridItem w='100%' bg='grey' />
                 <GridItem w='100%' bg='grey' />
