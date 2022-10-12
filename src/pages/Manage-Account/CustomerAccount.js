@@ -4,31 +4,20 @@ import axios from 'axios';
 import { Table, Thead, Tbody, Tfoot, Tr, Th, Td, TableCaption,
     TableContainer, Wrap, Box, Spinner, Button, IconButton } from '@chakra-ui/react';
 import { DeleteIcon } from '@chakra-ui/icons';
+import { HandleDeleteAccount } from '../../components/HandleAccounts';
 
 export const CustomerAccount = (props) => {
     const [posts, setPosts] = useState([]);
-    const apiDeleteEndPoint = 'https://us-central1-hain-402aa.cloudfunctions.net/api/deleteAccount';
     const apiEndPoint = 'https://us-central1-hain-402aa.cloudfunctions.net/api/getUserAccounts';
     useEffect(() => {
-        handleData();
-    }, []);
-
-    const handleData = () =>{
         axios.get(apiEndPoint).then(res => {
             setPosts(res.data);
             console.log(res);
         }).catch(err =>{
             console.log(err);
         });
-    };
-    const handleDelete = async (post) => {
-        axios.post(apiDeleteEndPoint, { accountId: post }).then(res =>{
-            console.log(res);
-        }).catch(err =>{
-            console.log(err);
-        });
-        handleData();
-    };
+    }, []);
+
     return (
         <div>
             <TableContainer className='table'>
@@ -51,7 +40,7 @@ export const CustomerAccount = (props) => {
                                 <Td>{post.password}</Td>
                                 <Td isNumeric>
                                     <IconButton
-                                        onClick={() => handleDelete(post.id)}
+                                        onClick={() => (HandleDeleteAccount(post.id))}
                                         variant={'unstyled'}
                                         icon={<DeleteIcon color={'red.500'}/>}/>
                                 </Td>
