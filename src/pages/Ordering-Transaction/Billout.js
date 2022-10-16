@@ -1,5 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { Box, Button, Grid, GridItem, Table, TableContainer, Thead, Th, Tr, Tbody, Td } from '@chakra-ui/react';
+import { Box,
+    Button,
+    Grid,
+    GridItem,
+    Table,
+    TableContainer,
+    Thead,
+    Th,
+    Tr,
+    Tbody,
+    Td } from '@chakra-ui/react';
 import axios from 'axios';
 import { handleDoneOrder } from '../../components/HandleStatus';
 export const Billout = () => {
@@ -22,12 +32,18 @@ export const Billout = () => {
     };
     return (
         <>
-            <Grid templateColumns='repeat(4, 2fr)' gap={.5}
+            <Grid
+                templateColumns='repeat(4, 2fr)'
+                gap={.5}
                 templateRows='repeat(2, 1fr)'
                 bg='black'
                 h='84vh'>
                 {posts.map(post =>
-                    <GridItem w='100%' bg='white' key={post.id}>
+                    <GridItem
+                        w='100%'
+                        bg='white'
+                        key={post.id}>
+
                         <h1>{post.id}</h1>
                         <TableContainer>
                             <Table variant={'simple'}>
