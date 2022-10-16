@@ -38,6 +38,7 @@ export const Billout = () => {
                 templateRows='repeat(2, 1fr)'
                 bg='black'
                 h='84vh'>
+
                 {posts.map(post =>
                     <GridItem
                         w='100%'
