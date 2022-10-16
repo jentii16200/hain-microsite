@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
     Modal,
     ModalOverlay,
@@ -11,21 +11,22 @@ import {
     useDisclosure
 } from '@chakra-ui/react';
 
-export const HoverModal = (post) => {
-    const { isOpen, onOpen, onClose } = useDisclosure();
-    const [modalDate] = useState(post);
+export const HoverModal = (modalDataSet, modalIsOpenSet) => {
+    const open = { modalIsOpenSet };
     return (
         <>
-            <Modal isOpen={isOpen} onClose={onClose}>
+            <Modal isOpen={open}>
                 <ModalOverlay />
                 <ModalContent>
-                    <ModalHeader>Modal Title</ModalHeader>
+                    <ModalHeader>TA
+                        {modalDataSet.name}
+                    </ModalHeader>
                     <ModalCloseButton />
                     <ModalBody>
                         WALA
                     </ModalBody>
                     <ModalFooter>
-                        <Button colorScheme='blue' mr={3} onClick={false}>
+                        <Button colorScheme='blue' mr={3}>
                             Close
                         </Button>
                         <Button variant='ghost'>Secondary Action</Button>

@@ -46,10 +46,11 @@ export const Pulutan = () => {
                             height ={'170px'}
                             key={post.id}
                             onClick= {() => {
+                                HoverModal(post, true);
                                 setModalData(post);
                                 setModalIsOpen(true);
                             }}>
-                            {modalIsOpen &&
+                            { modalIsOpen &&
                                 <Modal
                                     isOpen={modalIsOpen}
                                     onClose={() => setModalIsOpen(false)}>
