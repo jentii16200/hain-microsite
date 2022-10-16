@@ -14,9 +14,9 @@ import {
 } from '@chakra-ui/react';
 
 export const Pulutan = () => {
-    const { isOpen, onOpen, onClose } = useDisclosure();
+    const [modalIsOpen, setModalIsOpen] = useState(false);
     const [posts, setPosts] = useState([]);
-    const [items, setItems] = useState({});
+    const [modalData, setModalData] = useState();
     const apiEndPoint = 'https://us-central1-hain-402aa.cloudfunctions.net/api/getMenu';
     useEffect(() => {
         axios.post(apiEndPoint, { type: 'dish' }).then(res => {
@@ -34,8 +34,8 @@ export const Pulutan = () => {
 
                 {posts.map(post =>
                     <Tooltip
-                        hasArrow label={MenuLabel(post)}
-                        placement='auto-start'
+                        // hasArrow label={MenuLabel(post)}
+                        // placement='auto-start'
                         key={post.id}>
                         <Box
                             className='card'
@@ -45,24 +45,35 @@ export const Pulutan = () => {
                             width={'180px'}
                             height ={'170px'}
                             key={post.id}
-                            onClick= {onOpen}>
-                            <Modal isOpen={isOpen} onClose={onClose} key={post.id}>
-                                <ModalOverlay />
-                                <ModalContent>
-
-                                    <ModalHeader>{post.name}</ModalHeader>
-                                    <ModalCloseButton />
-                                    <ModalBody>
-                                        {post.description}
-                                    </ModalBody>
-                                    <ModalFooter>
-                                        <Button colorScheme='blue' mr={3} onClick={onClose}>
-                                            Close
-                                        </Button>
-                                        <Button variant='ghost'>Secondary Action</Button>
-                                    </ModalFooter>
-                                </ModalContent>
-                            </Modal>
+                            onClick= {() => {
+                                setModalData(post);
+                                setModalIsOpen(true);
+                            }}>
+                            {modalIsOpen &&
+                                <Modal
+                                    isOpen={modalIsOpen}
+                                    onClose={() => setModalIsOpen(false)}>
+                                    <ModalOverlay />
+                                    <ModalContent>
+                                        <ModalHeader>
+                                            {modalData.name}
+                                        </ModalHeader>
+                                        <ModalCloseButton />
+                                        <ModalBody>
+                                            {modalData.description}
+                                        </ModalBody>
+                                        <ModalFooter>
+                                            <Button
+                                                colorScheme='blue'
+                                                mr={3}
+                                                onClick={() => setModalIsOpen(false)}>
+                                                Close
+                                            </Button>
+                                            <Button variant='ghost'>Secondary Action</Button>
+                                        </ModalFooter>
+                                    </ModalContent>
+                                </Modal>
+                            }
                             <Image className='menu-image'
                                 src={post.imageUrl}
                                 alt={post.imageAlt}
@@ -83,7 +94,9 @@ export const Pulutan = () => {
 
                 )}
             </div>
+
         </>
+
     );
 };
 
