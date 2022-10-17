@@ -20,48 +20,6 @@ body{
   background-size: cover;
 }
 
-.navigation{
-  position: fixed;
-  height: 100%;
-  width: 260px;
-  background-color: rgb(85, 169, 149);
-  transition: .5%;
-  overflow: auto;
-}
-.navigation ul{
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-}
-.navigation ul .welcome{
-  height: 70px;
-  line-height: 35px;
-}
-.navigation ul li{
-  position: relative;
-  width: 100%;
-  list-style: none;
-}
-.navigation ul li:hover{
-  background-color: rgb(62, 87, 79);
-}
-.navigation ul li .links{
-  position: relative;
-  display: block;
-  padding: 0 10px;
-  height: 60px;
-  line-height: 60px;
-  text-align: start;
-  border-bottom: 1px solid rgb(65, 65, 65);
-
-}
-.navigation ul .welcome{
-  background-color: aqua;
-  text-align: center;
-  padding: 15px; 
-  
-}
 .container{
   display: flex;
   width: 100%;
