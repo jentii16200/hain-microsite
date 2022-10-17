@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Box, Image, Badge, Tooltip, useDisclosure, Button, Grid, GridItem } from '@chakra-ui/react';
+import { Box, Image, Badge, Tooltip, useDisclosure, Button, Grid, GridItem, Portal } from '@chakra-ui/react';
 import axios from 'axios';
 import { MenuLabel } from './testing/ToolTip';
 import { HoverModal } from './testing/HoverModal';
@@ -12,6 +12,7 @@ import {
     ModalBody,
     ModalCloseButton,
 } from '@chakra-ui/react';
+import { HandleModal } from './components/HandleModal';
 
 export const Pulutan = () => {
     const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -22,10 +23,14 @@ export const Pulutan = () => {
         axios.post(apiEndPoint, { type: 'dish' }).then(res => {
             setPosts(res.data);
             console.log(res);
-        }).catch(err =>{
+        }).catch(err => {
             console.log(err);
         });
     }, []);
+
+    const handleCloseModal = () => {
+        setModalIsOpen(false);
+    };
 
     return (
         <>
@@ -43,64 +48,31 @@ export const Pulutan = () => {
                             borderRadius='lg'
                             overflow='hidden'
                             width={'180px'}
-                            height ={'170px'}
+                            height={'170px'}
                             key={post.id}
-                            onClick= {() => {
+                            onClick={() => {
                                 HoverModal(post, true);
                                 setModalData(post);
                                 setModalIsOpen(true);
                             }}>
-                            { modalIsOpen &&
+                            {modalIsOpen &&
                                 <Modal
                                     size='3xl'
                                     isOpen={modalIsOpen}
                                     onClose={() => setModalIsOpen(false)}>
                                     <ModalOverlay />
-                                    <ModalContent>
-                                        <ModalBody>
-                                            <Grid
-                                                templateRows={'repeat(5, 1fr)'}
-                                                templateColumns={'repeat(5, 1fr)'}
-                                                gap={'1'}
-                                                h='500px'>
-                                                <GridItem rowSpan={2} colSpan={3}
-                                                    bg='gray'>
-                                                    {modalData.name}
-                                                </GridItem>
-                                                <GridItem rowSpan={2} colSpan={2}
-                                                    bg='gray'>
-                                                    <Image src={modalData.imageUrl}
-                                                        width='100%'
-                                                        height='100%'
-                                                        objectFit='cover' />
-                                                </GridItem>
-                                                <GridItem rowSpan={3} colSpan={1}
-                                                    bg='gray'>
-                                                    TESTING
-                                                </GridItem>
-                                                <GridItem rowSpan={3} colSpan={4}
-                                                    bg='gray'>
-                                                    {modalData.description}
-                                                </GridItem>
-                                            </Grid>
-                                        </ModalBody>
-                                        <ModalFooter>
-                                            <Button
-                                                colorScheme='blue'
-                                                mr={3}
-                                                onClick={() => setModalIsOpen(false)}>
-                                                Close
-                                            </Button>
-                                            <Button variant='ghost'>Secondary Action</Button>
-                                        </ModalFooter>
-                                    </ModalContent>
+                                    <Portal>
+                                        <HandleModal
+                                            modalData={modalData}
+                                            handleCloseModal={handleCloseModal} />
+                                    </Portal>
                                 </Modal>
                             }
                             <Image className='menu-image'
                                 src={post.imageUrl}
                                 alt={post.imageAlt}
                                 width={'180px'}
-                                height={'130px'}/>
+                                height={'130px'} />
                             <Box className='menu-name'>
                                 <Box
                                     mt='1'
