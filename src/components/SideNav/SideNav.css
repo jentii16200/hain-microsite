@@ -1,8 +1,8 @@
-* {
+/* * {
     box-sizing: border-box;
-    /* background: rgb(0, 100, 0, .1); */
+    background: rgb(0, 100, 0, .1);
     outline: 1px solid limegreen !important;
-}
+} */
 .navigation{
     position: fixed;
     height: 100%;
@@ -15,7 +15,6 @@
     background-color: aqua;
     display: grid;
     height: 100px;
-    /* line-height: 35px; */
     font-weight: 700;
     place-items: center;
     font-size: 1.5rem;
@@ -28,22 +27,26 @@
     margin: 10px 0;
     list-style: none;
   }
-  ul li:active,  
-  ul li:hover{
-    /* padding: 10px 15px; */
-    background-color: rgb(62, 87, 79);
-    transition: all 1s;
-  }
   ul li .links{
     text-decoration: none;
     font-size: 1rem;
-    display: block;
     padding: 10px 15px;
     margin: 10px 10px;
     border-radius: 6px;
+    place-items: center;
   }
-  ul li .links:hover :active{
-    background-color: white;
-    color: black;
-    transition: all 1s;
+  .links{
+    display: flex;
+
+  }
+  ul li svg{
+    margin-right: 10px;
+    width: 30px;
+    height: 30px;
+  }
+  ul li .links:hover{
+    padding: 20px 25px;
+    background-color: rgb(85, 99, 226);;
+    color: white;
+    transition: all .5s;
   }

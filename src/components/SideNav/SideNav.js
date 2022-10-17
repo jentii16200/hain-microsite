@@ -8,6 +8,11 @@ import {
 import { Billout } from '../../pages/Ordering-Transaction/Billout.js';
 import { OnProcess } from '../../pages/Ordering-Transaction/OnProcess.js';
 import { Pending } from '../../pages/Ordering-Transaction/Pending.js';
+import { MdSupervisorAccount, MdOutlineNotificationImportant, MdAccountCircle } from 'react-icons/md';
+import { IoFastFoodOutline } from 'react-icons/io5';
+import { HiOutlineDocumentText } from 'react-icons/hi';
+import { IoMdPersonAdd } from 'react-icons/io';
+import { BiBorderRadius } from 'react-icons/bi';
 
 export const SideNav = (props) => {
     return (
@@ -15,13 +20,13 @@ export const SideNav = (props) => {
             <div className='navigation'>
                 <h2 className='welcome'>Welcome</h2>
                 <ul>
-                    <li><Link className='links' to='manage-account/customer'>MANAGE ACCOUNT</Link></li>
-                    <li><Link className='links' to='menu-management'>MENU MANAGEMENT</Link></li>
-                    <li><Link className='links' to='order-log'>ORDER LOG</Link></li>
-                    <li><Link className='links' to='register-employee'>REGISTER EMPLOYEE</Link></li>
-                    <li><Link className='links' to='ordering-transaction/pending'>ORDERING TRANSACTION</Link></li>
-                    <li><Link className='links' to='remarks'>REMARKS</Link></li>
-                    <li><Link className='links' to="my-account">MY ACCOUNT</Link></li>
+                    <li><Link className='links' to='manage-account/customer'><MdSupervisorAccount />MANAGE ACCOUNT</Link></li>
+                    <li><Link className='links' to='menu-management'><IoFastFoodOutline />MENU MANAGEMENT</Link></li>
+                    <li><Link className='links' to='order-log'><HiOutlineDocumentText />ORDER LOG</Link></li>
+                    <li><Link className='links' to='register-employee'><IoMdPersonAdd />REGISTER EMPLOYEE</Link></li>
+                    <li><Link className='links' to='ordering-transaction/pending'><BiBorderRadius />ORDERING TRANSACTION</Link></li>
+                    <li><Link className='links' to='remarks'><MdOutlineNotificationImportant />REMARKS</Link></li>
+                    <li><Link className='links' to="my-account"><MdAccountCircle />MY ACCOUNT</Link></li>
                 </ul>
             </div>
             <div className='main'>
