@@ -38,53 +38,53 @@ export const Pulutan = () => {
             <div className='menu'>
 
                 {posts.map(post =>
-                    <Tooltip
-                        // hasArrow label={MenuLabel(post)}
-                        // placement='auto-start'
-                        key={post.id}>
-                        <Box
-                            className='card'
-                            maxW='sm' borderWidth='1px'
-                            borderRadius='lg'
-                            overflow='hidden'
+                    // <Tooltip
+                    //     hasArrow label={MenuLabel(post)}
+                    //     placement='auto-start'
+                    //     key={post.id}>
+                    <Box
+                        className='card'
+                        maxW='sm' borderWidth='1px'
+                        borderRadius='lg'
+                        overflow='hidden'
+                        width={'180px'}
+                        height={'170px'}
+                        key={post.name}
+                        onClick={() => {
+                            HoverModal(post, true);
+                            setModalData(post);
+                            setModalIsOpen(true);
+                        }}>
+                        {modalIsOpen &&
+                            <Modal
+                                size='3xl'
+                                isOpen={modalIsOpen}
+                                onClose={() => setModalIsOpen(false)}>
+                                <ModalOverlay />
+                                <Portal>
+                                    <HandleModal
+                                        modalData={modalData}
+                                        handleCloseModal={handleCloseModal} />
+                                </Portal>
+                            </Modal>
+                        }
+                        <Image className='menu-image'
+                            src={post.imageUrl}
+                            alt={post.imageAlt}
                             width={'180px'}
-                            height={'170px'}
-                            key={post.id}
-                            onClick={() => {
-                                HoverModal(post, true);
-                                setModalData(post);
-                                setModalIsOpen(true);
-                            }}>
-                            {modalIsOpen &&
-                                <Modal
-                                    size='3xl'
-                                    isOpen={modalIsOpen}
-                                    onClose={() => setModalIsOpen(false)}>
-                                    <ModalOverlay />
-                                    <Portal>
-                                        <HandleModal
-                                            modalData={modalData}
-                                            handleCloseModal={handleCloseModal} />
-                                    </Portal>
-                                </Modal>
-                            }
-                            <Image className='menu-image'
-                                src={post.imageUrl}
-                                alt={post.imageAlt}
-                                width={'180px'}
-                                height={'130px'} />
-                            <Box className='menu-name'>
-                                <Box
-                                    mt='1'
-                                    fontWeight='semibold'
-                                    as='h2'
-                                    noOfLines={2}
-                                >
-                                    {post.name}
-                                </Box>
+                            height={'130px'} />
+                        <Box className='menu-name'>
+                            <Box
+                                mt='1'
+                                fontWeight='semibold'
+                                as='h2'
+                                noOfLines={2}
+                            >
+                                {post.name}
                             </Box>
                         </Box>
-                    </Tooltip>
+                    </Box>
+                    // </Tooltip>
 
                 )}
             </div>

@@ -12,17 +12,13 @@ export const Pending = () => {
 
     useEffect(() => {
         handleData();
-        return () => {
-            handleData();
-        };
     }, [update]);
+
     const handleData = () => {
         axios.get(apiEndPoint).then(res => {
             setPosts(res.data);
             console.log(res);
-        }).catch(err =>{
-            console.log(err);
-        });
+        }).catch(err => { console.log(err); });
     };
     return (
         <>
@@ -30,48 +26,49 @@ export const Pending = () => {
                 templateRows='repeat(2, 1fr)'
                 bg='black'
                 h='84vh'>
-                {posts.map(post =>
-                {if(post.status === 'pending'){
-                    return (
-                        <GridItem w='100%' bg='white' key={post.id}>
-                            <Box display={'flex'}>
-                                {post.userId}
-                                <Button
-                                    onClick={() => {setUpdate(handleRejectOrder(post.id));}}
-                                >x
-                                </Button>
-                            </Box>
-                            <TableContainer>
-                                <Table variant={'simple'}>
-                                    <Thead>
-                                        <Tr>
-                                            <Th>Name</Th>
-                                            <Th>Quantity</Th>
-                                            <Th>Priceame</Th>
-                                        </Tr>
-                                    </Thead>
-                                    <Tbody>
-                                        {post.orders.map(order =>
-                                            <Tr key={order.name}>
-                                                <Td>{order.name}</Td>
-                                                <Td>{order.quantity}</Td>
-                                                <Td>{order.price}</Td>
+                {posts.map(post => {
+                    if (post.status === 'pending') {
+                        return (
+                            <GridItem w='100%' bg='white' key={post.id}>
+                                <Box display={'flex'}>
+                                    {post.userId}
+                                    <Button
+                                        onClick={() => { setUpdate(handleRejectOrder(post.id)); }}
+                                    >x
+                                    </Button>
+                                </Box>
+                                <TableContainer>
+                                    <Table variant={'simple'}>
+                                        <Thead>
+                                            <Tr>
+                                                <Th>Name</Th>
+                                                <Th>Quantity</Th>
+                                                <Th>Priceame</Th>
                                             </Tr>
-                                        )}
-                                    </Tbody>
-                                </Table>
-                            </TableContainer>
-                            <Box display={'flex'}>
-                                Total Amount
-                                <Box marginLeft={'163'}>{post.totalAmount}</Box>
-                            </Box>
-                            <h1>{post.status}</h1>
-                            <Button
-                                onClick={() => {handleAcceptOrder(post.id);}}>Accept
-                            </Button>
-                        </GridItem>
-                    );
-                }}
+                                        </Thead>
+                                        <Tbody>
+                                            {post.orders.map(order =>
+                                                <Tr key={order.name}>
+                                                    <Td>{order.name}</Td>
+                                                    <Td>{order.quantity}</Td>
+                                                    <Td>{order.price}</Td>
+                                                </Tr>
+                                            )}
+                                        </Tbody>
+                                    </Table>
+                                </TableContainer>
+                                <Box display={'flex'}>
+                                    Total Amount
+                                    <Box marginLeft={'163'}>{post.totalAmount}</Box>
+                                </Box>
+                                <h1>{post.status}</h1>
+                                <Button
+                                    onClick={() => { handleAcceptOrder(post.id); }}>Accept
+                                </Button>
+                            </GridItem>
+                        );
+                    }
+                }
 
                 )}
                 <GridItem w='100%' bg='grey' />

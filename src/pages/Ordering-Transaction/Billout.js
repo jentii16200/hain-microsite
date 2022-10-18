@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Box,
+import {
+    Box,
     Button,
     Grid,
     GridItem,
@@ -9,7 +10,8 @@ import { Box,
     Th,
     Tr,
     Tbody,
-    Td } from '@chakra-ui/react';
+    Td
+} from '@chakra-ui/react';
 import axios from 'axios';
 import { handleDoneOrder } from '../../components/HandleStatus';
 export const Billout = () => {
@@ -28,7 +30,7 @@ export const Billout = () => {
         axios.get(apiEndPoint).then(res => {
             setPosts(res.data);
             console.log(res);
-        }).catch(err => {console.log(err);});
+        }).catch(err => { console.log(err); });
     };
     return (
         <>
@@ -72,7 +74,7 @@ export const Billout = () => {
                         </Box>
                         <h1>{post.status}</h1>
                         <Button
-                            onClick={() => {setUpdate(handleDoneOrder(post.id));}}>Accept
+                            onClick={() => { setUpdate(handleDoneOrder(post.id)); }}>Accept
                         </Button>
                     </GridItem>
                 )}

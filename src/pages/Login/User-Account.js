@@ -15,8 +15,8 @@ export const UserAccount = (props) => {
     const isErrorEmail = email === '';
     const isErrorPass = password === '';
 
-    function isAccountExist(){
-        if(email != '' && password != ''){
+    function isAccountExist() {
+        if (email != '' && password != '') {
             new Promise(resolve => {
                 setIsLoading(false);
                 setTimeout(resolve, 1000);
@@ -32,7 +32,7 @@ export const UserAccount = (props) => {
                 });
             });
 
-        }else{
+        } else {
             new Promise(resolve => {
                 setIsLoading(false);
                 setTimeout(resolve, 1000);
@@ -54,13 +54,13 @@ export const UserAccount = (props) => {
         return <Navigate to="/h/manage-account/customer" />;
 
     }
-    return(
+    return (
         isLoading ?
             <div className='bg'>
                 <Box h='calc(25vh)' />
                 <Wrap justify='center'>
-                    <Wrap Item>
-                        <Box w='calc(50vw)' pl = "10" pr = "10">
+                    <WrapItem>
+                        <Box w='calc(50vw)' pl="10" pr="10">
                             <Center bg="rgba(0,0,0,0.1)" w='300' h='300' color='white' >
                                 <Container color='white'>
                                     <FormControl isInvalid={isErrorEmail}>
@@ -87,9 +87,9 @@ export const UserAccount = (props) => {
                                 </Container>
                             </Center>
                         </Box>
-                    </Wrap>
+                    </WrapItem>
                 </Wrap>
-                <Box h='calc(33vh)'/>
+                <Box h='calc(33vh)' />
             </div>
             :
             <Wrap justify='Center'>

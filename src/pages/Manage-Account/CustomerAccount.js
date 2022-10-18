@@ -1,8 +1,10 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Table, Thead, Tbody, Tfoot, Tr, Th, Td, TableCaption,
-    TableContainer, Wrap, Box, Spinner, Button, IconButton, Grid, GridItem } from '@chakra-ui/react';
+import {
+    Table, Thead, Tbody, Tfoot, Tr, Th, Td, TableCaption,
+    TableContainer, Wrap, Box, Spinner, Button, IconButton, Grid, GridItem
+} from '@chakra-ui/react';
 import { DeleteIcon } from '@chakra-ui/icons';
 import { HandleDeleteAccount } from '../../components/HandleAccounts';
 import { SearchBar } from '../../components/SearchBar';
@@ -15,7 +17,7 @@ export const CustomerAccount = (props) => {
         axios.get(apiEndPoint).then(res => {
             setPosts(res.data);
             console.log(res);
-        }).catch(err =>{
+        }).catch(err => {
             console.log(err);
         });
     }, []);
@@ -56,7 +58,7 @@ export const CustomerAccount = (props) => {
                                             <IconButton
                                                 onClick={() => (HandleDeleteAccount(post.id))}
                                                 variant={'unstyled'}
-                                                icon={<DeleteIcon color={'red.500'}/>}/>
+                                                icon={<DeleteIcon color={'red.500'} />} />
                                         </Td>
                                     </Tr>)}
                             </Tbody>
