@@ -12,6 +12,9 @@ export const Pending = () => {
 
     useEffect(() => {
         handleData();
+        return () => {
+            handleData();
+        };
     }, [update]);
 
     const handleData = () => {

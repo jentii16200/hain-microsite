@@ -10,7 +10,9 @@ export const OnProcess = () => {
     const [posts, setPosts] = useState([]);
     useEffect(() => {
         handleData();
-        return handleData();
+        return () => {
+            handleData();
+        };
     }, []);
 
     const handleData = () => {

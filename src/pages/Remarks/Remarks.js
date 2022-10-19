@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Button, Heading } from '@chakra-ui/react';
 import axios from 'axios';
-import { Table, Thead, Tbody, Tfoot, Tr, Th, Td, TableCaption,
-    TableContainer } from '@chakra-ui/react';
+import {
+    Table, Thead, Tbody, Tfoot, Tr, Th, Td, TableCaption,
+    TableContainer
+} from '@chakra-ui/react';
 
 export const Remarks = () => {
     const [posts, setPosts] = useState([]);
@@ -11,7 +13,7 @@ export const Remarks = () => {
         axios.get(apiEndPoint).then(res => {
             console.log(res);
             setPosts(res.data);
-        }).catch(err =>{
+        }).catch(err => {
             console.log(err);
         });
     }, []);
