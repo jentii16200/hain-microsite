@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Heading } from '@chakra-ui/react';
 import axios from 'axios';
-import { Table, Thead, Tbody, Tfoot, Tr, Th, Td, TableCaption,
-    TableContainer } from '@chakra-ui/react';
+import {
+    Table, Thead, Tbody, Tfoot, Tr, Th, Td, TableCaption,
+    TableContainer
+} from '@chakra-ui/react';
 
-export const OrderLog = () => {
+const OrderLog = () => {
     // const [posts, setPosts] = useState([]);
     // const apiEndPoint = '';
     // useEffect(() => {
@@ -79,3 +81,4 @@ export const OrderLog = () => {
         </div>
     );
 };
+export default OrderLog;

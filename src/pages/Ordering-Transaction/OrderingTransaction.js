@@ -1,7 +1,7 @@
 import React from 'react';
 import { Heading } from '@chakra-ui/react';
 import { OrderingTransactionNav } from '../../components/OrderingTransactionNav';
-export const OrderingTransaction = () => {
+const OrderingTransaction = () => {
     return (
         <div>
             <Heading className='title'>ORDERING TRANSACTION</Heading>
@@ -9,3 +9,4 @@ export const OrderingTransaction = () => {
         </div>
     );
 };
+export default OrderingTransaction;

@@ -4,7 +4,7 @@ import '../../assets/index.css';
 import { Navigate } from 'react-router-dom';
 import BackGround from '../../assets/bg.png';
 
-export const UserAccount = (props) => {
+const UserAccount = (props) => {
     const [isLoading, setIsLoading] = useState(true);
     const toast = useToast();
     const [goToContact, setGoToContact] = useState(false);
@@ -106,3 +106,4 @@ export const UserAccount = (props) => {
 
     );
 };
+export default UserAccount;

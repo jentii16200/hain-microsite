@@ -8,7 +8,10 @@ function App() {
         <Router>
             <Routes>
                 <Route exact path='/' element={<UserAccount />} />
-                <Route exact path='h/*' element={<SideNav />} />
+                <Route exact path='h/*' element={
+                    <React.Suspense fallback='Loading'>
+                        <SideNav />
+                    </React.Suspense>} />
             </Routes>
         </Router>
 

@@ -1,11 +1,12 @@
 import React from 'react';
 import { Heading } from '@chakra-ui/react';
 import { RegisterEmployeeForms } from './RegisterEmployeeForms';
-export const RegisterEmployee = () => {
+const RegisterEmployee = () => {
     return (
         <React.Fragment>
             <Heading className='title'>REGISTER EMPLOYEE</Heading>
-            <RegisterEmployeeForms/>
+            <RegisterEmployeeForms />
         </React.Fragment>
     );
 };
+export default RegisterEmployee;

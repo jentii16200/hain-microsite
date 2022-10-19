@@ -2,7 +2,7 @@ import React from 'react';
 import { Heading } from '@chakra-ui/react';
 import { Pulutan } from './Pulutan';
 
-export const MenuManagement = () => {
+const MenuManagement = () => {
     return (
         <div>
             <Heading className='title'>MENU MANAGEMENT</Heading>
@@ -10,3 +10,4 @@ export const MenuManagement = () => {
         </div>
     );
 };
+export default MenuManagement;

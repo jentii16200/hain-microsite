@@ -6,7 +6,7 @@ import {
     TableContainer
 } from '@chakra-ui/react';
 
-export const Remarks = () => {
+const Remarks = () => {
     const [posts, setPosts] = useState([]);
     const apiEndPoint = 'https://us-central1-hain-402aa.cloudfunctions.net/api/getRemarks';
     useEffect(() => {
@@ -64,3 +64,4 @@ export const Remarks = () => {
         </div>
     );
 };
+export default Remarks;

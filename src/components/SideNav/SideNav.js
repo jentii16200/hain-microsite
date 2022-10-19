@@ -23,7 +23,7 @@ import { IoMdPersonAdd } from 'react-icons/io';
 import { BiBorderRadius } from 'react-icons/bi';
 
 // const Remarks = React.lazy(() => import('../../pages/Remarks/Remarks'));
-export const SideNav = (props) => {
+const SideNav = (props) => {
     return (
         <div className='container'>
             <div className='navigation'>
@@ -89,3 +89,4 @@ export const SideNav = (props) => {
 
     );
 };
+export default SideNav;
