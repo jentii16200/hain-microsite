@@ -39,51 +39,26 @@ const SideNav = (props) => {
                 </ul>
             </div>
             <div className='main'>
-                <Routes>
-                    <Route exact path='manage-account' element={
-                        <React.Suspense fallback='Loading'>
-                            <ManageAccount />
-                        </React.Suspense>}>
-
-                        {/* <Route exact path='admin' element={<AdminAccount/>}/> */}
-                        <Route exact path='customer' element={<CustomerAccount />} />
-                        <Route exact path='employee' element={<EmployeeAccount />} />
-                    </Route>
-                    <Route exact path='menu-management' element={
-                        <React.Suspense fallback='Loading'>
-                            <MenuManagement />
-                        </React.Suspense>}
-                    />
-                    <Route exact path='order-log' element={
-                        <React.Suspense fallback='Loading'>
-                            <OrderLog />
-                        </React.Suspense>}
-                    />
-                    <Route exact path='register-employee' element={
-                        <React.Suspense fallback='Loading'>
-                            <RegisterEmployee />
-                        </React.Suspense>}
-                    />
-                    <Route exact path='ordering-transaction' element={
-                        <React.Suspense fallback='Loading'>
-                            <OrderingTransaction />
-                        </React.Suspense>}
-                    >
-                        <Route exact path='pending' element={<Pending />} />
-                        <Route exact path='onprocess' element={<OnProcess />} />
-                        <Route exact path='billout' element={<Billout />} />
-                    </Route>
-                    <Route exact path='remarks' element={
-                        <React.Suspense fallback='Loading'>
-                            <Remarks />
-                        </React.Suspense>}
-                    />
-                    <Route exact path='my-account' element={
-                        <React.Suspense fallback='Loading'>
-                            <MyAccount />
-                        </React.Suspense>}
-                    />
-                </Routes>
+                <React.Suspense fallback='Loading'>
+                    <Routes>
+                        <Route exact path='manage-account' element={<ManageAccount />}>
+                            {/* <Route exact path='admin' element={<AdminAccount/>}/> */}
+                            <Route exact path='customer' element={<CustomerAccount />} />
+                            <Route exact path='employee' element={<EmployeeAccount />} />
+                        </Route>
+                        <Route exact path='menu-management' element={<MenuManagement />} />
+                        <Route exact path='order-log' element={<OrderLog />} />
+                        <Route exact path='register-employee' element={<RegisterEmployee />} />
+                        <Route exact path='ordering-transaction' element={<OrderingTransaction />}>
+                            <Route exact path='pending' element={<Pending />} />
+                            <Route exact path='onprocess' element={<OnProcess />} />
+                            <Route exact path='billout' element={<Billout />} />
+                        </Route>
+                        <Route exact path='remarks' element={<Remarks />} />
+                        <Route exact path='my-account' element={<MyAccount />}
+                        />
+                    </Routes>
+                </React.Suspense>
             </div>
         </div>
 

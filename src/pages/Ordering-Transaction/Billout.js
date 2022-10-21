@@ -13,7 +13,7 @@ import {
     Td
 } from '@chakra-ui/react';
 import axios from 'axios';
-import { handleDoneOrder } from '../../components/HandleStatus';
+import { handleDoneOrder } from './api/HandleStatus';
 export const Billout = () => {
     const apiEndPoint = 'https://us-central1-hain-402aa.cloudfunctions.net/api/getOrderLogs';
 

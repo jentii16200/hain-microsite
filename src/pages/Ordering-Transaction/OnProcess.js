@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Box, Button, Grid, GridItem, Table, TableContainer, Thead, Th, Tr, Tbody, Td } from '@chakra-ui/react';
-import { handleOnProcessOrder } from '../../components/HandleStatus';
+import { handleOnProcessOrder } from './api/HandleStatus';
 import { useEffect } from 'react';
 import axios from 'axios';
 

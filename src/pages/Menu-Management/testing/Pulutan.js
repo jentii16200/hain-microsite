@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Box, Image, Badge, Tooltip, useDisclosure, Button, Grid, GridItem, Portal } from '@chakra-ui/react';
 import axios from 'axios';
-import { MenuLabel } from './testing/ToolTip';
-import { HoverModal } from './testing/HoverModal';
+import { MenuLabel } from './ToolTip';
+import { HoverModal } from './HoverModal';
 import {
     Modal,
     ModalOverlay,
@@ -12,7 +12,7 @@ import {
     ModalBody,
     ModalCloseButton,
 } from '@chakra-ui/react';
-import { HandleModal } from './components/HandleModal';
+import { HandleModal } from '../components/HandleModal';
 
 export const Pulutan = () => {
     const [modalIsOpen, setModalIsOpen] = useState(false);
