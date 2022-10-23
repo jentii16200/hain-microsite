@@ -1,6 +1,6 @@
 import './SideNav.css';
 import React, { lazy } from 'react';
-import { Link, Routes, Route, Outlet } from 'react-router-dom';
+import { Link, Routes, Route, Outlet, NavLink } from 'react-router-dom';
 import {
     ManageAccount,
     AdminAccount,
@@ -29,13 +29,13 @@ const SideNav = (props) => {
             <div className='navigation'>
                 <h2 className='welcome'>Welcome</h2>
                 <ul>
-                    <li><Link className='links' to='manage-account/customer'><MdSupervisorAccount />MANAGE ACCOUNT</Link></li>
-                    <li><Link className='links' to='menu-management'><IoFastFoodOutline />MENU MANAGEMENT</Link></li>
-                    <li><Link className='links' to='order-log'><HiOutlineDocumentText />ORDER LOG</Link></li>
-                    <li><Link className='links' to='register-employee'><IoMdPersonAdd />REGISTER EMPLOYEE</Link></li>
-                    <li><Link className='links' to='ordering-transaction/pending'><BiBorderRadius />ORDERING TRANSACTION</Link></li>
-                    <li><Link className='links' to='remarks'><MdOutlineNotificationImportant />REMARKS</Link></li>
-                    <li><Link className='links' to="my-account"><MdAccountCircle />MY ACCOUNT</Link></li>
+                    <li><NavLink className={({ isActive }) => (isActive && 'active')} to='manage-account/customer'><MdSupervisorAccount />MANAGE ACCOUNT</NavLink></li>
+                    <li><NavLink className={({ isActive }) => (isActive && 'active')} to='menu-management'><IoFastFoodOutline />MENU MANAGEMENT</NavLink></li>
+                    <li><NavLink className={({ isActive }) => (isActive && 'active')} to='order-log'><HiOutlineDocumentText />ORDER LOG</NavLink></li>
+                    <li><NavLink className={({ isActive }) => (isActive && 'active')} to='register-employee'><IoMdPersonAdd />REGISTER EMPLOYEE</NavLink></li>
+                    <li><NavLink className={({ isActive }) => (isActive && 'active')} to='ordering-transaction/pending'><BiBorderRadius />ORDERING TRANSACTION</NavLink></li>
+                    <li><NavLink className={({ isActive }) => (isActive && 'active')} to='remarks'><MdOutlineNotificationImportant />REMARKS</NavLink></li>
+                    <li><NavLink className={({ isActive }) => (isActive && 'active')} to="my-account"><MdAccountCircle />MY ACCOUNT</NavLink></li>
                 </ul>
             </div>
             <div className='main'>
