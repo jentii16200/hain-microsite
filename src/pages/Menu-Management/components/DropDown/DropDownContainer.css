@@ -40,6 +40,6 @@
   }
 
   .button:hover {
-    background-color: gray;
+    background-color: rgb(88, 204, 219);
     transition: all 1s;
   }

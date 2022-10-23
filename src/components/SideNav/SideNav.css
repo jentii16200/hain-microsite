@@ -4,21 +4,22 @@
     outline: 1px solid limegreen !important;
 } */
 .navigation{
-    /* position: fixed; */
-    display: fixed;
-    height: 100vh;
-    min-width: 260px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    max-width: 260px;
+    box-shadow: 0 4px 12px 0 rgb(0,0,0,.05);
     background-color: rgb(85, 169, 149);
     overflow: auto;
   }
-  .welcome{
+  .navTopSection{
+    display: flex;
     background-color: aqua;
-    display: grid;
     height: 100px;
     font-weight: 700;
     place-items: center;
     font-size: 1.5rem;
-    width: 260px;
+    width: 100%;
   }
   ul{
     padding: 0;
@@ -34,25 +35,35 @@
     margin: 10px 10px;
     border-radius: 6px;
     place-items: center;
-  }
-  a{
     display: flex;
 
   }
   ul li svg{
+
     margin-right: 10px;
     width: 30px;
     height: 30px;
   }
   ul li a:hover{
-    padding: 20px 25px;
     background-color: rgb(85, 99, 226);;
     color: white;
     transition: all .5s;
   }
 
   ul li a.active {
-    padding: 20px 25px;
     background-color: rgb(85, 99, 226);;
     color: white;
   }
+
+
+  .navigation.small{
+    width: 100px;
+    transition: all 1s;
+  }
+  .navText.small {
+    display: none;
+  }
+  .navIcon.small{
+    padding-left: 4px;
+  }
+

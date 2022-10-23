@@ -1,5 +1,5 @@
 import './SideNav.css';
-import React, { lazy } from 'react';
+import React, { lazy, useState } from 'react';
 import { Link, Routes, Route, Outlet, NavLink } from 'react-router-dom';
 import {
     ManageAccount,
@@ -16,26 +16,120 @@ import {
 import { Billout } from '../../pages/Ordering-Transaction/Billout.js';
 import { OnProcess } from '../../pages/Ordering-Transaction/OnProcess.js';
 import { Pending } from '../../pages/Ordering-Transaction/Pending.js';
-import { MdSupervisorAccount, MdOutlineNotificationImportant, MdAccountCircle } from 'react-icons/md';
+import { MdSupervisorAccount, MdOutlineNotificationImportant, MdAccountCircle, MdMenu } from 'react-icons/md';
 import { IoFastFoodOutline } from 'react-icons/io5';
 import { HiOutlineDocumentText } from 'react-icons/hi';
 import { IoMdPersonAdd } from 'react-icons/io';
 import { BiBorderRadius } from 'react-icons/bi';
+import { IconButton } from '@chakra-ui/react';
+const SideNav = () => {
+    const [isOpen, setIsOpen] = useState(true);
 
-// const Remarks = React.lazy(() => import('../../pages/Remarks/Remarks'));
-const SideNav = (props) => {
+    const toggle = () => {
+        console.log('na Toggle');
+        setIsOpen(!isOpen);
+    };
     return (
         <div className='container'>
-            <div className='navigation'>
-                <h2 className='welcome'>Welcome</h2>
+            <div
+                className={`navigation ${isOpen ? '' : 'small'}`}>
+                <div className='navTopSection'>
+                    <div
+                        className={`navText ${isOpen ? '' : 'small'}`}>
+                        Welcome
+                    </div>
+                    <IconButton
+                        background='none'
+                        mt={5}
+                        _hover={{ background: 'none' }}
+                        icon={<MdMenu />}
+                        onClick={toggle} />
+                </div>
                 <ul>
-                    <li><NavLink className={({ isActive }) => (isActive && 'active')} to='manage-account/customer'><MdSupervisorAccount />MANAGE ACCOUNT</NavLink></li>
-                    <li><NavLink className={({ isActive }) => (isActive && 'active')} to='menu-management'><IoFastFoodOutline />MENU MANAGEMENT</NavLink></li>
-                    <li><NavLink className={({ isActive }) => (isActive && 'active')} to='order-log'><HiOutlineDocumentText />ORDER LOG</NavLink></li>
-                    <li><NavLink className={({ isActive }) => (isActive && 'active')} to='register-employee'><IoMdPersonAdd />REGISTER EMPLOYEE</NavLink></li>
-                    <li><NavLink className={({ isActive }) => (isActive && 'active')} to='ordering-transaction/pending'><BiBorderRadius />ORDERING TRANSACTION</NavLink></li>
-                    <li><NavLink className={({ isActive }) => (isActive && 'active')} to='remarks'><MdOutlineNotificationImportant />REMARKS</NavLink></li>
-                    <li><NavLink className={({ isActive }) => (isActive && 'active')} to="my-account"><MdAccountCircle />MY ACCOUNT</NavLink></li>
+                    <li>
+                        <NavLink
+                            className={({ isActive }) => (isActive ? 'active' : '')}
+                            to='manage-account/customer'>
+                            <div className={`navIcon ${isOpen ? ' ' : 'small'}`} >
+                                <MdSupervisorAccount />
+                            </div>
+                            <div className={`navText ${isOpen ? '' : 'small'}`}>
+                                MANAGE ACCOUNT
+                            </div>
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink
+                            className={({ isActive }) => (isActive ? 'active' : '')}
+                            to='menu-management'>
+                            <div className={`navIcon ${isOpen ? ' ' : 'small'}`} >
+                                <IoFastFoodOutline />
+                            </div>
+                            <div className={`navText ${isOpen ? '' : 'small'}`}>
+                                MENU MANAGEMENT
+                            </div>
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink
+                            className={({ isActive }) => (isActive ? 'active' : '')}
+                            to='order-log'>
+                            <div className={`navIcon ${isOpen ? ' ' : 'small'}`} >
+                                <HiOutlineDocumentText />
+                            </div>
+                            <div className={`navText ${isOpen ? '' : 'small'}`}>
+                                ORDER LOG
+                            </div>
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink
+                            className={({ isActive }) => (isActive ? 'active' : '')}
+                            to='register-employee'>
+                            <div className={`navIcon ${isOpen ? ' ' : 'small'}`} >
+                                <IoMdPersonAdd />
+                            </div>
+                            <div className={`navText ${isOpen ? '' : 'small'}`}>
+                                REGISTER EMPLOYEE
+                            </div>
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink
+                            className={({ isActive }) => (isActive ? 'active' : '')}
+                            to='ordering-transaction/pending'>
+                            <div className={`navIcon ${isOpen ? ' ' : 'small'}`} >
+                                <BiBorderRadius />
+                            </div>
+                            <div className={`navText ${isOpen ? '' : 'small'}`}>
+                                ORDERING TRANSACTION
+                            </div>
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink
+                            className={({ isActive }) => (isActive ? 'active' : '')}
+                            to='remarks'>
+                            <div className={`navIcon ${isOpen ? ' ' : 'small'}`} >
+                                <MdOutlineNotificationImportant />
+                            </div>
+                            <div className={`navText ${isOpen ? '' : 'small'}`}>
+                                REMARKS
+                            </div>
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink
+                            className={({ isActive }) => (isActive ? 'active' : '')}
+                            to="my-account">
+                            <div className={`navIcon ${isOpen ? ' ' : 'small'}`} >
+                                <MdAccountCircle />
+                            </div>
+                            <div className={`navText ${isOpen ? '' : 'small'}`}>
+                                MY ACCOUNT
+                            </div>
+                        </NavLink>
+                    </li>
                 </ul>
             </div>
             <div className='main'>
@@ -60,7 +154,7 @@ const SideNav = (props) => {
                     </Routes>
                 </React.Suspense>
             </div>
-        </div>
+        </div >
 
     );
 };
