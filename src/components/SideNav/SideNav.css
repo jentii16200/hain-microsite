@@ -1,8 +1,8 @@
-/* * {
+* {
     box-sizing: border-box;
-    background: rgb(0, 100, 0, .1);
+    /* background: rgb(0, 100, 0, .1); */
     outline: 1px solid limegreen !important;
-} */
+}
 .navigation{
     display: flex;
     flex-direction: column;
@@ -13,6 +13,7 @@
     overflow: auto;
   }
   .navTopSection{
+    justify-content: space-around;
     display: flex;
     background-color: aqua;
     height: 100px;

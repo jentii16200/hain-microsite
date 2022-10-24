@@ -24,9 +24,9 @@ import { BiBorderRadius } from 'react-icons/bi';
 import { IconButton } from '@chakra-ui/react';
 const SideNav = () => {
     const [isOpen, setIsOpen] = useState(true);
+    let cName = isOpen ? '' : 'small';
 
     const toggle = () => {
-        console.log('na Toggle');
         setIsOpen(!isOpen);
     };
     return (
@@ -35,13 +35,13 @@ const SideNav = () => {
                 className={`navigation ${isOpen ? '' : 'small'}`}>
                 <div className='navTopSection'>
                     <div
-                        className={`navText ${isOpen ? '' : 'small'}`}>
+                        className={`navText ${cName}`}>
                         Welcome
                     </div>
                     <IconButton
                         background='none'
-                        mt={5}
-                        _hover={{ background: 'none' }}
+                        fontSize='30px'
+                        _hover={{ background: 'gray' }}
                         icon={<MdMenu />}
                         onClick={toggle} />
                 </div>
@@ -50,10 +50,10 @@ const SideNav = () => {
                         <NavLink
                             className={({ isActive }) => (isActive ? 'active' : '')}
                             to='manage-account/customer'>
-                            <div className={`navIcon ${isOpen ? ' ' : 'small'}`} >
+                            <div className={`navIcon ${cName}`} >
                                 <MdSupervisorAccount />
                             </div>
-                            <div className={`navText ${isOpen ? '' : 'small'}`}>
+                            <div className={`navText ${cName}`}>
                                 MANAGE ACCOUNT
                             </div>
                         </NavLink>
@@ -62,10 +62,10 @@ const SideNav = () => {
                         <NavLink
                             className={({ isActive }) => (isActive ? 'active' : '')}
                             to='menu-management'>
-                            <div className={`navIcon ${isOpen ? ' ' : 'small'}`} >
+                            <div className={`navIcon ${cName}`} >
                                 <IoFastFoodOutline />
                             </div>
-                            <div className={`navText ${isOpen ? '' : 'small'}`}>
+                            <div className={`navText ${cName}`}>
                                 MENU MANAGEMENT
                             </div>
                         </NavLink>
@@ -74,10 +74,10 @@ const SideNav = () => {
                         <NavLink
                             className={({ isActive }) => (isActive ? 'active' : '')}
                             to='order-log'>
-                            <div className={`navIcon ${isOpen ? ' ' : 'small'}`} >
+                            <div className={`navIcon ${cName}`} >
                                 <HiOutlineDocumentText />
                             </div>
-                            <div className={`navText ${isOpen ? '' : 'small'}`}>
+                            <div className={`navText ${cName}`}>
                                 ORDER LOG
                             </div>
                         </NavLink>
@@ -86,10 +86,10 @@ const SideNav = () => {
                         <NavLink
                             className={({ isActive }) => (isActive ? 'active' : '')}
                             to='register-employee'>
-                            <div className={`navIcon ${isOpen ? ' ' : 'small'}`} >
+                            <div className={`navIcon ${cName}`} >
                                 <IoMdPersonAdd />
                             </div>
-                            <div className={`navText ${isOpen ? '' : 'small'}`}>
+                            <div className={`navText ${cName}`}>
                                 REGISTER EMPLOYEE
                             </div>
                         </NavLink>
@@ -98,10 +98,10 @@ const SideNav = () => {
                         <NavLink
                             className={({ isActive }) => (isActive ? 'active' : '')}
                             to='ordering-transaction/pending'>
-                            <div className={`navIcon ${isOpen ? ' ' : 'small'}`} >
+                            <div className={`navIcon ${cName}`} >
                                 <BiBorderRadius />
                             </div>
-                            <div className={`navText ${isOpen ? '' : 'small'}`}>
+                            <div className={`navText ${cName}`}>
                                 ORDERING TRANSACTION
                             </div>
                         </NavLink>
@@ -110,10 +110,10 @@ const SideNav = () => {
                         <NavLink
                             className={({ isActive }) => (isActive ? 'active' : '')}
                             to='remarks'>
-                            <div className={`navIcon ${isOpen ? ' ' : 'small'}`} >
+                            <div className={`navIcon ${cName}`} >
                                 <MdOutlineNotificationImportant />
                             </div>
-                            <div className={`navText ${isOpen ? '' : 'small'}`}>
+                            <div className={`navText ${cName}`}>
                                 REMARKS
                             </div>
                         </NavLink>
