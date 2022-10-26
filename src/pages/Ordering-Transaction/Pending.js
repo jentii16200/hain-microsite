@@ -50,11 +50,11 @@ export const Pending = () => {
                                             </Tr>
                                         </Thead>
                                         <Tbody>
-                                            {post.orders.map(order =>
-                                                <Tr key={order.name}>
-                                                    <Td>{order.name}</Td>
-                                                    <Td>{order.quantity}</Td>
-                                                    <Td>{order.price}</Td>
+                                            {post.order.map(orders =>
+                                                <Tr key={orders.name}>
+                                                    <Td>{orders.name}</Td>
+                                                    <Td>{orders.quantity}</Td>
+                                                    <Td>{orders.price}</Td>
                                                 </Tr>
                                             )}
                                         </Tbody>
