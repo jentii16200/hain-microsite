@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Heading } from '@chakra-ui/react';
+import { Heading } from '@chakra-ui/react';
 import axios from 'axios';
 import {
     Table, Thead, Tbody, Tfoot, Tr, Th, Td, TableCaption,
     TableContainer
 } from '@chakra-ui/react';
 
-const Remarks = () => {
+export const Remarks = () => {
     const [posts, setPosts] = useState([]);
-    const apiEndPoint = 'https://us-central1-hain-402aa.cloudfunctions.net/api/getRemarks';
+    const apiEndPoint = '';
     useEffect(() => {
         axios.get(apiEndPoint).then(res => {
             console.log(res);
@@ -17,29 +17,6 @@ const Remarks = () => {
             console.log(err);
         });
     }, []);
-
-    const remarkData = [
-        {
-            id: '1',
-            remark: 'baho'
-        },
-        {
-            id: '2',
-            remark: 'panget'
-        },
-        {
-            id: '3',
-            remark: 'awit'
-        },
-        {
-            id: '4',
-            remark: 'weeeee'
-        },
-        {
-            id: '5',
-            remark: 'wala lang'
-        },
-    ];
     return (
         <div>
             <Heading className='title'>REMARKS</Heading>
@@ -49,14 +26,14 @@ const Remarks = () => {
                         <Tr>
                             <Th>INQUIRY #</Th>
                             <Th>REMARKS</Th>
+                            <Th isNumeric>DELETE</Th>
                         </Tr>
                     </Thead>
                     <Tbody>
-                        {remarkData.map(post =>
+                        {posts.map(post =>
                             <Tr key={post.id}>
                                 <Td>{post.id}</Td>
                                 <Td>{post.remark}</Td>
-                                <Td isNumeric><Button>Delete</Button></Td>
                             </Tr>)}
                     </Tbody>
                 </Table>
@@ -64,4 +41,3 @@ const Remarks = () => {
         </div>
     );
 };
-export default Remarks;

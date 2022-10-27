@@ -32,7 +32,7 @@ const SideNav = () => {
     return (
         <div className='container'>
             <div
-                className={`navigation ${isOpen ? '' : 'small'}`}>
+                className={`navigation ${cName}`}>
                 <div className='navTopSection'>
                     <div
                         className={`navText ${cName}`}>
@@ -40,8 +40,8 @@ const SideNav = () => {
                     </div>
                     <IconButton
                         background='none'
-                        fontSize='30px'
-                        _hover={{ background: 'gray' }}
+                        mt={5}
+                        _hover={{ background: 'none' }}
                         icon={<MdMenu />}
                         onClick={toggle} />
                 </div>
@@ -122,10 +122,10 @@ const SideNav = () => {
                         <NavLink
                             className={({ isActive }) => (isActive ? 'active' : '')}
                             to="my-account">
-                            <div className={`navIcon ${isOpen ? ' ' : 'small'}`} >
+                            <div className={`navIcon ${cName}`} >
                                 <MdAccountCircle />
                             </div>
-                            <div className={`navText ${isOpen ? '' : 'small'}`}>
+                            <div className={`navText ${cName}`}>
                                 MY ACCOUNT
                             </div>
                         </NavLink>

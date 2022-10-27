@@ -1,21 +1,61 @@
-import React from 'react';
-import { Heading } from '@chakra-ui/react';
+import React, { useState } from 'react';
+import { Button, Heading } from '@chakra-ui/react';
 import { Pulutan } from './testing/Pulutan';
+import menuStyle from './index.module.css'
 
 import { Grid, GridItem } from '@chakra-ui/react';
 import DropDownContainer from './components/DropDown/DropDownContainer';
+import DropDownItems from './components/DropDown/DropDownItems';
 
 const MenuManagement = () => {
+
+    const [menuName, setMenuName] = useState();
+    const buttonInfo = [
+        {
+            id: '1',
+            name: 'Pulutan'
+        },
+        {
+            id: '2',
+            name: 'Inum'
+        },
+        {
+            id: '3',
+            name: 'Inum'
+        },
+        {
+            id: '4',
+            name: 'Inum'
+        },
+        {
+            id: '5',
+            name: 'Inum'
+        }
+    ]
     return (
-        <div>
-            <Heading className='title'>MENU MANAGEMENT</Heading>
-            <Grid>
-                <GridItem>
-                    <DropDownContainer dish='Pulutan' />
-                </GridItem>
-            </Grid>
-            {/* <Pulutan /> */}
-        </div>
+        <>
+            <div className={menuStyle.container}>
+                <Heading className={menuStyle.title}>MENU MANAGEMENT</Heading>
+                <div className={menuStyle.context}>
+                    <div className={menuStyle.content}>
+                        <div className={menuStyle.contentButton}>
+                            {buttonInfo.map(v =>
+                                <div key={v.id}>
+                                    <Button
+                                        onClick={() => setMenuName(v.name)}>{v.name}</Button>
+                                </div>
+                            )}
+                        </div>
+                        <div className={menuStyle.contentInfo}>
+                            <DropDownItems dish={menuName} />
+                        </div>
+                    </div>
+                    <div className={menuStyle.info}>
+                        Information
+                    </div>
+                </div>
+            </div>
+        </>
     );
 };
 export default MenuManagement;
