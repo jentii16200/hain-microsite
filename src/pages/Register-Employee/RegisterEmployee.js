@@ -1,6 +1,6 @@
 import React from 'react';
 import { Heading } from '@chakra-ui/react';
-import { RegisterEmployeeForms } from './RegisterEmployeeForms';
+import RegisterEmployeeForms from './RegisterEmployeeForms';
 const RegisterEmployee = () => {
     return (
         <React.Fragment>

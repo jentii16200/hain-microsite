@@ -12,8 +12,9 @@ import { HandleModal } from '../HandleModal';
 import { MenuLabel } from '../../testing/ToolTip';
 
 import { HoverModal } from '../../testing/HoverModal';
+import FoodInformation from '../../FoodInformation';
 
-const DropDownItems = ({ dish }) => {
+const DropDownItems = ({ dish, setFoodInfo }) => {
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [posts, setPosts] = useState([]);
     const [modalData, setModalData] = useState();
@@ -37,7 +38,7 @@ const DropDownItems = ({ dish }) => {
                 <Tooltip
                     hasArrow label={MenuLabel(post)}
                     placement='auto-start'
-                    key={post.id}>
+                    key={post.name}>
                     <Box
                         className='card'
                         bg='white'
@@ -46,8 +47,9 @@ const DropDownItems = ({ dish }) => {
                         overflow='hidden'
                         width={'180px'}
                         height={'170px'}
-                        key={post.name}
                         onClick={() => {
+
+                            setFoodInfo(post);
                             HoverModal(post, true);
                             setModalData(post);
                             setModalIsOpen(true);

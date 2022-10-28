@@ -6,10 +6,17 @@ import menuStyle from './index.module.css'
 import { Grid, GridItem } from '@chakra-ui/react';
 import DropDownContainer from './components/DropDown/DropDownContainer';
 import DropDownItems from './components/DropDown/DropDownItems';
+import FoodInformation from './FoodInformation';
 
 const MenuManagement = () => {
 
     const [menuName, setMenuName] = useState();
+    const [foodInfo, setFoodInfo] = useState();
+
+    const setFoodInformation = (props) => {
+        setFoodInfo(props)
+    }
+
     const buttonInfo = [
         {
             id: '1',
@@ -47,11 +54,11 @@ const MenuManagement = () => {
                             )}
                         </div>
                         <div className={menuStyle.contentInfo}>
-                            <DropDownItems dish={menuName} />
+                            <DropDownItems dish={menuName} setFoodInfo={setFoodInformation} />
                         </div>
                     </div>
                     <div className={menuStyle.info}>
-                        Information
+                        <FoodInformation foodInfo={foodInfo} />
                     </div>
                 </div>
             </div>
