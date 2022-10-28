@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { Button, Heading } from '@chakra-ui/react';
-import { Pulutan } from './testing/Pulutan';
-import menuStyle from './index.module.css'
+import { Pulutan } from './Pulutan';
+import menuStyle from './index.module.css';
 
 import { Grid, GridItem } from '@chakra-ui/react';
-import DropDownContainer from './components/DropDown/DropDownContainer';
-import DropDownItems from './components/DropDown/DropDownItems';
 import FoodInformation from './FoodInformation';
+import DropDownContainer from './testing/DropDownContainer';
+import DropDownItems from './components/DropDownItems';
 
 const MenuManagement = () => {
 
@@ -14,8 +14,8 @@ const MenuManagement = () => {
     const [foodInfo, setFoodInfo] = useState();
 
     const setFoodInformation = (props) => {
-        setFoodInfo(props)
-    }
+        setFoodInfo(props);
+    };
 
     const buttonInfo = [
         {

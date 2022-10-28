@@ -5,8 +5,8 @@ import {
     Image
 } from '@chakra-ui/react';
 import React, { useState } from 'react';
+import DropDownItems from '../components/DropDownItems';
 import './DropDownContainer.css';
-import DropDownItems from './DropDownItems';
 const DropDownContainer = ({ dish }) => {
     const [clicked, setClicked] = useState(false);
 

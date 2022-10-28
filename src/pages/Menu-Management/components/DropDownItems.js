@@ -1,20 +1,19 @@
-import React, { useState, useEffect } from 'react';
-import { Box, Image, Badge, Tooltip, useDisclosure, Button, Grid, GridItem, Portal } from '@chakra-ui/react';
-import axios from 'axios';
-import { MenuLabel } from './ToolTip';
-import { HoverModal } from './HoverModal';
+import React, { useEffect, useState } from 'react';
 import {
+    Box,
+    Image,
     Modal,
     ModalOverlay,
-    ModalContent,
-    ModalHeader,
-    ModalFooter,
-    ModalBody,
-    ModalCloseButton,
+    Portal,
+    Tooltip,
 } from '@chakra-ui/react';
-import { HandleModal } from '../components/HandleModal';
+import axios from 'axios';
+import { HandleModal } from './HandleModal';
+import { MenuLabel } from './ToolTip';
+import { HoverModal } from '../testing/HoverModal';
+import FoodInformation from '../FoodInformation';
 
-export const Pulutan = () => {
+const DropDownItems = ({ dish, setFoodInfo }) => {
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [posts, setPosts] = useState([]);
     const [modalData, setModalData] = useState();
@@ -34,23 +33,22 @@ export const Pulutan = () => {
 
     return (
         <>
-            <h2>PULUTAN</h2>
-            <div className='menu'>
-
-                {posts.map(post =>
-                    // <Tooltip
-                    //     hasArrow label={MenuLabel(post)}
-                    //     placement='auto-start'
-                    //     key={post.id}>
+            {posts.map(post =>
+                <Tooltip
+                    hasArrow label={MenuLabel(post)}
+                    placement='auto-start'
+                    key={post.name}>
                     <Box
                         className='card'
+                        bg='white'
                         maxW='sm' borderWidth='1px'
                         borderRadius='lg'
                         overflow='hidden'
                         width={'180px'}
                         height={'170px'}
-                        key={post.name}
                         onClick={() => {
+
+                            setFoodInfo(post);
                             HoverModal(post, true);
                             setModalData(post);
                             setModalIsOpen(true);
@@ -84,13 +82,10 @@ export const Pulutan = () => {
                             </Box>
                         </Box>
                     </Box>
-                    // </Tooltip>
+                </Tooltip>
 
-                )}
-            </div>
-
+            )}
         </>
-
     );
 };
-
+export default DropDownItems;

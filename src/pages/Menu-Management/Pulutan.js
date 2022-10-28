@@ -1,20 +1,20 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { Box, Image, Badge, Tooltip, useDisclosure, Button, Grid, GridItem, Portal } from '@chakra-ui/react';
+import axios from 'axios';
+import { MenuLabel } from './components/ToolTip';
+import { HoverModal } from './testing/HoverModal';
 import {
-    Box,
-    Image,
     Modal,
     ModalOverlay,
-    Portal,
-    Tooltip,
+    ModalContent,
+    ModalHeader,
+    ModalFooter,
+    ModalBody,
+    ModalCloseButton,
 } from '@chakra-ui/react';
-import axios from 'axios';
-import { HandleModal } from '../HandleModal';
-import { MenuLabel } from '../../testing/ToolTip';
+import { HandleModal } from './components/HandleModal';
 
-import { HoverModal } from '../../testing/HoverModal';
-import FoodInformation from '../../FoodInformation';
-
-const DropDownItems = ({ dish, setFoodInfo }) => {
+export const Pulutan = () => {
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [posts, setPosts] = useState([]);
     const [modalData, setModalData] = useState();
@@ -34,22 +34,23 @@ const DropDownItems = ({ dish, setFoodInfo }) => {
 
     return (
         <>
-            {posts.map(post =>
-                <Tooltip
-                    hasArrow label={MenuLabel(post)}
-                    placement='auto-start'
-                    key={post.name}>
+            <h2>PULUTAN</h2>
+            <div className='menu'>
+
+                {posts.map(post =>
+                    // <Tooltip
+                    //     hasArrow label={MenuLabel(post)}
+                    //     placement='auto-start'
+                    //     key={post.id}>
                     <Box
                         className='card'
-                        bg='white'
                         maxW='sm' borderWidth='1px'
                         borderRadius='lg'
                         overflow='hidden'
                         width={'180px'}
                         height={'170px'}
+                        key={post.name}
                         onClick={() => {
-
-                            setFoodInfo(post);
                             HoverModal(post, true);
                             setModalData(post);
                             setModalIsOpen(true);
@@ -83,10 +84,13 @@ const DropDownItems = ({ dish, setFoodInfo }) => {
                             </Box>
                         </Box>
                     </Box>
-                </Tooltip>
+                    // </Tooltip>
 
-            )}
+                )}
+            </div>
+
         </>
+
     );
 };
-export default DropDownItems;
+
