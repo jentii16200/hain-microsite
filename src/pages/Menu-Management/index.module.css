@@ -1,8 +1,9 @@
 .container{
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    height: 100%;
     padding: 5px;
+    margin-right: 5px;
     gap: 5px;
     background-color: aquamarine;
 
@@ -43,14 +44,14 @@
     display: flex;
     flex-direction: column;
     height: 100%;
-    width: 75%;
+    min-width: 75%;
     gap: 5px;
 
 }
 .info{
     display: flex;
     flex-direction: column;
-    width: 25%;
+    min-width: 25%;
     padding: 5px;
 
     background: rgba(255, 255, 255, 0.18);

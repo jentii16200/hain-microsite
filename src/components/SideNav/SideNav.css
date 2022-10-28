@@ -6,8 +6,7 @@
 .navigation{
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
-    max-width: 260px;
+    width: 260px;
     box-shadow: 0 4px 12px 0 rgb(0,0,0,.05);
     background-color: rgb(85, 169, 149);
     overflow: auto;

@@ -8,8 +8,8 @@
 body{
   /* min-height: 100vh; OLD*/
   margin: 0%;
-  height: 100%;
-  width: 100%;
+  min-height: 100vh;
+  min-width: 100vw;
   overflow-x: auto;
 } 
 
@@ -25,11 +25,12 @@ body{
 
 .container{
   display: flex;
-  width: 100%;
+  min-width: 100vw;
+  min-height: 100vh;
 }
 .main{
   width: 100%;
-  min-height: 100vh;
+  min-height: 100%;
 }
 
 .title{
