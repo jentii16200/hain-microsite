@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import {
     Flex,
     IconButton,
@@ -12,8 +12,8 @@ import {
     MenuItem,
 
     Modal, ModalOverlay, Portal
-} from '@chakra-ui/react'
-import { DeleteIcon, DragHandleIcon, EditIcon } from '@chakra-ui/icons'
+} from '@chakra-ui/react';
+import { DeleteIcon, DragHandleIcon, EditIcon } from '@chakra-ui/icons';
 import { HandleModal } from './components/HandleModal';
 
 const FoodInformation = ({ foodInfo }) => {
@@ -21,9 +21,7 @@ const FoodInformation = ({ foodInfo }) => {
 
     const handleCloseModal = () => {
         setEditModal(false);
-    }
-
-
+    };
     if (foodInfo != null)
         return (
 
