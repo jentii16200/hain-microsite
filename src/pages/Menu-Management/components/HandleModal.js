@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useReducer, useState } from 'react';
 import {
     Grid,
     GridItem,
@@ -12,68 +12,70 @@ import {
     ModalBody,
     ModalCloseButton,
     Text,
+    Input,
+    Flex,
+    Textarea,
 } from '@chakra-ui/react';
+import { INITIAL_STATE, postReducer } from '../hooks/FoodInfoReducer';
 
 export const HandleModal = ({ modalData, handleCloseModal }) => {
+    console.log('na render')
+    const [foodData, setFoodData] = useState(modalData);
+    const handleChange = (e) => {
+        setFoodData({ ...foodData, name: e.target.value });
+    };
+
+
     return (
         <ModalContent
             borderRadius='lg'>
+            <ModalHeader>
+                EDITING
+            </ModalHeader>
             <ModalBody
                 borderTopRadius='lg'
-                bg='teal'
                 padding={'20px'}>
-                <Grid
-                    key={modalData.name}
-                    templateRows={'repeat(5, 1fr)'}
-                    templateColumns={'repeat(5, 1fr)'}
-                    gap={'3'}
-                    h='500px'>
-                    <GridItem rowSpan={2} colSpan={3}
-                        bg='gray.200'
-                        borderRadius='lg'
-                        padding={'0px 10px'}>
-                        <Text
-                            as='b'
-                            paddingTop='40px'
-                            display='flex'
-                            alignItems={'center'}
-                            justifyContent={'center'}
-                            fontSize='5xl'>
+                <Flex
+                    flexDirection='column'>
+                    <Flex
+                        flexDirection='row'
+                        gap='1rem'>
+                        <Flex
+                            flexBasis='100rem'
+                            flexDirection='column'>
+                            <Text>
+                                Name:
+                            </Text>
+                            <Input
+                                value={foodData.name}
+                                onChange={handleChange} />
+                            <Text>
+                                Price:
+                            </Text>
+                            <Input
+                                value={foodData.price}
+                                onChange={handleChange} />
+                        </Flex>
+                        <Image
+                            boxSize='10rem'
+                            src={foodData.imageUrl} />
+                    </Flex>
+                    <Text>
+                        Description:
+                    </Text>
+                    <Textarea
+                        minHeight='10rem'
+                        value={foodData.description}
+                        onChange={handleChange} />
+                    <Text>
+                        Ingredients:
+                    </Text>
+                    <Textarea
+                        minHeight='5rem'
+                        value={foodData.ingredients}
+                        onChange={handleChange} />
 
-                            {modalData.name}
-                        </Text>
-                        <Text
-                            display='flex'
-                            alignItems={'center'}
-                            justifyContent={'center'}>
-
-                            {modalData.price}
-                        </Text>
-                    </GridItem>
-                    <GridItem
-                        borderRadius='lg'
-                        rowSpan={2} colSpan={2}
-                        bg='gray'>
-                        <Image src={modalData.imageUrl}
-                            borderRadius='lg'
-                            width='100%'
-                            height='100%'
-                            objectFit='cover' />
-                    </GridItem>
-                    <GridItem
-                        borderRadius='lg'
-                        rowSpan={3} colSpan={5}
-                        bg='gray.200'>
-                        <Text
-                            display='flex'
-                            alignItems='center'
-                            justifyContent='center'
-                            fontSize='xl'
-                            padding='10px 15px'>
-                            {modalData.description}
-                        </Text>
-                    </GridItem>
-                </Grid>
+                </Flex>
             </ModalBody>
             <ModalFooter
                 bg='gray.200'

@@ -1,15 +1,28 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {
     Flex,
     IconButton,
     Image,
     Heading,
     Text,
-    Button
+    Button,
+    Menu,
+    MenuButton,
+    MenuList,
+    MenuItem,
+
+    Modal, ModalOverlay, Portal
 } from '@chakra-ui/react'
-import { DragHandleIcon } from '@chakra-ui/icons'
+import { DeleteIcon, DragHandleIcon, EditIcon } from '@chakra-ui/icons'
+import { HandleModal } from './components/HandleModal';
 
 const FoodInformation = ({ foodInfo }) => {
+    const [editModal, setEditModal] = useState(false);
+
+    const handleCloseModal = () => {
+        setEditModal(false);
+    }
+
 
     if (foodInfo != null)
         return (
@@ -22,14 +35,44 @@ const FoodInformation = ({ foodInfo }) => {
                         justifyContent='space-between'
                         padding='5px'
                         flexDir='row'>
-                        <IconButton
+                        <Menu isLazy>
+                            <MenuButton
+                                variant='outline'
+                                backgroundColor='none'
+                                as={IconButton}
+                                icon={<DragHandleIcon />}
+                            />
+                            <MenuList>
+                                <MenuItem
+                                    icon={<EditIcon
+                                        boxSize='2rem' />}
+                                    onClick={() => setEditModal(true)} />
+                                <MenuItem
+                                    icon={<DeleteIcon
+                                        boxSize='2rem' />}
+                                    onClick={() => console.log('DELETE')} />
+                            </MenuList>
+                        </Menu>
+                        {editModal &&
+                            <Modal
+                                size='3xl'
+                                isOpen={editModal}
+                                onClose={() => setEditModal(false)}>
+                                <ModalOverlay />
+                                <Portal>
+                                    <HandleModal
+                                        modalData={foodInfo}
+                                        handleCloseModal={handleCloseModal} />
+                                </Portal>
+                            </Modal>}
+                        {/* <IconButton
                             position='sticky'
                             left='0'
                             top='0'
                             bg='none'
                             border='none'
                             w='30px' h='30px'
-                            icon={<DragHandleIcon />} />
+                            icon={<DragHandleIcon />} /> */}
                         <Image
                             boxSize='100px'
                             borderRadius='100px'

@@ -17,8 +17,10 @@ const DropDownItems = ({ dish, setFoodInfo }) => {
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [posts, setPosts] = useState([]);
     const [modalData, setModalData] = useState();
+
     const apiEndPoint = 'https://us-central1-hain-402aa.cloudfunctions.net/api/getMenu';
     useEffect(() => {
+        console.log('FETCHING DATA');
         axios.post(apiEndPoint, { type: 'dish' }).then(res => {
             setPosts(res.data);
             console.log(res);
@@ -35,7 +37,7 @@ const DropDownItems = ({ dish, setFoodInfo }) => {
         <>
             {posts.map(post =>
                 <Tooltip
-                    hasArrow label={MenuLabel(post)}
+                    hasArrow label={post.description}
                     placement='auto-start'
                     key={post.name}>
                     <Box
@@ -51,7 +53,6 @@ const DropDownItems = ({ dish, setFoodInfo }) => {
                             setFoodInfo(post);
                             HoverModal(post, true);
                             setModalData(post);
-                            setModalIsOpen(true);
                         }}>
                         {modalIsOpen &&
                             <Modal

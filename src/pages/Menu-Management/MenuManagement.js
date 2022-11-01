@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { Button, Heading } from '@chakra-ui/react';
+import { Button, Heading, Select } from '@chakra-ui/react';
 import { Pulutan } from './Pulutan';
 import menuStyle from './index.module.css';
 
-import { Grid, GridItem } from '@chakra-ui/react';
+import { Grid, GridItem, Flex } from '@chakra-ui/react';
 import FoodInformation from './FoodInformation';
 import DropDownContainer from './testing/DropDownContainer';
 import DropDownItems from './components/DropDownItems';
@@ -45,16 +45,25 @@ const MenuManagement = () => {
                 <Heading className={menuStyle.title}>MENU MANAGEMENT</Heading>
                 <div className={menuStyle.context}>
                     <div className={menuStyle.content}>
-                        <div className={menuStyle.contentButton}>
-                            {buttonInfo.map(v =>
-                                <div key={v.id}>
-                                    <Button
-                                        onClick={() => setMenuName(v.name)}>{v.name}</Button>
-                                </div>
-                            )}
-                        </div>
                         <div className={menuStyle.contentInfo}>
-                            <DropDownItems dish={menuName} setFoodInfo={setFoodInformation} />
+                            <Select placeholder='Menu'
+                                fontSize='2xl'
+                                icon='none'
+                                size='lg'
+                                variant='flushed'
+                                marginBottom='1rem'
+                                maxWidth='10rem'>
+                                {buttonInfo.map(v =>
+                                    <option
+                                        key={v.id}
+                                        value={v.name}>{v.name}</option>
+                                )}
+                            </Select>
+                            <Flex>
+
+                                <DropDownItems dish={menuName} setFoodInfo={setFoodInformation} />
+
+                            </Flex>
                         </div>
                     </div>
                     <div className={menuStyle.info}>
