@@ -1,7 +1,11 @@
-import { Box, Flex, FormLabel, Input } from "@chakra-ui/react";
+import { Box, Flex, FormLabel, Input, useToast } from "@chakra-ui/react";
 import React, { useState } from "react";
 
-const RegisterEmployeeForms = () => {
+import axios from "axios";
+
+const bente = () => {
+  let isClick = true;
+  const toast = useToast();
   const [employeeFirstName, setEmployeeFirstName] = useState("");
   const [employeeLastName, setEmployeeLastName] = useState("");
   const [accountID, setAccountID] = useState("");
@@ -17,8 +21,51 @@ const RegisterEmployeeForms = () => {
   const handleEmail = (e) => setEmail(e.target.value);
   const handleContactNumber = (e) => setContactNumber(e.target.value);
 
+  function clearFormState() {
+    setEmployeeFirstName("");
+    setEmployeeLastName("");
+    setAccountID("");
+    setAddress("");
+    setEmail("");
+    setContactNumber("");
+    setPassword("");
+  }
+  let data = {
+    employeeFirstName: employeeFirstName,
+    employeeLastName: employeeLastName,
+    accountID: accountID,
+    address: address,
+    email: email,
+    contactNum: contactNum,
+    password: password,
+  };
   const handleSubmit = async () => {
-    //  TODO LAGAY MO API isang buwan na!
+    isClick = false;
+    await axios
+      .post(
+        "https://us-central1-hain-402aa.cloudfunctions.net/api/register",
+        {
+          data: data,
+        },
+        {
+          "Content-Type": "text/plain",
+        }
+      )
+      .then((res) => {
+        console.log(res);
+        clearFormState();
+        toast({
+          title: "Successfully putang ina ka",
+          description: "tang ina mo",
+          status: "success",
+          duration: 1000,
+          isClosable: false,
+          position: "top-right",
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
@@ -62,7 +109,7 @@ const RegisterEmployeeForms = () => {
         px={4}
         h={8}
         onClick={() => {
-          handleSubmit();
+          isClick ? handleSubmit() : null;
         }}
       >
         Register
