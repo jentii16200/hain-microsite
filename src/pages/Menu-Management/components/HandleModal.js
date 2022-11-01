@@ -25,11 +25,13 @@ export const HandleModal = ({ modalData, handleCloseModal }) => {
     const handleChange = (e) => {
         setFoodData({ ...foodData, [e.target.name]: e.target.value });
     };
+
     const ingredientsRef = useRef();
-    const handleIngredients = () => {
-        const ingredients = ingredientsRef.current.value.split(',');
-        ingredients.map((ing) => {
-            setFoodData((prev) => ({ ...prev, ingredients: [...prev.ingredients, ing] }));
+    const HandleIngredients = (e) => {
+        // const ingredients = ingredientsRef.current.value.split(',');
+        const ingredients = e.target.value.split(',');
+        ingredients.map((i) => {
+            setFoodData({ ...foodData, ingredients: [...foodData.ingredients, i] });
         });
     };
 
@@ -86,8 +88,8 @@ export const HandleModal = ({ modalData, handleCloseModal }) => {
                         ref={ingredientsRef}
                         name='ingredients'
                         minHeight='5rem'
-                        value={foodData.ingredients}
-                        onChange={handleIngredients} />
+                        defaultValue={foodData.ingredients}
+                        onChange={HandleIngredients} />
 
                 </Flex>
             </ModalBody>
