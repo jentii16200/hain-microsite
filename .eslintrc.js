@@ -25,6 +25,8 @@ module.exports = {
         'react/jsx-indent': [1],
         'no-multi-spaces': [1],
         'indent': [2],
+        'indent': ["error", 2],
+        "indent": ["error", "tab"],
         'react/jsx-newline': [2, { prevent: true }],
         'no-trailing-spaces': [1],
         'no-multiple-empty-lines': [1, { max: 1 }],
@@ -42,6 +44,6 @@ module.exports = {
 
     },
     //
-//
-//    'react/jsx-filename-extension': [1, { 'extensions': ['.js', '.jsx'] }]
+    //
+    //    'react/jsx-filename-extension': [1, { 'extensions': ['.js', '.jsx'] }]
 };
