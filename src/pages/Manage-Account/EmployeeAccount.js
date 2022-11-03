@@ -1,6 +1,8 @@
 import React from 'react';
-import { Table, Thead, Tbody, Tfoot, Tr, Th, Td, TableCaption,
-    TableContainer, Wrap, Box, Spinner, Button, IconButton } from '@chakra-ui/react';
+import {
+    Table, Thead, Tbody, Tfoot, Tr, Th, Td, TableCaption,
+    TableContainer, Wrap, Box, Spinner, Button, IconButton
+} from '@chakra-ui/react';
 import { DeleteIcon } from '@chakra-ui/icons';
 
 export const EmployeeAccount = () => {
@@ -63,7 +65,7 @@ export const EmployeeAccount = () => {
                                 <Td isNumeric>
                                     <IconButton
                                         variant={'unstyled'}
-                                        icon={<DeleteIcon color={'red.500'}/>}/>
+                                        icon={<DeleteIcon color={'red.500'} />} />
                                 </Td>
                             </Tr>)}
                     </Tbody>

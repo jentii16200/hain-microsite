@@ -25,14 +25,14 @@ export const HandleModal = ({ modalData, handleCloseModal }) => {
     const handleChange = (e) => {
         setFoodData({ ...foodData, [e.target.name]: e.target.value });
     };
+    const handlePrice = (e) => {
+        setFoodData({ ...foodData, [foodData.price]: e.target.value });
+    };
 
     const ingredientsRef = useRef();
-    const HandleIngredients = (e) => {
-        // const ingredients = ingredientsRef.current.value.split(',');
-        const ingredients = e.target.value.split(',');
-        ingredients.map((i) => {
-            setFoodData({ ...foodData, ingredients: [...foodData.ingredients, i] });
-        });
+    const HandleIngredients = () => {
+        const ing = ingredientsRef.current.value.split(',');
+        setFoodData({ ...foodData, ingredients: ing });
     };
 
     console.log(foodData);
@@ -66,8 +66,9 @@ export const HandleModal = ({ modalData, handleCloseModal }) => {
                             </Text>
                             <Input
                                 name='price'
+                                type='number'
                                 value={foodData.price}
-                                onChange={handleChange} />
+                                onChange={handlePrice} />
                         </Flex>
                         <Image
                             boxSize='10rem'
@@ -89,7 +90,8 @@ export const HandleModal = ({ modalData, handleCloseModal }) => {
                         name='ingredients'
                         minHeight='5rem'
                         defaultValue={foodData.ingredients}
-                        onChange={HandleIngredients} />
+                        onChange={HandleIngredients}
+                    />
 
                 </Flex>
             </ModalBody>
@@ -105,7 +107,7 @@ export const HandleModal = ({ modalData, handleCloseModal }) => {
                 </Button>
                 <Button
                     colorScheme='teal'
-                    onClick={handleCloseModal}>
+                    onClick={HandleIngredients}>
 
                     Update
                 </Button>
