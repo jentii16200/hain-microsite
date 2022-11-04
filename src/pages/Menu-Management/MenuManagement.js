@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
-import { Button, Heading, Select, IconButton } from '@chakra-ui/react';
-import { Pulutan } from './Pulutan';
+import { Heading, Select } from '@chakra-ui/react';
 import menuStyle from './index.module.css';
-
-import { Grid, GridItem, Flex } from '@chakra-ui/react';
+import { Flex } from '@chakra-ui/react';
 import FoodInformation from './FoodInformation';
 import DropDownContainer from './testing/DropDownContainer';
 import DropDownItems from './components/DropDownItems';
 
 import { AddIcon } from '@chakra-ui/icons';
+import RightDrawer from './components/RightDrawer';
 
 const MenuManagement = () => {
 
@@ -64,10 +63,11 @@ const MenuManagement = () => {
                                         </option>
                                     )}
                                 </Select>
-                                <IconButton
-                                    icon={<AddIcon />}/>
+                                <RightDrawer />
                             </Flex>
-                            <Flex>
+                            <Flex
+                                gap='5px'
+                                wrap='wrap'>
                                 <DropDownItems dish={menuName} setFoodInfo={setFoodInformation} />
                             </Flex>
                         </div>

@@ -1,5 +1,7 @@
 // addMenu deleteMenu getMenu
 
+import axios from "axios";
+
 const API_GETMENU = 'https://us-central1-hain-402aa.cloudfunctions.net/api/getMenu';
 const API_DELETEMENU = 'https://us-central1-hain-402aa.cloudfunctions.net/api/deleteMenu';
 const API_ADDMENU = 'https://us-central1-hain-402aa.cloudfunctions.net/api/addMenu';
@@ -11,16 +13,16 @@ export const GetMenu = () => {
     }).catch(e => console.log(e));
 };
 
-export const DeleteMenu = (id) => {
+export const DeleteMenu = async (id) => {
     console.log('DELETING MENU');
-    return fetch(API_DELETEMENU, { idMenu: id }).then(res => {
+    await axios.post(API_DELETEMENU, { idMenu: id }).then(res => {
         console.log(res);
     }).catch(e => console.log(e));
 };
 
-export const addMenu = (post) => {
+export const AddMenu = async (post) => {
     console.log('ADDING MENU');
-    return fetch(API_ADDMENU, { data: post }).then(res => {
+    await axios.post(API_ADDMENU, { data: post }).then(res => {
         console.log(res);
     }).catch(e => console.log(e));
 };

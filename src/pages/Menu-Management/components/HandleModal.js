@@ -17,6 +17,7 @@ import {
     Textarea,
 } from '@chakra-ui/react';
 import { postReducer } from '../hooks/FoodInfoReducer';
+import { AddMenu } from '../api/menu-api';
 
 export const HandleModal = ({ modalData, handleCloseModal }) => {
     console.log('na render');
@@ -33,6 +34,11 @@ export const HandleModal = ({ modalData, handleCloseModal }) => {
     const HandleIngredients = () => {
         const ing = ingredientsRef.current.value.split(',');
         setFoodData({ ...foodData, ingredients: ing });
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        AddMenu(foodData);
     };
 
     console.log(foodData);
@@ -107,7 +113,7 @@ export const HandleModal = ({ modalData, handleCloseModal }) => {
                 </Button>
                 <Button
                     colorScheme='teal'
-                    onClick={HandleIngredients}>
+                    onClick={handleSubmit}>
 
                     Update
                 </Button>
