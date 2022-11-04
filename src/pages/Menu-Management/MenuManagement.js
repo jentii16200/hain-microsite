@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Heading, Select } from '@chakra-ui/react';
+import { Button, Heading, Select, IconButton } from '@chakra-ui/react';
 import { Pulutan } from './Pulutan';
 import menuStyle from './index.module.css';
 
@@ -7,6 +7,8 @@ import { Grid, GridItem, Flex } from '@chakra-ui/react';
 import FoodInformation from './FoodInformation';
 import DropDownContainer from './testing/DropDownContainer';
 import DropDownItems from './components/DropDownItems';
+
+import { AddIcon } from '@chakra-ui/icons';
 
 const MenuManagement = () => {
 
@@ -38,7 +40,7 @@ const MenuManagement = () => {
             id: '5',
             name: 'Inum'
         }
-    ]
+    ];
     return (
         <>
             <div className={menuStyle.container}>
@@ -46,23 +48,27 @@ const MenuManagement = () => {
                 <div className={menuStyle.context}>
                     <div className={menuStyle.content}>
                         <div className={menuStyle.contentInfo}>
-                            <Select placeholder='Menu'
-                                fontSize='2xl'
-                                icon='none'
-                                size='lg'
-                                variant='flushed'
-                                marginBottom='1rem'
-                                maxWidth='10rem'>
-                                {buttonInfo.map(v =>
-                                    <option
-                                        key={v.id}
-                                        value={v.name}>{v.name}</option>
-                                )}
-                            </Select>
+                            <Flex
+                            >
+                                <Select placeholder='Menu'
+                                    fontSize='2xl'
+                                    icon='none'
+                                    size='lg'
+                                    variant='flushed'
+                                    marginBottom='1rem'
+                                    maxWidth='10rem'>
+                                    {buttonInfo.map(v =>
+                                        <option
+                                            key={v.id}
+                                            value={v.name}>{v.name}
+                                        </option>
+                                    )}
+                                </Select>
+                                <IconButton
+                                    icon={<AddIcon />}/>
+                            </Flex>
                             <Flex>
-
                                 <DropDownItems dish={menuName} setFoodInfo={setFoodInformation} />
-
                             </Flex>
                         </div>
                     </div>

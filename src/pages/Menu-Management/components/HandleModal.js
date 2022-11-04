@@ -26,7 +26,7 @@ export const HandleModal = ({ modalData, handleCloseModal }) => {
         setFoodData({ ...foodData, [e.target.name]: e.target.value });
     };
     const handlePrice = (e) => {
-        setFoodData({ ...foodData, [foodData.price]: e.target.value });
+        setFoodData({ ...foodData, price: parseFloat(e.target.value) });
     };
 
     const ingredientsRef = useRef();
