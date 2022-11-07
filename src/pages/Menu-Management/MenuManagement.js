@@ -1,23 +1,13 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Heading, Select } from '@chakra-ui/react';
 import menuStyle from './index.module.css';
 import { Flex } from '@chakra-ui/react';
 import FoodInformation from './FoodInformation';
-import DropDownContainer from './testing/DropDownContainer';
-import DropDownItems from './components/DropDownItems';
 
-import { AddIcon } from '@chakra-ui/icons';
-import RightDrawer from './components/RightDrawer';
+import CreateFoodItem from './components/CreateFoodItem';
+import FoodItems from './components/FoodItems';
 
 const MenuManagement = () => {
-
-    const [menuName, setMenuName] = useState();
-    const [foodInfo, setFoodInfo] = useState();
-
-    const setFoodInformation = (props) => {
-        setFoodInfo(props);
-    };
-
     const buttonInfo = [
         {
             id: '1',
@@ -25,21 +15,26 @@ const MenuManagement = () => {
         },
         {
             id: '2',
-            name: 'Inum'
+            name: 'dish'
         },
         {
             id: '3',
             name: 'Inum'
-        },
-        {
-            id: '4',
-            name: 'Inum'
-        },
-        {
-            id: '5',
-            name: 'Inum'
         }
     ];
+    const [menuName, setMenuName] = useState(buttonInfo[0].name);
+    const [foodInfo, setFoodInfo] = useState();
+
+    const setFoodInformation = (props) => {
+        setFoodInfo(props);
+    };
+
+    const handleChange = (e) => {
+        setMenuName(e.target.value);
+
+    };
+    console.log(menuName);
+
     return (
         <>
             <div className={menuStyle.container}>
@@ -49,26 +44,31 @@ const MenuManagement = () => {
                         <div className={menuStyle.contentInfo}>
                             <Flex
                             >
-                                <Select placeholder='Menu'
+                                <Select
                                     fontSize='2xl'
                                     icon='none'
                                     size='lg'
                                     variant='flushed'
                                     marginBottom='1rem'
-                                    maxWidth='10rem'>
+                                    maxWidth='10rem'
+                                    value={menuName}
+                                    onChange={handleChange}
+                                >
                                     {buttonInfo.map(v =>
                                         <option
                                             key={v.id}
-                                            value={v.name}>{v.name}
+                                            value={v.name}
+
+                                        >{v.name}
                                         </option>
                                     )}
                                 </Select>
-                                <RightDrawer />
+                                <CreateFoodItem />
                             </Flex>
                             <Flex
                                 gap='5px'
                                 wrap='wrap'>
-                                <DropDownItems dish={menuName} setFoodInfo={setFoodInformation} />
+                                <FoodItems menuType={menuName} setFoodInfo={setFoodInformation} />
                             </Flex>
                         </div>
                     </div>

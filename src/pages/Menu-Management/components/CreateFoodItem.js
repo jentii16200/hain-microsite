@@ -4,10 +4,11 @@ import {
     DrawerContent,
     DrawerHeader, DrawerBody, Input,
     Button, DrawerFooter, useDisclosure,
-    Flex, Text, Image, Textarea
+    Flex, Text, Image, Textarea, IconButton
 } from '@chakra-ui/react';
-import { AddMenu } from '../api/menu-api';
 
+import { AddIcon } from '@chakra-ui/icons';
+import { AddMenu } from '../../../api/menu-api';
 const INITIAL_STATE = {
     name: '',
     price: '',
@@ -17,7 +18,7 @@ const INITIAL_STATE = {
     type: ''
 };
 
-const RightDrawer = () => {
+const CreateFoodItem = () => {
     const { isOpen, onOpen, onClose } = useDisclosure();
     const [foodData, setFoodData] = useState({
         name: '',
@@ -62,12 +63,12 @@ const RightDrawer = () => {
 
     return (
         <>
-            <Button
+            <IconButton
+                icon={<AddIcon />}
                 ref={btnRef}
                 colorScheme='teal'
-                onClick={onOpen}>
-                Open
-            </Button>
+                onClick={onOpen}
+            />
             <Drawer
                 size='md'
                 isOpen={isOpen}
@@ -123,17 +124,32 @@ const RightDrawer = () => {
                                 minHeight='10rem'
                                 value={foodData.description}
                                 onChange={handleChange} />
-                            <Text>
-                                Ingredients:
-                            </Text>
-                            <Textarea
-                                ref={ingredientsRef}
-                                name='ingredients'
-                                minHeight='5rem'
-                                value={foodData.ingredients}
-                                onChange={HandleIngredients} />
-                            {/* // onChange={HandleIngredients}
-                            /> */}
+                            <Flex
+                                gap='20px'>
+                                <Flex
+                                    flexDirection='column'
+                                    width='70%'>
+                                    <Text>
+                                        Ingredients:
+                                    </Text>
+                                    <Textarea
+                                        ref={ingredientsRef}
+                                        name='ingredients'
+                                        minHeight='5rem'
+                                        value={foodData.ingredients}
+                                        onChange={HandleIngredients} />
+                                </Flex>
+                                <Flex
+                                    flexDirection='column'>
+                                    <Text>
+                                        Type:
+                                    </Text>
+                                    <Input
+                                        name='type'
+                                        value={foodData.type}
+                                        onChange={handleChange} />
+                                </Flex>
+                            </Flex>
 
                         </Flex>
 
@@ -157,4 +173,4 @@ const RightDrawer = () => {
     );
 };
 
-export default RightDrawer;
+export default CreateFoodItem;

@@ -8,12 +8,9 @@ import {
     Tooltip,
 } from '@chakra-ui/react';
 import axios from 'axios';
-import { HandleModal } from './HandleModal';
-import { MenuLabel } from './ToolTip';
-import { HoverModal } from '../testing/HoverModal';
-import FoodInformation from '../FoodInformation';
+import { UpdateFoodItem } from './UpdateFoodItem';
 
-const DropDownItems = ({ dish, setFoodInfo }) => {
+const FoodItems = ({ menuType, setFoodInfo }) => {
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [posts, setPosts] = useState([]);
     const [modalData, setModalData] = useState();
@@ -21,13 +18,13 @@ const DropDownItems = ({ dish, setFoodInfo }) => {
     const apiEndPoint = 'https://us-central1-hain-402aa.cloudfunctions.net/api/getMenu';
     useEffect(() => {
         console.log('FETCHING DATA');
-        axios.post(apiEndPoint, { type: 'dish' }).then(res => {
+        axios.post(apiEndPoint, { type: menuType }).then(res => {
             setPosts(res.data);
             console.log(res);
         }).catch(err => {
             console.log(err);
         });
-    }, []);
+    }, [menuType]);
 
     const handleCloseModal = () => {
         setModalIsOpen(false);
@@ -51,7 +48,6 @@ const DropDownItems = ({ dish, setFoodInfo }) => {
                         onClick={() => {
 
                             setFoodInfo(post);
-                            HoverModal(post, true);
                             setModalData(post);
                         }}>
                         {modalIsOpen &&
@@ -61,7 +57,7 @@ const DropDownItems = ({ dish, setFoodInfo }) => {
                                 onClose={() => setModalIsOpen(false)}>
                                 <ModalOverlay />
                                 <Portal>
-                                    <HandleModal
+                                    <UpdateFoodItem
                                         modalData={modalData}
                                         handleCloseModal={handleCloseModal} />
                                 </Portal>
@@ -89,4 +85,4 @@ const DropDownItems = ({ dish, setFoodInfo }) => {
         </>
     );
 };
-export default DropDownItems;
+export default FoodItems;

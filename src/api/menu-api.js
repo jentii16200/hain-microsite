@@ -6,16 +6,17 @@ const API_GETMENU = 'https://us-central1-hain-402aa.cloudfunctions.net/api/getMe
 const API_DELETEMENU = 'https://us-central1-hain-402aa.cloudfunctions.net/api/deleteMenu';
 const API_ADDMENU = 'https://us-central1-hain-402aa.cloudfunctions.net/api/addMenu';
 
-export const GetMenu = () => {
-    console.log('FETCHING MENU');
+export const GetMenu = (type) => {
+    console.log('FETCHING MENU', { type: type });
     return fetch(API_GETMENU).then(res => {
         console.log(res);
     }).catch(e => console.log(e));
 };
 
-export const DeleteMenu = async (id) => {
+export const DeleteMenu = async (foodInfo) => {
+    console.log(foodInfo);
     console.log('DELETING MENU');
-    await axios.post(API_DELETEMENU, { idMenu: id }).then(res => {
+    await axios.post(API_DELETEMENU, { idMenu: foodInfo.name }).then(res => {
         console.log(res);
     }).catch(e => console.log(e));
 };

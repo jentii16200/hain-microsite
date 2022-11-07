@@ -5,17 +5,15 @@ import {
     Image,
     Heading,
     Text,
-    Button,
     Menu,
     MenuButton,
     MenuList,
     MenuItem,
-
     Modal, ModalOverlay, Portal
 } from '@chakra-ui/react';
 import { DeleteIcon, DragHandleIcon, EditIcon } from '@chakra-ui/icons';
-import { HandleModal } from './components/HandleModal';
-import { DeleteMenu } from './api/menu-api';
+import { UpdateFoodItem } from './components/UpdateFoodItem';
+import { DeleteMenu } from '../../api/menu-api';
 
 const FoodInformation = ({ foodInfo }) => {
     const [editModal, setEditModal] = useState(false);
@@ -49,7 +47,7 @@ const FoodInformation = ({ foodInfo }) => {
                                 <MenuItem
                                     icon={<DeleteIcon
                                         boxSize='2rem' />}
-                                    onClick={() => DeleteMenu(foodInfo.id)} />
+                                    onClick={() => DeleteMenu(foodInfo)} />
                             </MenuList>
                         </Menu>
                         {editModal &&
@@ -59,7 +57,7 @@ const FoodInformation = ({ foodInfo }) => {
                                 onClose={() => setEditModal(false)}>
                                 <ModalOverlay />
                                 <Portal>
-                                    <HandleModal
+                                    <UpdateFoodItem
                                         modalData={foodInfo}
                                         handleCloseModal={handleCloseModal} />
                                 </Portal>

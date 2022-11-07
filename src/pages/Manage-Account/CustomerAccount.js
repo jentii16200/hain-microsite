@@ -6,7 +6,7 @@ import {
     TableContainer, Wrap, Box, Spinner, Button, IconButton, Grid, GridItem
 } from '@chakra-ui/react';
 import { DeleteIcon } from '@chakra-ui/icons';
-import { HandleDeleteAccount } from './api/HandleAccounts';
+import { HandleDeleteAccount } from '../../api/account-api';
 import { SearchBar } from '../../components/SearchBar';
 
 export const CustomerAccount = (props) => {

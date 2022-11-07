@@ -1,25 +1,19 @@
-import React, { useEffect, useReducer, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import {
-    Grid,
-    GridItem,
     Button,
     Image,
-    Modal,
-    ModalOverlay,
     ModalContent,
     ModalHeader,
     ModalFooter,
     ModalBody,
-    ModalCloseButton,
     Text,
     Input,
     Flex,
     Textarea,
 } from '@chakra-ui/react';
-import { postReducer } from '../hooks/FoodInfoReducer';
-import { AddMenu } from '../api/menu-api';
+import { AddMenu } from '../../../api/menu-api';
 
-export const HandleModal = ({ modalData, handleCloseModal }) => {
+export const UpdateFoodItem = ({ modalData, handleCloseModal }) => {
     console.log('na render');
     const [foodData, setFoodData] = useState(modalData);
 
