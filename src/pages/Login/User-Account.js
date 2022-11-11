@@ -3,8 +3,9 @@ import { Center, Wrap, WrapItem, Box, Container, FormControl, FormLabel, Button,
 import '../../assets/index.css';
 import { Navigate } from 'react-router-dom';
 import BackGround from '../../assets/bg.png';
+import ProtectedRoute from '../../components/ProtectedRoute';
 
-const UserAccount = (props) => {
+const UserAccount = ({ logIn, isLoggedIn }) => {
     const [isLoading, setIsLoading] = useState(true);
     const toast = useToast();
     const [goToContact, setGoToContact] = useState(false);
@@ -20,6 +21,7 @@ const UserAccount = (props) => {
             new Promise(resolve => {
                 setIsLoading(false);
                 setTimeout(resolve, 1000);
+                logIn();
             }).then(() => {
                 setGoToContact(true);
                 toast({
@@ -50,8 +52,11 @@ const UserAccount = (props) => {
         }
     }
     if (goToContact) {
-
-        return <Navigate to="/h/manage-account/customer" />;
+        return (
+            <>
+                < Navigate to="/h/manage-account/customer" />
+            </>
+        );
 
     }
     return (

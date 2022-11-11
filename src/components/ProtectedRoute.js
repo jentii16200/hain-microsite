@@ -1,19 +1,27 @@
-import React from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import { useToast } from '@chakra-ui/react';
-const ProtectedRoute = ({ isLoggedIn, children }) => {
+const ProtectedRoute = ({ children, isLoggedIn }) => {
     const toast = useToast();
-    if (!isLoggedIn) {
-        return (
+    useEffect(() => {
+        !isLoggedIn ?
             toast({
-                title: 'Please Login',
+                title: 'Login Required',
                 status: 'error',
-                duration: 1000,
-                isClosable: true
-            })
-        );
-    }
-    return children;
-};
+                duration: 5000,
+                isClosable: true,
+                position: 'top-right'
+            }) : null;
+    });
 
+    return (
+        !isLoggedIn ?
+            <>
+                <Navigate to='/' />
+            </>
+            :
+            children
+    );
+
+};
 export default ProtectedRoute;
