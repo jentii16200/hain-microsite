@@ -2,7 +2,8 @@ import { StarIcon } from '@chakra-ui/icons';
 import { Badge, Box } from '@chakra-ui/react';
 import React from 'react';
 
-const OrderlogItem = (post) => {
+const OrderlogItem = ({ post }) => {
+    console.log(post);
     return (
         <Box maxW='sm' borderWidth='1px' borderRadius='lg' overflow='hidden'>
             <Box p='6'>
@@ -18,7 +19,7 @@ const OrderlogItem = (post) => {
                         textTransform='uppercase'
                         ml='2'
                     >
-                        {post.beds} beds &bull; {post.baths} baths
+                        {post.totalAmount}
                     </Box>
                 </Box>
                 <Box

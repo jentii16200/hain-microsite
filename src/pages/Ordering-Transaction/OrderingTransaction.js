@@ -3,11 +3,14 @@ import { Flex, Grid, GridItem, Heading } from '@chakra-ui/react';
 import { OrderingTransactionNav } from '../../components/OrderingTransactionNav';
 import { GetOrders } from './api/HandleStatus';
 import OrderlogItem from './OrderlogItem';
+import axios from 'axios';
 const OrderingTransaction = () => {
-
+    const apiGetOrder = 'https://us-central1-hain-402aa.cloudfunctions.net/api/getOrderLogs';
     const [posts, setPosts] = useState([]);
     useEffect(() => {
-        setPosts(GetOrders);
+        axios.get(apiGetOrder).then(res => {
+            setPosts(res.data);
+        }).catch(err => { console.log(err); });
     }, []);
     console.log(posts);
     return (
@@ -32,7 +35,7 @@ const OrderingTransaction = () => {
                                 marginBottom='3'>
                                 <Heading size='md'>Pending</Heading>
                             </Flex>
-                            {posts.map(post => {
+                            {posts?.map(post => {
                                 <OrderlogItem post={post} />;
                             })}
                         </GridItem>
