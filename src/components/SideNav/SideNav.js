@@ -97,7 +97,7 @@ const SideNav = () => {
                     <li>
                         <NavLink
                             className={({ isActive }) => (isActive ? 'active' : '')}
-                            to='ordering-transaction/pending'>
+                            to='ordering-transaction'>
                             <div className={`navIcon ${cName}`} >
                                 <BiBorderRadius />
                             </div>

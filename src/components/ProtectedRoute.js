@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Navigate } from 'react-router-dom';
 import { useToast } from '@chakra-ui/react';
 const ProtectedRoute = ({ children, isLoggedIn }) => {
