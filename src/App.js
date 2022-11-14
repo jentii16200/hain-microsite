@@ -5,7 +5,7 @@ import '../src/assets/index.css';
 import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [isLoggedIn, setIsLoggedIn] = useState(true);
     const logIn = () => {
         setIsLoggedIn(true);
     };

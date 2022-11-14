@@ -2,17 +2,23 @@ import React, { useEffect, useState } from 'react';
 import { Flex, Grid, GridItem, Heading } from '@chakra-ui/react';
 import { OrderingTransactionNav } from '../../components/OrderingTransactionNav';
 import { GetOrders } from './api/HandleStatus';
-import OrderlogItem from './OrderlogItem';
 import axios from 'axios';
+import OrderLogItem from './OrderLogItem';
+import SelectedOrder from './components/SelectedOrder';
 const OrderingTransaction = () => {
     const apiGetOrder = 'https://us-central1-hain-402aa.cloudfunctions.net/api/getOrderLogs';
     const [posts, setPosts] = useState([]);
+    const [item, setItem] = useState([]);
+
+    const setItemInfo = (props) => {
+        setItem(props);
+    };
     useEffect(() => {
         axios.get(apiGetOrder).then(res => {
             setPosts(res.data);
+            console.log(res.data);
         }).catch(err => { console.log(err); });
     }, []);
-    console.log(posts);
     return (
         <>
             <Flex flexDirection='row'
@@ -27,7 +33,7 @@ const OrderingTransaction = () => {
                         marginTop='1rem'
                         templateColumns='repeat(3, 1fr)' gap={0}>
                         <GridItem
-                            w='100%'
+                            maxW='100%'
                             h='100%'
                             border='1px solid black'
                             padding='2'>
@@ -35,9 +41,20 @@ const OrderingTransaction = () => {
                                 marginBottom='3'>
                                 <Heading size='md'>Pending</Heading>
                             </Flex>
-                            {posts?.map(post => {
-                                <OrderlogItem post={post} />;
-                            })}
+                            <Flex
+                                flexDirection='column'
+                                gap='3'>
+                                {posts.map((post) => {
+                                    if (post.status == 'pending') {
+                                        return (
+                                            <div key={post.id}>
+                                                <OrderLogItem post={post} setItemInfo={setItemInfo} />
+                                            </div>
+                                        );
+                                    }
+                                }
+                                )}
+                            </Flex>
                         </GridItem>
                         <GridItem
                             w='100%'
@@ -48,7 +65,20 @@ const OrderingTransaction = () => {
                                 marginBottom='3'>
                                 <Heading size='md'>OnProcess</Heading>
                             </Flex>
-                            <OrderlogItem />
+                            <Flex
+                                flexDirection='column'
+                                gap='3'>
+                                {posts.map((post) => {
+                                    if (post.status == 'onProcess') {
+                                        return (
+                                            <div key={post.id}>
+                                                <OrderLogItem post={post} setItemInfo={setItemInfo} />
+                                            </div>
+                                        );
+                                    }
+                                }
+                                )}
+                            </Flex>
                         </GridItem>
                         <GridItem
                             w='100%'
@@ -59,7 +89,20 @@ const OrderingTransaction = () => {
                                 marginBottom='3'>
                                 <Heading size='md'>BillOut</Heading>
                             </Flex>
-                            <OrderlogItem />
+                            <Flex
+                                flexDirection='column'
+                                gap='3'>
+                                {posts.map((post) => {
+                                    if (post.status == 'completed') {
+                                        return (
+                                            <div key={post.id}>
+                                                <OrderLogItem post={post} setItemInfo={setItemInfo} />
+                                            </div>
+                                        );
+                                    }
+                                }
+                                )}
+                            </Flex>
 
                         </GridItem>
                     </Grid>
@@ -68,7 +111,7 @@ const OrderingTransaction = () => {
                     w='30%'
                     h='100%'
                     border='1px solid black'>
-                    SELECTED ITEM
+                    <SelectedOrder item={item} />
                 </Flex>
             </Flex>
         </>
