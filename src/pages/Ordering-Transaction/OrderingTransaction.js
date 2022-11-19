@@ -3,11 +3,16 @@ import { Flex, Grid, GridItem, Heading } from '@chakra-ui/react';
 import axios from 'axios';
 import OrderLogItem from './OrderLogItem';
 import OrderInfo from './components/OrderInfo';
+
 const OrderingTransaction = () => {
     const apiGetOrder = 'https://us-central1-hain-402aa.cloudfunctions.net/api/getOrderLogs';
     const [posts, setPosts] = useState([]);
     const [item, setItem] = useState();
+    const [update, setUpdate] = useState(null);
 
+    const setUpdateItem = (props) => {
+        setUpdate(props);
+    };
     const setItemInfo = (props) => {
         setItem(props);
     };
@@ -16,7 +21,7 @@ const OrderingTransaction = () => {
             setPosts(res.data);
             console.log(res.data);
         }).catch(err => { console.log(err); });
-    }, []);
+    }, [update]);
     return (
         <>
             <Flex flexDirection='row'
@@ -88,7 +93,7 @@ const OrderingTransaction = () => {
                                 flexDirection='column'
                                 gap='3'>
                                 {posts.map((post) => {
-                                    if (post.status == 'completed') {
+                                    if (post.status == 'toServer') {
                                         return (
                                             <div key={post.id}>
                                                 <OrderLogItem post={post} setItemInfo={setItemInfo} />
@@ -106,7 +111,7 @@ const OrderingTransaction = () => {
                     w='30%'
                     h='100%'
                     p='2'>
-                    <OrderInfo item={item} />
+                    <OrderInfo item={item} setUpdateItem={setUpdateItem} />
 
                 </Flex>
             </Flex>

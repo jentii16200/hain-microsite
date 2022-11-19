@@ -8,7 +8,7 @@ const OrderLogItem = ({ post, setItemInfo }) => {
             contentEditable={false}
             as='button'
             minW='14.8rem'
-            borderWidth='1px'
+            border='1px solid rgba(0, 0, 0, .3)'
             borderRadius='lg'
             overflow='hidden'
             onClick={() => {

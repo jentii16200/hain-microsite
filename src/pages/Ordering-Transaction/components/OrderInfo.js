@@ -11,15 +11,53 @@ import {
 } from '@chakra-ui/react';
 import React from 'react';
 
-const OrderInfo = ({ item }) => {
+import { handleAcceptOrder, handleRejectOrder, handleOnProcessOrder } from '../api/HandleStatus';
 
+import Style from '../index.module.css';
+const OrderInfo = ({ item, setUpdateItem }) => {
+    let button = null;
+    if (item?.status == 'pending') {
+        button =
+            <Button colorScheme='green'
+                fontSize='20px'
+                onClick={
+                    () => {
+                        handleAcceptOrder(item.id);
+                    }
+                }
+            >
+                Confirm
+            </Button>;
+    } else if (item?.status == 'onProcess') {
+        button =
+            <Button colorScheme='green'
+                fontSize='20px'
+                onClick={() => {
+                    handleOnProcessOrder(item.id);
+                }
+                }
+            >
+                Serve
+            </Button>;
+    } else if (item?.status == 'toServer') {
+        button =
+            <Button colorScheme='green'
+                fontSize='20px'
+                onClick={() => {
+                    handleOnProcessOrder(item.id);
+                }
+                }
+            >
+                Complete
+            </Button>;
+    }
     if (item == null) return;
     return (
         <>
-            <Flex className='table-container'
+            <Flex className={Style.tableContainer}
                 flexDirection='column'
                 height='100%'>
-                <top>
+                <>
                     <Flex className='top-part'
                         marginTop='2rem'
                         flexDir='column'
@@ -80,8 +118,8 @@ const OrderInfo = ({ item }) => {
                             </Box>
                         </Flex>
                     </Flex>
-                </top>
-                <mid>
+                </>
+                <>
                     <TableContainer
                         overflow='hidden'
                         marginTop='5'
@@ -137,22 +175,37 @@ const OrderInfo = ({ item }) => {
                         <Box>TOTAL PRICE</Box>
                         <Box>{item.totalPrice}</Box>
                     </Flex>
-                </mid>
-                <foot>
+                </>
+                <>
                     <Flex
                         marginTop='10'
                         justifyContent='end'
                         gap='2'>
-                        <Button colorScheme='green'
+                        {button}
+                        {/* <Button colorScheme='green'
                             fontSize='20px'
-                        >Confirm
-                        </Button>
+                            onClick={
+                                () => {
+                                    if (item.status == 'pending') {
+                                        handleAcceptOrder(item.id);
+                                        setUpdateItem(item);
+                                    }
+                                    else if (item.status == 'onProcess') {
+                                        handleOnProcessOrder(item.id);
+                                    }
+                                }
+                            }
+                        >
+                            Confirm
+                        </Button> */}
                         <Button colorScheme='red'
                             fontSize='20px'
+                            onClick={() => { handleRejectOrder(item.id); }}
+
                         >Cancel
                         </Button>
                     </Flex>
-                </foot>
+                </>
             </Flex>
 
         </>
