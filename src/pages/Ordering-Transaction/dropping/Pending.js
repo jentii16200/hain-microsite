@@ -5,7 +5,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import { Button } from '@chakra-ui/react';
 import { handleAcceptOrder, handleRejectOrder } from './api/HandleStatus';
-export const Pending = () => {
+export const Pending = ({ status }) => {
     const [posts, setPosts] = useState([]);
     const [update, setUpdate] = useState(null);
     const apiEndPoint = 'https://us-central1-hain-402aa.cloudfunctions.net/api/getOrderLogs';
