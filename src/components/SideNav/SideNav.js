@@ -13,9 +13,6 @@ import {
     Remarks,
     MyAccount
 } from '../../pages/index.js';
-import { Billout } from '../../pages/Ordering-Transaction/Billout.js';
-import { OnProcess } from '../../pages/Ordering-Transaction/OnProcess.js';
-import { Pending } from '../../pages/Ordering-Transaction/Pending.js';
 import { MdSupervisorAccount, MdOutlineNotificationImportant, MdAccountCircle, MdMenu } from 'react-icons/md';
 import { IoFastFoodOutline } from 'react-icons/io5';
 import { HiOutlineDocumentText } from 'react-icons/hi';
@@ -144,9 +141,9 @@ const SideNav = () => {
                         <Route exact path='order-log' element={<OrderLog />} />
                         <Route exact path='register-employee' element={<RegisterEmployee />} />
                         <Route exact path='ordering-transaction' element={<OrderingTransaction />}>
-                            <Route exact path='pending' element={<Pending />} />
+                            {/* <Route exact path='pending' element={<Pending />} />
                             <Route exact path='onprocess' element={<OnProcess />} />
-                            <Route exact path='billout' element={<Billout />} />
+                            <Route exact path='billout' element={<Billout />} /> */}
                         </Route>
                         <Route exact path='remarks' element={<Remarks />} />
                         <Route exact path='my-account' element={<MyAccount />}

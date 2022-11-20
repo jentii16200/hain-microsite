@@ -4,7 +4,7 @@ import { SimpleGrid, Box } from '@chakra-ui/react';
 import { useState } from 'react';
 import axios from 'axios';
 import { Button } from '@chakra-ui/react';
-import { handleAcceptOrder, handleRejectOrder } from './api/HandleStatus';
+import { handleAcceptOrder, handleRejectOrder } from '../api/HandleStatus';
 export const Pending = ({ status }) => {
     const [posts, setPosts] = useState([]);
     const [update, setUpdate] = useState(null);

@@ -1,30 +1,39 @@
 import { StarIcon } from '@chakra-ui/icons';
-import { Badge, Box, Flex } from '@chakra-ui/react';
-import React from 'react';
+import { Badge, Box, Flex, Card } from '@chakra-ui/react';
+import React, { useState } from 'react';
 
 const OrderLogItem = ({ post, setItemInfo }) => {
+    let found = false;
+    post.order.map(p => {
+        p.remarks ? found = true : '';
+    });
+
     return (
-        <Box
-            contentEditable={false}
-            as='button'
-            minW='14.8rem'
-            border='1px solid rgba(0, 0, 0, .3)'
-            borderRadius='lg'
-            overflow='hidden'
-            onClick={() => {
-                setItemInfo(post);
-            }}
-        >
-            <Box p='2'>
-                <Box display='flex'
-                    alignItems='center'>
-                    {post.id}
-                </Box>
-                <Box display='flex' alignItems='baseline'>
-                    {post.userDetails.name}
+        <Card>
+            <Box
+                as='button'
+                onClick={() => {
+                    setItemInfo(post);
+                }}
+            >
+                <Box bg='teal.100'
+                    borderRadius='md'>
+
+                    {found ?
+                        <Box bg='yellow'
+                            h='15px' w='50%' /> : ''}
+                    <Box display='flex'
+                        alignItems='center'
+                        pt='2'
+                        paddingInline='2'>
+                        {post.id}
+                    </Box>
+                    <Box p='2' display='flex' alignItems='baseline'>
+                        {post.userDetails.name}
+                    </Box>
                 </Box>
             </Box>
-        </Box>
+        </Card >
     );
 };
 
