@@ -43,6 +43,7 @@ const MenuManagement = () => {
                     <div className={menuStyle.content}>
                         <div className={menuStyle.contentInfo}>
                             <Flex
+                                justifyContent='space-between'
                             >
                                 <Select
                                     fontSize='2xl'

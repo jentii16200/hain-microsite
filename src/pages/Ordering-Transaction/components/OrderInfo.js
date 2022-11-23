@@ -24,6 +24,7 @@ const OrderInfo = ({ item, setUpdateItem }) => {
                 onClick={
                     () => {
                         handleAcceptOrder(item.id);
+                        setUpdateItem();
                     }
                 }
             >
@@ -55,7 +56,8 @@ const OrderInfo = ({ item, setUpdateItem }) => {
     if (item == null) return;
     return (
         <>
-            <Card height='100%'>
+            <Card 
+                height='100%'>
                 <Flex
                     flexDirection='column'
                     p='2'

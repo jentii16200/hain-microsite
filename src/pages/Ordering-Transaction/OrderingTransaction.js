@@ -8,7 +8,7 @@ const OrderingTransaction = () => {
     const apiGetOrder = 'https://us-central1-hain-402aa.cloudfunctions.net/api/getOrderLogs';
     const [posts, setPosts] = useState([]);
     const [item, setItem] = useState();
-    const [update, setUpdate] = useState(null);
+    const [update, setUpdate] = useState();
 
     const setUpdateItem = (props) => {
         setUpdate(props);
@@ -108,7 +108,7 @@ const OrderingTransaction = () => {
                     </Grid>
                 </Flex>
                 <Flex flexDirection='column'
-                    w='30%'
+                    minW='30%'
                     h='100%'
                     p='2'>
                     <OrderInfo item={item} setUpdateItem={setUpdateItem} />

@@ -38,6 +38,7 @@ const FoodItems = ({ menuType, setFoodInfo }) => {
                     placement='auto-start'
                     key={post.name}>
                     <Box
+                        boxShadow='inherit'
                         className='card'
                         bg='white'
                         maxW='sm' borderWidth='1px'

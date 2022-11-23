@@ -9,7 +9,9 @@ import {
     MenuButton,
     MenuList,
     MenuItem,
-    Modal, ModalOverlay, Portal
+    Modal, 
+    ModalOverlay, 
+    Portal
 } from '@chakra-ui/react';
 import { DeleteIcon, DragHandleIcon, EditIcon } from '@chakra-ui/icons';
 import { UpdateFoodItem } from './components/UpdateFoodItem';
@@ -29,7 +31,6 @@ const FoodInformation = ({ foodInfo }) => {
                     flexDir='column'
                     height='100%'>
                     <Flex
-                        justifyContent='space-between'
                         padding='5px'
                         flexDir='row'>
                         <Menu isLazy>
@@ -71,6 +72,7 @@ const FoodInformation = ({ foodInfo }) => {
                             w='30px' h='30px'
                             icon={<DragHandleIcon />} /> */}
                         <Image
+                            marginLeft='3rem'
                             boxSize='100px'
                             borderRadius='100px'
                             src={foodInfo.imageUrl}
@@ -86,11 +88,11 @@ const FoodInformation = ({ foodInfo }) => {
                         marginBottom='10'
                         marginTop='0'
                         alignSelf='center'
-                        fontSize='30px'>
-                        {foodInfo.price}
+                        fontSize='25px'>
+                        ₱ {foodInfo.price}
                     </Text>
                     <Text
-                        fontSize='20'>
+                        fontSize='18    '>
                         {foodInfo.description}
                     </Text>
                     <Text as='b'
@@ -102,8 +104,8 @@ const FoodInformation = ({ foodInfo }) => {
                             gap='5px'
                             wrap='wrap'
                             alignContent='space-between'>
-                            {foodInfo.ingredients.map(v =>
-                                <li key={v}>
+                            {foodInfo.ingredients.map((v,i) =>
+                                <li key={i}>
                                     <Text
                                         border='1px solid teal'
                                         borderRadius='20px'
