@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import {
     Box,
+    Card,
     Image,
     Modal,
     ModalOverlay,
@@ -33,54 +34,55 @@ const FoodItems = ({ menuType, setFoodInfo }) => {
     return (
         <>
             {posts.map(post =>
-                <Tooltip
-                    hasArrow label={post.description}
-                    placement='auto-start'
-                    key={post.name}>
-                    <Box
-                        boxShadow='inherit'
-                        className='card'
-                        bg='white'
-                        maxW='sm' borderWidth='1px'
-                        borderRadius='lg'
-                        overflow='hidden'
-                        width={'180px'}
-                        height={'170px'}
-                        onClick={() => {
-
-                            setFoodInfo(post);
-                            setModalData(post);
-                        }}>
-                        {modalIsOpen &&
-                            <Modal
-                                size='3xl'
-                                isOpen={modalIsOpen}
-                                onClose={() => setModalIsOpen(false)}>
-                                <ModalOverlay />
-                                <Portal>
-                                    <UpdateFoodItem
-                                        modalData={modalData}
-                                        handleCloseModal={handleCloseModal} />
-                                </Portal>
-                            </Modal>
-                        }
-                        <Image className='menu-image'
-                            src={post.imageUrl}
-                            alt={post.imageAlt}
-                            width={'180px'}
-                            height={'130px'} />
-                        <Box className='menu-name'>
-                            <Box
-                                mt='1'
-                                fontWeight='semibold'
-                                as='h2'
-                                noOfLines={2}
-                            >
-                                {post.name}
+                <Card key={post.name} >
+                    <Tooltip
+                        hasArrow label={post.description}
+                        placement='auto-start'
+                        >
+                        <Box
+                            // boxShadow='inherit'
+                            // className='card'
+                            // bg='white'
+                            // maxW='sm' borderWidth='1px'
+                            // borderRadius='lg'
+                            // overflow='hidden'
+                            // width={'180px'}
+                            // height={'170px'}
+                            onClick={() => {
+                                setFoodInfo(post);
+                                setModalData(post);
+                            }}>
+                            {modalIsOpen &&
+                                <Modal
+                                    size='3xl'
+                                    isOpen={modalIsOpen}
+                                    onClose={() => setModalIsOpen(false)}>
+                                    <ModalOverlay />
+                                    <Portal>
+                                        <UpdateFoodItem
+                                            modalData={modalData}
+                                            handleCloseModal={handleCloseModal} />
+                                    </Portal>
+                                </Modal>
+                            }
+                            <Image className='menu-image'
+                                src={post.imageUrl}
+                                alt={post.imageAlt}
+                                width={'180px'}
+                                height={'130px'} />
+                            <Box className='menu-name'>
+                                <Box
+                                    mt='1'
+                                    fontWeight='semibold'
+                                    as='h2'
+                                    noOfLines={2}
+                                >
+                                    {post.name}
+                                </Box>
                             </Box>
                         </Box>
-                    </Box>
-                </Tooltip>
+                    </Tooltip>
+                </Card>
 
             )}
         </>

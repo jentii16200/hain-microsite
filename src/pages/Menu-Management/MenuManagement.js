@@ -52,7 +52,8 @@ const MenuManagement = () => {
                                 <CreateFoodItem />
                             </Flex>
                             <Flex
-                                gap='5px'
+                                justifyContent='center'
+                                gap='15px'
                                 wrap='wrap'>
                                 <FoodItems menuType={menuName} setFoodInfo={setFoodInformation} />
                             </Flex>

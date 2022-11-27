@@ -15,7 +15,9 @@ export const GetMenu = async (type) => {
 };
 export const UpdateMenu = async (item) => {
     console.log('UPDATING MENU');
-    await axios.post(API_UPDATEMENU, { id: item.id }).then(res => {
+    await axios.post(API_UPDATEMENU, 
+        {id: item.name, data: item}
+        ).then(res => {
         console.log(res);
     }).catch(e => console.log(e));
 };
