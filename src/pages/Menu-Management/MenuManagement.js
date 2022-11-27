@@ -6,23 +6,10 @@ import FoodInformation from './FoodInformation';
 
 import CreateFoodItem from './components/CreateFoodItem';
 import FoodItems from './components/FoodItems';
+import { FOOD_TYPE } from './api/foodType';
 
 const MenuManagement = () => {
-    const buttonInfo = [
-        {
-            id: '1',
-            name: 'Pulutan'
-        },
-        {
-            id: '2',
-            name: 'dish'
-        },
-        {
-            id: '3',
-            name: 'Inum'
-        }
-    ];
-    const [menuName, setMenuName] = useState(buttonInfo[0].name);
+    const [menuName, setMenuName] = useState(FOOD_TYPE[0].name);
     const [foodInfo, setFoodInfo] = useState();
 
     const setFoodInformation = (props) => {
@@ -33,8 +20,6 @@ const MenuManagement = () => {
         setMenuName(e.target.value);
 
     };
-    console.log(menuName);
-
     return (
         <>
             <div className={menuStyle.container}>
@@ -55,7 +40,7 @@ const MenuManagement = () => {
                                     value={menuName}
                                     onChange={handleChange}
                                 >
-                                    {buttonInfo.map(v =>
+                                    {FOOD_TYPE.map(v =>
                                         <option
                                             key={v.id}
                                             value={v.name}

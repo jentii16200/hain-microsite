@@ -1,14 +1,20 @@
 import React, { useState, useEffect } from 'react';
-import { Heading } from '@chakra-ui/react';
 import axios from 'axios';
 import {
-    Table, Thead, Tbody, Tfoot, Tr, Th, Td, TableCaption,
+    Heading,
+    Table,
+    Thead,
+    Tbody,
+    Tr,
+    Th,
+    Td,
     TableContainer
 } from '@chakra-ui/react';
 
-export const Remarks = () => {
+const Remarks = () => {
     const [posts, setPosts] = useState([]);
-    const apiEndPoint = '';
+    const apiEndPoint = 'https://us-central1-hain-402aa.cloudfunctions.net/api/getRemarks';
+
     useEffect(() => {
         axios.get(apiEndPoint).then(res => {
             console.log(res);
@@ -41,3 +47,4 @@ export const Remarks = () => {
         </div>
     );
 };
+export default Remarks;

@@ -11,7 +11,7 @@ import {
     Flex,
     Textarea,
 } from '@chakra-ui/react';
-import { AddMenu } from '../../../api/menu-api';
+import { AddMenu, UpdateMenu } from '../../../api/menu-api';
 
 export const UpdateFoodItem = ({ modalData, handleCloseModal }) => {
     console.log('na render');
@@ -32,7 +32,7 @@ export const UpdateFoodItem = ({ modalData, handleCloseModal }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        AddMenu(foodData);
+        UpdateMenu(foodData);
     };
 
     console.log(foodData);

@@ -8,10 +8,12 @@ import {
 import { DeleteIcon } from '@chakra-ui/icons';
 import { HandleDeleteAccount } from '../../api/account-api';
 import { SearchBar } from '../../components/SearchBar';
+import { GetAccount } from './api/apiManageAccount';
+
+const apiEndPoint = 'https://us-central1-hain-402aa.cloudfunctions.net/api/getUserAccounts';
 
 export const CustomerAccount = (props) => {
     const [posts, setPosts] = useState([]);
-    const apiEndPoint = 'https://us-central1-hain-402aa.cloudfunctions.net/api/getUserAccounts';
 
     useEffect(() => {
         axios.get(apiEndPoint).then(res => {

@@ -4,45 +4,10 @@ import {
     TableContainer, Wrap, Box, Spinner, Button, IconButton
 } from '@chakra-ui/react';
 import { DeleteIcon } from '@chakra-ui/icons';
+import { EMPLOYEE_DATA } from './temp/employeeAccountData';
 
 export const EmployeeAccount = () => {
-    const employeesData = [
-        {
-            id: '1',
-            username: 'SAGS',
-            name: 'SAGUIT',
-            password: 'secret',
 
-        },
-        {
-            id: '2',
-            username: 'PASCY',
-            name: 'PASCUAL',
-            password: 'pascy',
-
-        },
-        {
-            id: '3',
-            username: 'SINDZ',
-            name: 'SINDINGAN',
-            password: 'cleo',
-
-        },
-        {
-            id: '4',
-            username: 'JM',
-            name: 'ENTEREZO',
-            password: 'entz',
-
-        },
-        {
-            id: '5',
-            username: 'JORGS',
-            name: 'JORGE',
-            password: 'hehe',
-
-        }
-    ];
     return (
         <div>
             <TableContainer className='table'>
@@ -56,7 +21,7 @@ export const EmployeeAccount = () => {
                         </Tr>
                     </Thead>
                     <Tbody>
-                        {employeesData.map(post =>
+                        {EMPLOYEE_DATA.map(post =>
                             <Tr key={post.id}>
                                 <Td>{post.id}</Td>
                                 <Td>{post.username}</Td>
