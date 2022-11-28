@@ -30,12 +30,6 @@ export const CustomerAccount = (props) => {
                 templateAreas={`"search"
                             "main"`}>
 
-                <GridItem area={'search'}
-                    position={'fixed'}
-                    right={'100'}
-                    marginTop={'10px'}>
-                    <SearchBar />
-                </GridItem>
                 <GridItem area={'main'}
                     marginTop={'80px'}>
                     <TableContainer className='table'>

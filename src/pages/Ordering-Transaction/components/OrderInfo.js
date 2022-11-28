@@ -8,7 +8,9 @@ import {
     Td,
     TableContainer,
     Button,
-    Card
+    Card,
+    Tooltip,
+    Text
 } from '@chakra-ui/react';
 import React from 'react';
 
@@ -56,7 +58,7 @@ const OrderInfo = ({ item, setUpdateItem }) => {
     if (item == null) return;
     return (
         <>
-            <Card 
+            <Card
                 height='100%'>
                 <Flex
                     flexDirection='column'
@@ -160,11 +162,32 @@ const OrderInfo = ({ item, setUpdateItem }) => {
                                 </Thead>
                                 <Tbody>
                                     {item.order.map(orders =>
-                                        <Tr key={orders.name}>
-                                            <Td>{orders.name}</Td>
-                                            <Td textAlign='center'>{orders.quantity}</Td>
-                                            <Td isNumeric>{orders.price}</Td>
-                                        </Tr>
+                                        <Tooltip key={orders.name}
+                                            padding='1'
+                                            minW='100px'
+                                            size='xl'
+                                            hasArrow
+                                            defaultIsOpen
+                                            label={
+                                                orders.remarks ?
+                                                    <Text
+                                                        padding='1.5'
+                                                        border='1px solid white'
+                                                    >
+                                                        {orders.remarks}
+                                                    </Text> : ''}
+                                            placement='left-start'
+                                            bg='teal.500'>
+                                            <Tr
+                                                cursor='pointer'
+                                                bgColor={orders.remarks ? 'teal.500' : 'white'}
+                                                color={orders.remarks ? 'white' : 'black'}
+                                            >
+                                                <Td w='160px'>{orders.name}</Td>
+                                                <Td textAlign='center'>{orders.quantity}</Td>
+                                                <Td isNumeric>{orders.price}</Td>
+                                            </Tr>
+                                        </Tooltip>
                                     )}
                                 </Tbody>
                             </Table>

@@ -23,7 +23,9 @@ const MenuManagement = () => {
     return (
         <>
             <div className={menuStyle.container}>
-                <Heading className={menuStyle.title}>MENU MANAGEMENT</Heading>
+                <Heading className={menuStyle.title}>
+                    MENU MANAGEMENT
+                </Heading>
                 <div className={menuStyle.context}>
                     <div className={menuStyle.content}>
                         <div className={menuStyle.contentInfo}>

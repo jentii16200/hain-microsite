@@ -33,7 +33,7 @@ const OrderingTransaction = () => {
                         <Heading >ORDERING TRANSACTION</Heading>
                     </Flex>
                     <Grid h='100%'
-                        marginTop='1rem'
+                        paddingTop='1rem'
                         templateColumns='repeat(3, 1fr)' gap={0}>
                         <GridItem
                             maxW='100%'
@@ -59,11 +59,13 @@ const OrderingTransaction = () => {
                             </Flex>
                         </GridItem>
                         <GridItem
+                            borderInline='1px solid rgba(0, 0, 0, 0.1);'
                             w='100%'
                             h='100%'
                             padding='2'>
                             <Flex justifyContent='center'
-                                marginBottom='3'>
+                                marginBottom='3'
+                            >
                                 <Heading size='md'>OnProcess</Heading>
                             </Flex>
                             <Flex
