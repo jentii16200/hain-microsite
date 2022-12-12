@@ -13,10 +13,8 @@ import {
     Text
 } from '@chakra-ui/react';
 import React from 'react';
-
 import { handleAcceptOrder, handleRejectOrder, handleOnProcessOrder } from '../api/HandleStatus';
 
-import Style from '../index.module.css';
 const OrderInfo = ({ item, setUpdateItem }) => {
     let button = null;
     if (item?.status == 'pending') {
@@ -25,8 +23,8 @@ const OrderInfo = ({ item, setUpdateItem }) => {
                 fontSize='20px'
                 onClick={
                     () => {
-                        handleAcceptOrder(item.id);
-                        setUpdateItem();
+                        setUpdateItem(
+                            handleAcceptOrder(item.id));
                     }
                 }
             >

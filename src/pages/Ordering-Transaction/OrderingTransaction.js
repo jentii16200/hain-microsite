@@ -8,20 +8,36 @@ const OrderingTransaction = () => {
     const apiGetOrder = 'https://us-central1-hain-402aa.cloudfunctions.net/api/getOrderLogs';
     const [posts, setPosts] = useState([]);
     const [item, setItem] = useState();
-    const [update, setUpdate] = useState();
+    const [update, setUpdate] = useState(null);
 
-    const setUpdateItem = (props) => {
-        setUpdate(props);
-    };
     const setItemInfo = (props) => {
         setItem(props);
     };
+    const setUpdateItem = (props) => {
+        setUpdate(props);
+    };
     useEffect(() => {
-        axios.get(apiGetOrder).then(res => {
-            setPosts(res.data);
-            console.log(res.data);
-        }).catch(err => { console.log(err); });
+        getOrders();
     }, [update]);
+
+    const getOrders = () => {
+        let isCancelled = false;
+        console.log("nag fetch");
+        axios.get(apiGetOrder).then(res => {
+            if (isCancelled) return;
+            const x = res.data;
+            setPosts(x);
+            console.log("nag set");
+
+            // console.log(res.data);
+
+        }).catch(err => { console.log(err); });
+        console.log("GUMAGANA");
+        return () => {
+            isCancelled = true;
+        };
+    };
+
     return (
         <>
             <Flex flexDirection='row'
