@@ -21,10 +21,22 @@ export const FOOD_TYPE = [
     },
     {
         id: '7',
-        name: 'Rice Meal'
+        name: 'Charcoal Grilled'
     },
     {
         id: '8',
         name: 'Seafood Dish'
+    },
+    {
+        id: '9',
+        name: 'Starter'
+    },
+    {
+        id: '10',
+        name: 'Seafood Dish'
+    },
+    {
+        id: '11',
+        name: 'Veggies and Meat'
     }
 ];

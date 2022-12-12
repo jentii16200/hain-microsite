@@ -104,7 +104,7 @@ const FoodInformation = ({ foodInfo }) => {
                             gap='5px'
                             wrap='wrap'
                             alignContent='space-between'>
-                            {foodInfo.ingredients.map((v,i) =>
+                            {foodInfo.ingredients?.map((v,i) =>
                                 <li key={i}>
                                     <Text
                                         border='1px solid teal'
