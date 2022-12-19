@@ -19,7 +19,7 @@ function App() {
                 <Route exact path='h/*' element={
                     <ProtectedRoute isLoggedIn={isLoggedIn} >
                         <React.Suspense fallback='Loading'>
-                            <SideNav />
+                            <SideNav logOut={logOut} />
                         </React.Suspense>
                     </ProtectedRoute>
                 } />

@@ -3,7 +3,6 @@ import React, { lazy, useState } from 'react';
 import { Link, Routes, Route, Outlet, NavLink } from 'react-router-dom';
 import {
     ManageAccount,
-    AdminAccount,
     CustomerAccount,
     EmployeeAccount,
     MenuManagement,
@@ -11,15 +10,16 @@ import {
     RegisterEmployee,
     OrderingTransaction,
     Remarks,
-    MyAccount
+    MyAccount,
+    UserAccount
 } from '../../pages/index.js';
 import { MdSupervisorAccount, MdOutlineNotificationImportant, MdAccountCircle, MdMenu } from 'react-icons/md';
 import { IoFastFoodOutline } from 'react-icons/io5';
 import { HiOutlineDocumentText } from 'react-icons/hi';
 import { IoMdPersonAdd } from 'react-icons/io';
-import { BiBorderRadius } from 'react-icons/bi';
+import { BiBorderRadius, BiLogOut } from 'react-icons/bi';
 import { IconButton } from '@chakra-ui/react';
-const SideNav = () => {
+const SideNav = ({ logOut }) => {
     const [isOpen, setIsOpen] = useState(true);
     let cName = isOpen ? '' : 'small';
 
@@ -37,7 +37,6 @@ const SideNav = () => {
                     </div>
                     <IconButton
                         background='none'
-                        mt={5}
                         _hover={{ background: 'none' }}
                         icon={<MdMenu />}
                         onClick={toggle} />
@@ -51,7 +50,7 @@ const SideNav = () => {
                                 <MdSupervisorAccount />
                             </div>
                             <div className={`navText ${cName}`}>
-                                MANAGE ACCOUNT
+                                Manage Account
                             </div>
                         </NavLink>
                     </li>
@@ -63,7 +62,7 @@ const SideNav = () => {
                                 <IoFastFoodOutline />
                             </div>
                             <div className={`navText ${cName}`}>
-                                MENU MANAGEMENT
+                                Menu Management
                             </div>
                         </NavLink>
                     </li>
@@ -75,7 +74,7 @@ const SideNav = () => {
                                 <HiOutlineDocumentText />
                             </div>
                             <div className={`navText ${cName}`}>
-                                ORDER LOG
+                                Order Log
                             </div>
                         </NavLink>
                     </li>
@@ -87,7 +86,7 @@ const SideNav = () => {
                                 <IoMdPersonAdd />
                             </div>
                             <div className={`navText ${cName}`}>
-                                REGISTER EMPLOYEE
+                                Register Emploee
                             </div>
                         </NavLink>
                     </li>
@@ -99,7 +98,7 @@ const SideNav = () => {
                                 <BiBorderRadius />
                             </div>
                             <div className={`navText ${cName}`}>
-                                ORDERING TRANSACTION
+                                Ordering Transaction
                             </div>
                         </NavLink>
                     </li>
@@ -111,7 +110,7 @@ const SideNav = () => {
                                 <MdOutlineNotificationImportant />
                             </div>
                             <div className={`navText ${cName}`}>
-                                REMARKS
+                                Remarks
                             </div>
                         </NavLink>
                     </li>
@@ -123,7 +122,20 @@ const SideNav = () => {
                                 <MdAccountCircle />
                             </div>
                             <div className={`navText ${cName}`}>
-                                MY ACCOUNT
+                                My Account
+                            </div>
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink
+                            className={({ isActive }) => (isActive ? 'active' : '')}
+                            to="login"
+                            onClick={() => logOut()}>
+                            <div className={`navIcon ${cName}`} >
+                                <BiLogOut />
+                            </div>
+                            <div className={`navText ${cName}`}>
+                                Log Out
                             </div>
                         </NavLink>
                     </li>
@@ -146,8 +158,8 @@ const SideNav = () => {
                             <Route exact path='billout' element={<Billout />} /> */}
                         </Route>
                         <Route exact path='remarks' element={<Remarks />} />
-                        <Route exact path='my-account' element={<MyAccount />}
-                        />
+                        <Route exact path='my-account' element={<MyAccount />} />
+                        <Route exact path='login' element={<UserAccount />} />
                     </Routes>
                 </React.Suspense>
             </div>

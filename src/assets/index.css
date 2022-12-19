@@ -8,8 +8,8 @@
 }
 body{
   margin: 0;
-} 
-
+  overflow-x: hidden;
+}
 .bg{
   /* The image used */  
   width: 100%;
@@ -22,7 +22,7 @@ body{
 
 .container{
   display: flex;
-  min-width: 100vw;
+  max-width: 100vw;
   min-height: 100vh;
 }
 .main{

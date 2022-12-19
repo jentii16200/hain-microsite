@@ -4,12 +4,16 @@
     outline: 1px solid limegreen !important;
 } */
 .navigation{
+    position: sticky;
+    top: 0px;
+    left: 0px;
     display: flex;
     flex-direction: column;
-    max-width: 260px;
+    min-width: 250px;
     box-shadow: 0 4px 12px 0 rgb(0,0,0,.05);
     background-color: rgb(85, 169, 149);
     overflow: auto;
+    height: 100vh;
   }
   .navTopSection{
     justify-content: space-around;
@@ -27,6 +31,10 @@
   ul li{
     margin: 10px 0;
     list-style: none;
+  }
+  li:last-child{
+    margin-top: 15vh;
+
   }
   ul li a{
     text-decoration: none;
@@ -57,13 +65,12 @@
 
 
   .navigation.small{
-    max-width: 100px;
+    min-width: 100px;
     
   }
   .navText.small {
     display: none;
   }
   .navIcon.small{
-    padding-left: 4px;
+    padding-left: 6px;
   }
-

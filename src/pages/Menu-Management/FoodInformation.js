@@ -9,8 +9,8 @@ import {
     MenuButton,
     MenuList,
     MenuItem,
-    Modal, 
-    ModalOverlay, 
+    Modal,
+    ModalOverlay,
     Portal
 } from '@chakra-ui/react';
 import { DeleteIcon, DragHandleIcon, EditIcon } from '@chakra-ui/icons';
@@ -104,14 +104,13 @@ const FoodInformation = ({ foodInfo }) => {
                             gap='5px'
                             wrap='wrap'
                             alignContent='space-between'>
-                            {foodInfo.ingredients?.map((v,i) =>
-                                <li key={i}>
-                                    <Text
-                                        border='1px solid teal'
-                                        borderRadius='20px'
-                                        padding='5px'>{v}
-                                    </Text>
-                                </li>)}
+                            {foodInfo.ingredients?.map((v, i) =>
+                                <Text key={i}
+                                    border='1px solid teal'
+                                    borderRadius='20px'
+                                    padding='5px'>{v}
+                                </Text>
+                            )}
                         </Flex>
                     </ul>
 
