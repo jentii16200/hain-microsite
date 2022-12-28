@@ -13,19 +13,24 @@ import {
     Text
 } from '@chakra-ui/react';
 import React from 'react';
-import { handleAcceptOrder, handleRejectOrder, handleOnProcessOrder } from '../api/HandleStatus';
+import { handleAcceptOrder, handleRejectOrder, handleOnProcessOrder, handleDoneOrder } from '../api/HandleStatus';
 
-const OrderInfo = ({ item, setUpdateItem }) => {
+const OrderInfo = ({ item, setUpdateItem, fetchingData }) => {
     let button = null;
+    const i = false;
     if (item?.status == 'pending') {
         button =
             <Button colorScheme='green'
                 fontSize='20px'
                 onClick={
                     () => {
-                        setUpdateItem(
-                            handleAcceptOrder(item.id));
+
+                        handleAcceptOrder(item.id);
+                        setUpdateItem();
+                        fetchingData();
+
                     }
+
                 }
             >
                 Confirm
@@ -35,7 +40,10 @@ const OrderInfo = ({ item, setUpdateItem }) => {
             <Button colorScheme='green'
                 fontSize='20px'
                 onClick={() => {
+
                     handleOnProcessOrder(item.id);
+                    setUpdateItem();
+                    fetchingData();
                 }
                 }
             >
@@ -46,12 +54,15 @@ const OrderInfo = ({ item, setUpdateItem }) => {
             <Button colorScheme='green'
                 fontSize='20px'
                 onClick={() => {
-                    handleOnProcessOrder(item.id);
+
+                    handleDoneOrder(item.id);
+                    setUpdateItem();
+                    fetchingData();
                 }
                 }
             >
                 Complete
-            </Button>;
+            </Button >;
     }
     if (item == null) return;
     return (

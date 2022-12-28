@@ -11,20 +11,27 @@ import {
 import axios from 'axios';
 import { UpdateFoodItem } from './UpdateFoodItem';
 
+const API_END_POINT = 'https://us-central1-hain-402aa.cloudfunctions.net/api/getMenu';
+
 const FoodItems = ({ menuType, setFoodInfo }) => {
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [posts, setPosts] = useState([]);
     const [modalData, setModalData] = useState();
 
-    const apiEndPoint = 'https://us-central1-hain-402aa.cloudfunctions.net/api/getMenu';
     useEffect(() => {
+        let isCancelled = false;
         console.log('FETCHING DATA');
-        axios.post(apiEndPoint, { type: menuType }).then(res => {
-            setPosts(res.data);
-            console.log(res);
+        axios.post(API_END_POINT, { type: menuType }).then(res => {
+            if (isCancelled) return;
+            const x = res.data;
+            setPosts(x);
+            console.log(x);
         }).catch(err => {
             console.log(err);
         });
+        return () => {
+            isCancelled = true;
+        };
     }, [menuType]);
 
     const handleCloseModal = () => {
@@ -38,16 +45,8 @@ const FoodItems = ({ menuType, setFoodInfo }) => {
                     <Tooltip
                         hasArrow label={post.description}
                         placement='auto-start'
-                        >
+                    >
                         <Box
-                            // boxShadow='inherit'
-                            // className='card'
-                            // bg='white'
-                            // maxW='sm' borderWidth='1px'
-                            // borderRadius='lg'
-                            // overflow='hidden'
-                            // width={'180px'}
-                            // height={'170px'}
                             onClick={() => {
                                 setFoodInfo(post);
                                 setModalData(post);

@@ -8,35 +8,31 @@ const OrderingTransaction = () => {
     const apiGetOrder = 'https://us-central1-hain-402aa.cloudfunctions.net/api/getOrderLogs';
     const [posts, setPosts] = useState([]);
     const [item, setItem] = useState();
-    const [update, setUpdate] = useState(null);
+    let [update, setUpdate] = useState(0);
 
     const setItemInfo = (props) => {
         setItem(props);
     };
     const setUpdateItem = (props) => {
-        setUpdate(props);
+        setUpdate(update = update + 1);
     };
-    useEffect(() => {
-        getOrders();
-    }, [update]);
-
-    const getOrders = () => {
+    const fetchingData = () => {
         let isCancelled = false;
-        console.log("nag fetch");
+        let x;
+        console.log("Fetching Data");
         axios.get(apiGetOrder).then(res => {
             if (isCancelled) return;
-            const x = res.data;
+            x = res.data;
             setPosts(x);
-            console.log("nag set");
-
-            // console.log(res.data);
+            console.log(x);
 
         }).catch(err => { console.log(err); });
-        console.log("GUMAGANA");
         return () => {
             isCancelled = true;
+            setPosts(x);
         };
     };
+    useEffect(() => { fetchingData(); }, [update]);
 
     return (
         <>
@@ -129,7 +125,7 @@ const OrderingTransaction = () => {
                     minW='30%'
                     h='100%'
                     p='2'>
-                    <OrderInfo item={item} setUpdateItem={setUpdateItem} />
+                    <OrderInfo item={item} setUpdateItem={setUpdateItem} fetchingData={fetchingData} />
 
                 </Flex>
             </Flex>

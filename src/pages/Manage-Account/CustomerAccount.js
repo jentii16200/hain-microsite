@@ -16,52 +16,51 @@ export const CustomerAccount = (props) => {
     const [posts, setPosts] = useState([]);
 
     useEffect(() => {
+        let isCancelled = false;
+        console.log('Fetching Data');
         axios.get(apiEndPoint).then(res => {
-            setPosts(res.data);
-            console.log(res);
+            if (isCancelled) return;
+            const x = res.data;
+            setPosts(x);
+            console.log(x);
         }).catch(err => {
             console.log(err);
         });
+        return () => {
+            isCancelled = true;
+        };
     }, []);
 
     return (
         <>
-            <Grid
-                templateAreas={`"search"
-                            "main"`}>
-
-                <GridItem area={'main'}
-                    marginTop={'80px'}>
-                    <TableContainer className='table'>
-                        <Table size='sm'>
-                            <Thead>
-                                <Tr>
-                                    <Th>ID #</Th>
-                                    <Th>USERNAME</Th>
-                                    <Th>NAME</Th>
-                                    <Th>PASSWORD</Th>
-                                    <Th> </Th>
-                                </Tr>
-                            </Thead>
-                            <Tbody>
-                                {posts.map(post =>
-                                    <Tr key={post.id}>
-                                        <Td>{post.id}</Td>
-                                        <Td>{post.userName}</Td>
-                                        <Td>{post.name}</Td>
-                                        <Td>{post.password}</Td>
-                                        <Td isNumeric>
-                                            <IconButton
-                                                onClick={() => (HandleDeleteAccount(post.id))}
-                                                variant={'unstyled'}
-                                                icon={<DeleteIcon color={'red.500'} />} />
-                                        </Td>
-                                    </Tr>)}
-                            </Tbody>
-                        </Table>
-                    </TableContainer>
-                </GridItem>
-            </Grid>
+            <TableContainer className='table'>
+                <Table size='sm'>
+                    <Thead>
+                        <Tr>
+                            <Th>ID #</Th>
+                            <Th>USERNAME</Th>
+                            <Th>NAME</Th>
+                            <Th>PASSWORD</Th>
+                            <Th> </Th>
+                        </Tr>
+                    </Thead>
+                    <Tbody>
+                        {posts.map(post =>
+                            <Tr key={post.id}>
+                                <Td>{post.id}</Td>
+                                <Td>{post.userName}</Td>
+                                <Td>{post.name}</Td>
+                                <Td>{post.password}</Td>
+                                <Td isNumeric>
+                                    <IconButton
+                                        onClick={() => (HandleDeleteAccount(post.id))}
+                                        variant={'unstyled'}
+                                        icon={<DeleteIcon color={'red.500'} />} />
+                                </Td>
+                            </Tr>)}
+                    </Tbody>
+                </Table>
+            </TableContainer>
 
         </>
     );
