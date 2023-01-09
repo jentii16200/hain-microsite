@@ -6,79 +6,68 @@ import {
     TableContainer
 } from '@chakra-ui/react';
 
+const API_ORDERS = 'https://us-central1-hain-402aa.cloudfunctions.net/api/getOrderLogs';
+
 const OrderLog = () => {
-    // const [posts, setPosts] = useState([]);
-    // const apiEndPoint = '';
-    // useEffect(() => {
-    //     axios.get(apiEndPoint).then(res => {
-    //         console.log(res);
-    //         setPosts(res.data);
-    //     }).catch(err =>{
-    //         console.log(err);
-    //     });
-    // }, []);
-    const orderLogData = [
-        {
-            id: '1',
-            name: 'SAGS',
-            total: '500',
-            date: '12.2.2022',
+    let q = 0;
+    const [posts, setPosts] = useState([]);
+    useEffect(() => {
+        let isCancelled = false;
+        let x;
+        axios.get(API_ORDERS).then(res => {
+            if (isCancelled) return;
+            x = res.data;
+            setPosts(x);
+            console.log(x);
 
-        },
-        {
-            id: '2',
-            name: 'PASCY',
-            total: '150',
-            date: '12.2.2022',
+        }).catch(err => {
+            console.log(err);
+        });
+        return () => {
+            isCancelled = true;
+            setPosts(x);
+        };
+    }, []);
 
-        },
-        {
-            id: '3',
-            name: 'JORGE',
-            total: '503',
-            date: '12.1.2022',
+    // let orderlog = posts.map(post => {
+    //     if (post.status != 'completed') return;
+    // })
 
-        },
-        {
-            id: '4',
-            name: 'SINDINGAN',
-            total: '800',
-            date: '12.1.2022',
-
-        },
-        {
-            id: '5',
-            name: 'JM',
-            total: '10',
-            date: '12.1.2022',
-
-        },
-    ];
     return (
-        <div>
+        <>
             <Heading className='title'>ORDER LOG</Heading>
-            <TableContainer className='table'>
-                <Table size='sm'>
+            <TableContainer
+                paddingInline='10'>
+                <Table>
                     <Thead>
                         <Tr>
-                            <Th>ORDERLOG #</Th>
+                            <Th
+                                width='10'>#
+                            </Th>
                             <Th>NAME</Th>
-                            <Th>TOTAL</Th>
-                            <Th>DATE</Th>
+                            <Th>ORDERS</Th>
+                            <Th>STATUS</Th>
+                            <Th>PRICE</Th>
                         </Tr>
                     </Thead>
                     <Tbody>
-                        {orderLogData.map(post =>
-                            <Tr key={post.id}>
-                                <Td>{post.id}</Td>
-                                <Td>{post.name}</Td>
-                                <Td>{post.total}</Td>
-                                <Td>{post.date}</Td>
-                            </Tr>)}
+                        {posts?.map((post) => {
+                            if (post.status == 'completed' || post.status == 'rejected') {
+                                return (
+                                    <Tr key={post.id}>
+                                        <Td>{q = q + 1}</Td>
+                                        <Td>{post.userDetails.name}</Td>
+                                        <Td width='6'>{post.order?.map(ord => ord.name + ",")}</Td>
+                                        <Td>{post.status}</Td>
+                                        <Td>{post.totalPrice}</Td>
+                                    </Tr>
+                                );
+                            }
+                        })}
                     </Tbody>
                 </Table>
             </TableContainer>
-        </div>
+        </>
     );
 };
 export default OrderLog;
