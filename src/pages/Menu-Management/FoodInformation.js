@@ -44,11 +44,19 @@ const FoodInformation = ({ foodInfo }) => {
                                 <MenuItem
                                     icon={<EditIcon
                                         boxSize='2rem' />}
-                                    onClick={() => setEditModal(true)} />
+                                    onClick={() => setEditModal(true)}>
+                                    <Heading as='h6' size='md'>
+                                        Edit
+                                    </Heading>
+                                </MenuItem>
                                 <MenuItem
                                     icon={<DeleteIcon
                                         boxSize='2rem' />}
-                                    onClick={() => DeleteMenu(foodInfo)} />
+                                    onClick={() => DeleteMenu(foodInfo)}>
+                                    <Heading as='h6' size='md'>
+                                        Delete
+                                    </Heading>
+                                </MenuItem>
                             </MenuList>
                         </Menu>
                         {editModal &&

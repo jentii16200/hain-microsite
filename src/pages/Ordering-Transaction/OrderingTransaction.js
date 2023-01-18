@@ -33,7 +33,6 @@ const OrderingTransaction = () => {
         };
     };
     useEffect(() => { fetchingData(); }, [update]);
-
     return (
         <>
             <Flex flexDirection='row'

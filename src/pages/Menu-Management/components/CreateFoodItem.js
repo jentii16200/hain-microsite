@@ -85,8 +85,9 @@ const CreateFoodItem = () => {
                                 flexDirection='row'
                                 gap='1rem'>
                                 <Flex
-                                    flexBasis='100rem'
-                                    flexDirection='column'>
+                                    flex='1'
+                                    flexDirection='column'
+                                >
                                     <Text>
                                         Name:
                                     </Text>
