@@ -26,7 +26,8 @@ const CreateFoodItem = () => {
         description: '',
         ingredients: [],
         imageUrl: '',
-        type: ''
+        type: '',
+        quantity: ''
     });
 
     const handleImageUrl = (e) => {
@@ -148,6 +149,13 @@ const CreateFoodItem = () => {
                                     <Input
                                         name='type'
                                         value={foodData.type}
+                                        onChange={handleChange} />
+                                    <Text>
+                                        Quantity:
+                                    </Text>
+                                    <Input
+                                        name='quantity'
+                                        value={foodData.quantity}
                                         onChange={handleChange} />
                                 </Flex>
                             </Flex>

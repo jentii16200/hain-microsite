@@ -52,23 +52,46 @@ export const UpdateFoodItem = ({ modalData, handleCloseModal }) => {
                         flexDirection='row'
                         gap='1rem'>
                         <Flex
-                            flexBasis='100rem'
-                            flexDirection='column'>
-                            <Text>
-                                Name:
-                            </Text>
-                            <Input
-                                name='name'
-                                value={foodData.name}
-                                onChange={handleChange} />
-                            <Text>
-                                Price:
-                            </Text>
-                            <Input
-                                name='price'
-                                type='number'
-                                value={foodData.price}
-                                onChange={handlePrice} />
+                            flexDirection='row'
+                            gap='1rem'>
+                            <Flex
+                                flexBasis='100rem'
+                                flexDirection='column'>
+                                <Text>
+                                    Name:
+                                </Text>
+                                <Input
+                                    name='name'
+                                    value={foodData.name}
+                                    onChange={handleChange} />
+                                <Text>
+                                    Price:
+                                </Text>
+                                <Input
+                                    name='price'
+                                    type='number'
+                                    value={foodData.price}
+                                    onChange={handlePrice} />
+                            </Flex>
+                            <Flex
+                                flexBasis='100rem'
+                                flexDirection='column'>
+                                <Text>
+                                    Type:
+                                </Text>
+                                <Input
+                                    name='type'
+                                    value={foodData.type}
+                                    onChange={handleChange} />
+                                <Text>
+                                    Quantity:
+                                </Text>
+                                <Input
+                                    name='quantity'
+                                    type='number'
+                                    value={foodData.quantity}
+                                    onChange={handleChange} />
+                            </Flex>
                         </Flex>
                         <Image
                             boxSize='10rem'
