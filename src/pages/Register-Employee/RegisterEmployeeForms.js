@@ -55,8 +55,8 @@ const RegisterEmployeeForms = () => {
         console.log(res);
         clearFormState();
         toast({
-          title: "Successfully putang ina ka",
-          description: "tang ina mo",
+          title: "Successfully Created",
+          description: "Account Created",
           status: "success",
           duration: 1000,
           isClosable: false,
