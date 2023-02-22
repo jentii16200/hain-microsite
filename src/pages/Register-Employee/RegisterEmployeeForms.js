@@ -38,6 +38,7 @@ const RegisterEmployeeForms = () => {
     email: email,
     contactNum: contactNum,
     password: password,
+    authToken: 'employee'
   };
   const handleSubmit = async () => {
     isClick = false;

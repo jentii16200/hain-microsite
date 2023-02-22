@@ -89,15 +89,21 @@ const FoodInformation = ({ foodInfo }) => {
                     <Heading
                         margin={0}
                         alignSelf='center'
-                        fontSize='40px'>
+                        fontSize='35px'>
                         {foodInfo.name}
                     </Heading>
                     <Text
+                        marginTop='0'
+                        alignSelf='start'
+                        fontSize='25px'>
+                        Price (₱): {foodInfo.price}
+                    </Text>
+                    <Text
                         marginBottom='10'
                         marginTop='0'
-                        alignSelf='center'
+                        alignSelf='flex-start'
                         fontSize='25px'>
-                        ₱ {foodInfo.price}
+                        Stock: {foodInfo.quantity}
                     </Text>
                     <Text
                         fontSize='18    '>

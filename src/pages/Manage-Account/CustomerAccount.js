@@ -45,19 +45,24 @@ export const CustomerAccount = (props) => {
                         </Tr>
                     </Thead>
                     <Tbody>
-                        {posts.map(post =>
-                            <Tr key={post.id}>
-                                <Td>{post.id}</Td>
-                                <Td>{post.userName}</Td>
-                                <Td>{post.name}</Td>
-                                <Td>{post.password}</Td>
-                                <Td isNumeric>
-                                    <IconButton
-                                        onClick={() => (HandleDeleteAccount(post.id))}
-                                        variant={'unstyled'}
-                                        icon={<DeleteIcon color={'red.500'} />} />
-                                </Td>
-                            </Tr>)}
+                        {posts.map((post) => {
+                            if (post.authToken != 'employee')
+                                return (
+                                    <Tr key={post.id}>
+                                        <Td>{post.id}</Td>
+                                        <Td>{post.userName}</Td>
+                                        <Td>{post.name}</Td>
+                                        <Td>{post.password}</Td>
+                                        <Td isNumeric>
+                                            <IconButton
+                                                onClick={() => (HandleDeleteAccount(post.id))}
+                                                variant={'unstyled'}
+                                                icon={<DeleteIcon color={'red.500'} />} />
+                                        </Td>
+                                    </Tr>
+                                );
+                        }
+                        )}
                     </Tbody>
                 </Table>
             </TableContainer>
