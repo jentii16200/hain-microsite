@@ -4,8 +4,13 @@ import '../../assets/index.css';
 import { Navigate } from 'react-router-dom';
 import BackGround from '../../assets/bg.png';
 import ProtectedRoute from '../../components/ProtectedRoute';
+import axios from 'axios';
+
+const apiEndPoint = 'https://us-central1-hain-402aa.cloudfunctions.net/api/getUserAccounts';
 
 const UserAccount = ({ logIn, isLoggedIn }) => {
+    const [posts, setPosts] = useState([]);
+    const [isInCorrect, setIsInCorrect] = useState(true);
     const [isLoading, setIsLoading] = useState(true);
     const toast = useToast();
     const [goToContact, setGoToContact] = useState(false);
@@ -16,48 +21,77 @@ const UserAccount = ({ logIn, isLoggedIn }) => {
     const isErrorEmail = email === '';
     const isErrorPass = password === '';
 
-    function isAccountExist() {
-        if (email != '' && password != '') {
-            new Promise(resolve => {
-                setIsLoading(false);
-                setTimeout(resolve, 1000);
-                logIn();
-            }).then(() => {
-                setGoToContact(true);
-                toast({
-                    title: 'Successfully login',
-                    description: 'Welcome user!',
-                    status: 'success',
-                    duration: 1000,
-                    isClosable: false,
-                    position: 'top-right'
-                });
-            });
+    useEffect(() => {
+        let isCancelled = false;
+        console.log('Fetching Data');
+        axios.get(apiEndPoint).then(res => {
+            if (isCancelled) return;
+            const x = res.data;
+            setPosts(x);
+            console.log(x);
+        }).catch(err => {
+            console.log(err);
+        });
+        return () => {
+            isCancelled = true;
+        };
+    }, []);
 
-        } else {
-            new Promise(resolve => {
-                setIsLoading(false);
-                setTimeout(resolve, 1000);
-            }).then(() => {
-                setIsLoading(true);
-                toast({
-                    title: 'Incorrect username/password',
-                    description: 'Please put the right information',
-                    status: 'error',
-                    duration: 1000,
-                    isClosable: false,
-                    position: 'top-right'
+    function isAccountExist() {
+        posts.map(post => {
+            if (email == post.accountID
+                && password == post.password
+                && (post.authToken == 'employee' || post.authToken == 'admin')) {
+                new Promise(resolve => {
+                    setIsLoading(false);
+                    setTimeout(resolve, 1000);
+                    logIn();
+                }).then(() => {
+                    setIsInCorrect(false);
+                    setGoToContact(true);
+                    toast({
+                        title: 'Successfully login',
+                        description: 'Welcome user!',
+                        status: 'success',
+                        duration: 1000,
+                        isClosable: false,
+                        position: 'top-right'
+                    });
                 });
-            });
+            } else {
+                setIsInCorrect(true);
+            }
+        });
+        if (isInCorrect) {
+            setIsInCorrect(false);
+            isLoginFailed();
         }
     }
+
     if (goToContact) {
         return (
             <>
+
                 < Navigate to="/h/manage-account/customer" />
             </>
         );
 
+    }
+    function isLoginFailed() {
+        new Promise(resolve => {
+            setIsLoading(false);
+            setTimeout(resolve, 1000);
+        }).then(() => {
+            setIsLoading(true);
+            toast({
+                title: 'Incorrect username/password',
+                description: 'Please put the right information',
+                status: 'error',
+                duration: 1000,
+                isClosable: false,
+                position: 'top-right'
+            });
+        });
     }
     return (
         isLoading ?
