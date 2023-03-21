@@ -22,6 +22,12 @@ const UserAccount = ({ logIn, isLoggedIn }) => {
     const isErrorPass = password === '';
 
     useEffect(() => {
+        const storedEmail = localStorage.getItem("email");
+        const storedPassword = localStorage.getItem("password");
+        if (storedEmail && storedPassword) {
+            setEmail(storedEmail);
+            setPassword(storedPassword);
+        }
         let isCancelled = false;
         console.log('Fetching Data');
         axios.get(apiEndPoint).then(res => {
@@ -42,6 +48,8 @@ const UserAccount = ({ logIn, isLoggedIn }) => {
             if (email == post.accountID
                 && password == post.password
                 && (post.authToken == 'employee' || post.authToken == 'admin')) {
+                localStorage.setItem("email", email);
+                localStorage.setItem("password", password);
                 new Promise(resolve => {
                     setIsLoading(false);
                     setTimeout(resolve, 1000);

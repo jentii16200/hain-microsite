@@ -2,19 +2,15 @@ import React, { useEffect, useState } from 'react';
 import { Flex, Grid, GridItem, Heading } from '@chakra-ui/react';
 import axios from 'axios';
 import OrderLogItem from './OrderLogItem';
-import OrderInfo from './components/OrderInfo';
+import OrderInfo from './OrderInfo';
 
 const OrderingTransaction = () => {
     const apiGetOrder = 'https://us-central1-hain-402aa.cloudfunctions.net/api/getOrderLogs';
     const [posts, setPosts] = useState([]);
     const [item, setItem] = useState();
-    let [update, setUpdate] = useState(0);
 
     const setItemInfo = (props) => {
         setItem(props);
-    };
-    const setUpdateItem = (props) => {
-        setUpdate(update = update + 1);
     };
     const fetchingData = () => {
         let isCancelled = false;
@@ -32,7 +28,7 @@ const OrderingTransaction = () => {
             setPosts(x);
         };
     };
-    useEffect(() => { fetchingData(); }, [update]);
+    useEffect(() => { fetchingData(); }, []);
     return (
         <>
             <Flex flexDirection='row'
@@ -124,7 +120,7 @@ const OrderingTransaction = () => {
                     minW='30%'
                     h='100%'
                     p='2'>
-                    <OrderInfo item={item} setUpdateItem={setUpdateItem} fetchingData={fetchingData} />
+                    <OrderInfo item={item} fetchingData={fetchingData} />
 
                 </Flex>
             </Flex>

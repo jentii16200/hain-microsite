@@ -12,10 +12,29 @@ import {
     Tooltip,
     Text
 } from '@chakra-ui/react';
-import React from 'react';
-import { handleAcceptOrder, handleRejectOrder, handleOnProcessOrder, handleDoneOrder } from '../api/HandleStatus';
+import React, { useEffect, useState } from 'react';
+import { handleAcceptOrder, handleRejectOrder, handleOnProcessOrder, handleDoneOrder } from './api/HandleStatus';
 
-const OrderInfo = ({ item, setUpdateItem, fetchingData }) => {
+const OrderInfo = ({ item, fetchingData }) => {
+    const [updateItem, setUpdateItem] = useState();
+
+    var currentDateTime = new Date();
+    var year = currentDateTime.getFullYear();
+    var month = currentDateTime.getMonth() + 1;
+    var day = currentDateTime.getDate();
+    var hours = currentDateTime.getHours();
+    var minutes = currentDateTime.getMinutes();
+    var seconds = currentDateTime.getSeconds();
+
+    const handleUpdate = () => {
+        setUpdateItem({
+            ...item,
+            currentTime: `${hours}:${minutes}:${seconds}`,
+            currentDate: `${day}/${month}/${year}`
+        });
+        console.log(updateItem);
+    };
+
     let button = null;
     const i = false;
     if (item?.status == 'pending') {
@@ -26,7 +45,6 @@ const OrderInfo = ({ item, setUpdateItem, fetchingData }) => {
                     () => {
 
                         handleAcceptOrder(item.id);
-                        setUpdateItem();
                         fetchingData();
 
                     }
@@ -42,7 +60,6 @@ const OrderInfo = ({ item, setUpdateItem, fetchingData }) => {
                 onClick={() => {
 
                     handleOnProcessOrder(item.id);
-                    setUpdateItem();
                     fetchingData();
                 }
                 }
@@ -56,7 +73,6 @@ const OrderInfo = ({ item, setUpdateItem, fetchingData }) => {
                 onClick={() => {
 
                     handleDoneOrder(item.id);
-                    setUpdateItem();
                     fetchingData();
                 }
                 }
@@ -219,27 +235,19 @@ const OrderInfo = ({ item, setUpdateItem, fetchingData }) => {
                             justifyContent='end'
                             gap='2'>
                             {button}
-                            {/* <Button colorScheme='green'
-                            fontSize='20px'
-                            onClick={
-                                () => {
-                                    if (item.status == 'pending') {
-                                        handleAcceptOrder(item.id);
-                                        setUpdateItem(item);
-                                    }
-                                    else if (item.status == 'onProcess') {
-                                        handleOnProcessOrder(item.id);
-                                    }
-                                }
-                            }
-                        >
-                            Confirm
-                        </Button> */}
                             <Button colorScheme='red'
                                 fontSize='20px'
                                 onClick={() => { handleRejectOrder(item.id); }}
 
                             >Cancel
+                            </Button>
+                            <Button colorScheme='red'
+                                fontSize='20px'
+                                onClick={() => {
+                                    handleUpdate();
+                                }}
+
+                            >UPDATE
                             </Button>
                         </Flex>
                     </>
