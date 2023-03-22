@@ -2,18 +2,22 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import {
-    Table, Thead, Tbody, Tfoot, Tr, Th, Td, TableCaption,
-    TableContainer, Wrap, Box, Spinner, Button, IconButton, Grid, GridItem
+    Table,
+    Thead,
+    Tbody,
+    Tr, Th,
+    Td,
+    TableContainer,
+    IconButton,
 } from '@chakra-ui/react';
 import { DeleteIcon } from '@chakra-ui/icons';
 import { HandleDeleteAccount } from '../../api/account-api';
-import { SearchBar } from '../../components/SearchBar';
-import { GetAccount } from './api/apiManageAccount';
 
 const apiEndPoint = 'https://us-central1-hain-402aa.cloudfunctions.net/api/getUserAccounts';
 
 export const CustomerAccount = (props) => {
     const [posts, setPosts] = useState([]);
+    const storedId = localStorage.getItem('userId');
 
     useEffect(() => {
         let isCancelled = false;
@@ -23,6 +27,7 @@ export const CustomerAccount = (props) => {
             const x = res.data;
             setPosts(x);
             console.log(x);
+
         }).catch(err => {
             console.log(err);
         });

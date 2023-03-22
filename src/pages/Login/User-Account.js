@@ -50,6 +50,7 @@ const UserAccount = ({ logIn, isLoggedIn }) => {
                 && (post.authToken == 'employee' || post.authToken == 'admin')) {
                 localStorage.setItem("email", email);
                 localStorage.setItem("password", password);
+                localStorage.setItem('currentUser', JSON.stringify(post));
                 new Promise(resolve => {
                     setIsLoading(false);
                     setTimeout(resolve, 1000);
