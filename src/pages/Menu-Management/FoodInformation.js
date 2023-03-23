@@ -71,14 +71,6 @@ const FoodInformation = ({ foodInfo }) => {
                                         handleCloseModal={handleCloseModal} />
                                 </Portal>
                             </Modal>}
-                        {/* <IconButton
-                            position='sticky'
-                            left='0'
-                            top='0'
-                            bg='none'
-                            border='none'
-                            w='30px' h='30px'
-                            icon={<DragHandleIcon />} /> */}
                         <Image
                             marginLeft='3rem'
                             boxSize='100px'

@@ -17,7 +17,8 @@ import { handleAcceptOrder, handleRejectOrder, handleOnProcessOrder, handleDoneO
 
 const OrderInfo = ({ item, fetchingData }) => {
     const [updateItem, setUpdateItem] = useState();
-
+    const storedUser = JSON.parse(localStorage.getItem('currentUser'));
+    const [user,] = useState(storedUser);
     var currentDateTime = new Date();
     var year = currentDateTime.getFullYear();
     var month = currentDateTime.getMonth() + 1;
@@ -30,10 +31,11 @@ const OrderInfo = ({ item, fetchingData }) => {
         setUpdateItem({
             ...item,
             currentTime: `${hours}:${minutes}:${seconds}`,
-            currentDate: `${day}/${month}/${year}`
+            currentDate: `${day}/${month}/${year}`,
+            handledBy: user.employeeFirstName + ' ' + user.employeeLastName
         });
-        console.log(updateItem);
     };
+    console.log(updateItem);
 
     let button = null;
     const i = false;

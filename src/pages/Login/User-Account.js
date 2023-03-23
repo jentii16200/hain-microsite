@@ -56,7 +56,7 @@ const UserAccount = ({ logIn, isLoggedIn }) => {
                     setTimeout(resolve, 1000);
                     logIn();
                 }).then(() => {
-                    setIsInCorrect(false);
+                    // setIsInCorrect(false);
                     setGoToContact(true);
                     toast({
                         title: 'Successfully login',
@@ -67,8 +67,6 @@ const UserAccount = ({ logIn, isLoggedIn }) => {
                         position: 'top-right'
                     });
                 });
-            } else {
-                setIsInCorrect(true);
             }
         });
         if (isInCorrect) {
