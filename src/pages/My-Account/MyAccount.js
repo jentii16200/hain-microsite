@@ -6,21 +6,22 @@ import {
     FormLabel,
     Input,
     Button,
-    Divider
+    Divider,
+    InputGroup,
+    InputRightElement
 } from '@chakra-ui/react';
 import React, { useState } from 'react';
 import UpdateAlertDialog from './components/UpdateAlertDialog';
 
 const MyAccount = () => {
     const storedUser = JSON.parse(localStorage.getItem('currentUser'));
-    console.log(storedUser);
-
     const [user, setUser] = useState(storedUser);
-
     const HandleUpdate = (e) => {
         setUser((currentValue) => ({ ...currentValue, [e.target.name]: e.target.value }));
     };
-    console.log(user);
+
+    const [show, setShow] = React.useState(false);
+    const handleShowPassword = () => setShow(!show);
     return (
         <>
             <Heading className='title'>MY ACCOUNT</Heading>
@@ -120,12 +121,19 @@ const MyAccount = () => {
                             fontSize='15'>
                             Password
                         </FormLabel>
-                        <Input
-                            isRequired
-                            name='password'
-                            value={user.password}
-                            placeholder="Enter your password"
-                            onChange={HandleUpdate} />
+                        <InputGroup>
+                            <Input
+                                name='password'
+                                type={show ? 'text' : 'password'}
+                                value={user.password}
+                                placeholder="Enter your password"
+                                onChange={HandleUpdate} />
+                            <InputRightElement width='4.5rem'>
+                                <Button h='1.75rem' size='sm' onClick={handleShowPassword}>
+                                    {show ? 'Hide' : 'Show'}
+                                </Button>
+                            </InputRightElement>
+                        </InputGroup>
                     </FormControl>
                 </Card>
             </Flex>
