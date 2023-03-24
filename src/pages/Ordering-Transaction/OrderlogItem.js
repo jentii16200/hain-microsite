@@ -26,7 +26,7 @@ const OrderLogItem = ({ post, setItemInfo }) => {
                         alignItems='center'
                         pt='2'
                         paddingInline='2'>
-                        {post.id}
+                        {post.userDetails.email}
                     </Box>
                     <Box p='2' display='flex' alignItems='baseline'>
                         {post.userDetails.name}

@@ -54,7 +54,12 @@ const OrderingTransaction = () => {
                                 flexDirection='column'
                                 gap='3'>
                                 {posts.map((post) => {
+                                    console.log(post.status)
+                                    console.log(post.status == 'pending');
                                     if (post.status == 'pending') {
+                                        // let selectedOrder = post;
+                                        // selectedOrder = {...post, status:'onProcess'}
+                                        // console.log(selectedOrder)
                                         return (
                                             <div key={post.id}>
                                                 <OrderLogItem post={post} setItemInfo={setItemInfo} />

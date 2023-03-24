@@ -13,7 +13,7 @@ import {
     Text
 } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
-import { handleAcceptOrder, handleRejectOrder, handleOnProcessOrder, handleDoneOrder } from './api/HandleStatus';
+import { handleAcceptOrder, handleRejectOrder, handleOnProcessOrder, handleDoneOrder, handleOrders } from './api/HandleStatus';
 
 const OrderInfo = ({ item, fetchingData }) => {
     const [updateItem, setUpdateItem] = useState();
@@ -36,17 +36,20 @@ const OrderInfo = ({ item, fetchingData }) => {
         });
     };
     console.log(updateItem);
+    
+    let order= item;
 
     let button = null;
     const i = false;
     if (item?.status == 'pending') {
+        order={...order,status:'onProcess'}
         button =
             <Button colorScheme='green'
                 fontSize='20px'
                 onClick={
                     () => {
-
-                        handleAcceptOrder(item.id);
+                        handleOrders(order);
+                        // handleAcceptOrder(item.id);
                         fetchingData();
 
                     }
@@ -56,6 +59,7 @@ const OrderInfo = ({ item, fetchingData }) => {
                 Confirm
             </Button>;
     } else if (item?.status == 'onProcess') {
+        order={...order,status:'toServer'}
         button =
             <Button colorScheme='green'
                 fontSize='20px'
@@ -69,6 +73,8 @@ const OrderInfo = ({ item, fetchingData }) => {
                 Serve
             </Button>;
     } else if (item?.status == 'toServer') {
+        order={...order,status:'completed'}
+
         button =
             <Button colorScheme='green'
                 fontSize='20px'
@@ -243,13 +249,13 @@ const OrderInfo = ({ item, fetchingData }) => {
 
                             >Cancel
                             </Button>
-                            <Button colorScheme='red'
+                            <Button colorScheme='green'
                                 fontSize='20px'
                                 onClick={() => {
                                     handleUpdate();
                                 }}
 
-                            >UPDATE
+                            >Update
                             </Button>
                         </Flex>
                     </>
