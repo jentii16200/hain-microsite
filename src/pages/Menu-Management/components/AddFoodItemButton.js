@@ -18,7 +18,7 @@ const INITIAL_STATE = {
     type: ''
 };
 
-const CreateFoodItem = () => {
+const AddFoodItemButton = () => {
     const { isOpen, onOpen, onClose } = useDisclosure();
     const [foodData, setFoodData] = useState({
         name: '',
@@ -182,4 +182,4 @@ const CreateFoodItem = () => {
     );
 };
 
-export default CreateFoodItem;
+export default AddFoodItemButton;

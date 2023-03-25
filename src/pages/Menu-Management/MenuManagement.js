@@ -1,19 +1,30 @@
 import React, { useEffect, useState } from 'react';
-import { Heading, Select } from '@chakra-ui/react';
+import { Box, Card, Heading, Image, Select, Tooltip } from '@chakra-ui/react';
 import menuStyle from './index.module.css';
 import { Flex } from '@chakra-ui/react';
 import FoodInformation from './FoodInformation';
-
-import CreateFoodItem from './components/CreateFoodItem';
-import FoodItems from './components/FoodItems';
+import AddFoodItemButton from './components/AddFoodItemButton';
 import { FOOD_TYPE } from './api/foodType';
+import axios from 'axios';
+
+const API_END_POINT = 'https://us-central1-hain-402aa.cloudfunctions.net/api/getMenu';
 
 const MenuManagement = () => {
     const [menuName, setMenuName] = useState(FOOD_TYPE[0].name);
     const [foodInfo, setFoodInfo] = useState();
+    const [posts, setPosts] = useState();
 
-    const setFoodInformation = (props) => {
-        setFoodInfo(props);
+    useEffect(() => {
+        fetchData();
+    }, [menuName]);
+
+    const fetchData = () => {
+        axios.post(API_END_POINT, { type: menuName }).then(res => {
+            setPosts(res.data);
+            console.log(res.data);
+        }).catch(err => {
+            console.log(err);
+        });
     };
 
     const handleChange = (e) => {
@@ -51,13 +62,42 @@ const MenuManagement = () => {
                                         </option>
                                     )}
                                 </Select>
-                                <CreateFoodItem />
+                                <AddFoodItemButton />
                             </Flex>
                             <Flex
                                 justifyContent='center'
                                 gap='15px'
                                 wrap='wrap'>
-                                <FoodItems menuType={menuName} setFoodInfo={setFoodInformation} />
+                                {posts?.map(post =>
+                                    <Card key={post.name} >
+                                        <Tooltip
+                                            hasArrow label={post.description}
+                                            placement='auto-start'
+                                        >
+                                            <Box
+                                                onClick={() => {
+                                                    setFoodInfo(post);
+                                                }}>
+                                                <Image className='menu-image'
+                                                    src={post.imageUrl}
+                                                    alt={post.imageAlt}
+                                                    width={'180px'}
+                                                    height={'130px'} />
+                                                <Box className='menu-name'>
+                                                    <Box
+                                                        mt='1'
+                                                        fontWeight='semibold'
+                                                        as='h2'
+                                                        noOfLines={2}
+                                                    >
+                                                        {post.name}
+                                                    </Box>
+                                                </Box>
+                                            </Box>
+                                        </Tooltip>
+                                    </Card>
+
+                                )}
                             </Flex>
                         </div>
                     </div>

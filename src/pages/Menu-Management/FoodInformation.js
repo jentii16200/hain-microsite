@@ -13,16 +13,9 @@ import {
     ModalOverlay,
     Portal
 } from '@chakra-ui/react';
-import { DeleteIcon, DragHandleIcon, EditIcon } from '@chakra-ui/icons';
-import { UpdateFoodItem } from './components/UpdateFoodItem';
-import { DeleteMenu } from '../../api/menu-api';
-
+import { DeleteFoodItemButton } from './components/DeleteFoodItemButton';
+import { EditFoodItemButton } from './components/EditFoodItemButton';
 const FoodInformation = ({ foodInfo }) => {
-    const [editModal, setEditModal] = useState(false);
-
-    const handleCloseModal = () => {
-        setEditModal(false);
-    };
     if (foodInfo != null)
         return (
 
@@ -33,44 +26,10 @@ const FoodInformation = ({ foodInfo }) => {
                     <Flex
                         padding='5px'
                         flexDir='row'>
-                        <Menu isLazy>
-                            <MenuButton
-                                variant='outline'
-                                backgroundColor='none'
-                                as={IconButton}
-                                icon={<DragHandleIcon />}
-                            />
-                            <MenuList>
-                                <MenuItem
-                                    icon={<EditIcon
-                                        boxSize='2rem' />}
-                                    onClick={() => setEditModal(true)}>
-                                    <Heading as='h6' size='md'>
-                                        Edit
-                                    </Heading>
-                                </MenuItem>
-                                <MenuItem
-                                    icon={<DeleteIcon
-                                        boxSize='2rem' />}
-                                    onClick={() => DeleteMenu(foodInfo)}>
-                                    <Heading as='h6' size='md'>
-                                        Delete
-                                    </Heading>
-                                </MenuItem>
-                            </MenuList>
-                        </Menu>
-                        {editModal &&
-                            <Modal
-                                size='3xl'
-                                isOpen={editModal}
-                                onClose={() => setEditModal(false)}>
-                                <ModalOverlay />
-                                <Portal>
-                                    <UpdateFoodItem
-                                        modalData={foodInfo}
-                                        handleCloseModal={handleCloseModal} />
-                                </Portal>
-                            </Modal>}
+                        <Flex gap='3'>
+                            <DeleteFoodItemButton foodInfo={foodInfo} />
+                            <EditFoodItemButton foodInfo={foodInfo} />
+                        </Flex>
                         <Image
                             marginLeft='3rem'
                             boxSize='100px'
