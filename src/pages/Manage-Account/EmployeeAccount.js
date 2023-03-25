@@ -6,26 +6,27 @@ import {
 import { DeleteIcon } from '@chakra-ui/icons';
 import { EMPLOYEE_DATA } from './temp/employeeAccountData';
 import axios from 'axios';
+import { DeleteButton } from './components/DeleteButton';
 
 const apiEndPoint = 'https://us-central1-hain-402aa.cloudfunctions.net/api/getUserAccounts';
 
 export const EmployeeAccount = () => {
     const [posts, setPosts] = useState([]);
+    const [count, setCount] = useState(0);
+
     useEffect(() => {
-        let isCancelled = false;
-        console.log('Fetching Data');
-        axios.get(apiEndPoint).then(res => {
-            if (isCancelled) return;
-            const x = res.data;
-            setPosts(x);
-            console.log(x);
-        }).catch(err => {
-            console.log(err);
-        });
-        return () => {
-            isCancelled = true;
-        };
-    }, []);
+        fetchData();
+    }, [count]);
+    const fetchData = async () => {
+        await axios.get(apiEndPoint).then(res => {
+            setPosts(res.data);
+        }
+        ).catch(err => { console.log(err); });
+    };
+    const handleButtonClick = () => {
+        fetchData();
+        setCount(prevCount => prevCount + 1);
+    };
 
     return (
         <div>
@@ -49,9 +50,8 @@ export const EmployeeAccount = () => {
                                         <Td>{post.employeeFirstName} {post.employeeLastName}</Td>
                                         <Td>{post.password}</Td>
                                         <Td isNumeric>
-                                            <IconButton
-                                                variant={'unstyled'}
-                                                icon={<DeleteIcon color={'red.500'} />} />
+                                            <DeleteButton handleClick={handleButtonClick} post={post} />
+
                                         </Td>
                                     </Tr>
                                 );

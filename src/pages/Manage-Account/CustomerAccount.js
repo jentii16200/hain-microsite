@@ -12,29 +12,45 @@ import {
 } from '@chakra-ui/react';
 import { DeleteIcon } from '@chakra-ui/icons';
 import { HandleDeleteAccount } from '../../api/account-api';
+import { DeleteButton } from './components/DeleteButton';
 
 const apiEndPoint = 'https://us-central1-hain-402aa.cloudfunctions.net/api/getUserAccounts';
 
 export const CustomerAccount = (props) => {
     const [posts, setPosts] = useState([]);
     const storedId = localStorage.getItem('userId');
+    const [count, setCount] = useState(0);
 
+    // useEffect(() => {
+    //     let isCancelled = false;
+    //     console.log('Fetching Data');
+    //     axios.get(apiEndPoint).then(res => {
+    //         if (isCancelled) return;
+    //         setPosts(res.data);
+    //         console.log(res.data);
+
+    //     }).catch(err => {
+    //         console.log(err);
+    //     });
+    //     return () => {
+    //         isCancelled = true;
+    //     };
+    // }, [count]);
     useEffect(() => {
-        let isCancelled = false;
-        console.log('Fetching Data');
-        axios.get(apiEndPoint).then(res => {
-            if (isCancelled) return;
-            const x = res.data;
-            setPosts(x);
-            console.log(x);
+        fetchData();
+    }, [count]);
 
-        }).catch(err => {
-            console.log(err);
-        });
-        return () => {
-            isCancelled = true;
-        };
-    }, []);
+    const fetchData = async () => {
+        await axios.get(apiEndPoint).then(
+            res => {
+                setPosts(res.data);
+            }
+        ).catch(err => { console.log(err); });
+    };
+    const handleButtonClick = () => {
+        fetchData();
+        setCount(prevCount => prevCount + 1);
+    };
 
     return (
         <>
@@ -59,10 +75,7 @@ export const CustomerAccount = (props) => {
                                         <Td>{post.name}</Td>
                                         <Td>{post.password}</Td>
                                         <Td isNumeric>
-                                            <IconButton
-                                                onClick={() => (HandleDeleteAccount(post.id))}
-                                                variant={'unstyled'}
-                                                icon={<DeleteIcon color={'red.500'} />} />
+                                            <DeleteButton handleClick={handleButtonClick} post={post} />
                                         </Td>
                                     </Tr>
                                 );
