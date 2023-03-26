@@ -41,7 +41,6 @@ export const EditFoodItemButton = ({ foodInfo }) => {
 
     const handleSubmit = (e) => {
         UpdateMenu(foodData);
-        // console.log(foodData);
     };
 
     return (

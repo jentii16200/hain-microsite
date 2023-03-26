@@ -7,22 +7,24 @@ const apiReject = 'https://us-central1-hain-402aa.cloudfunctions.net/api/rejectO
 
 const apiGetOrder = 'https://us-central1-hain-402aa.cloudfunctions.net/api/getOrderLogs';
 
-const apiHandleOrders ='https://us-central1-hain-402aa.cloudfunctions.net/api/newOrderStatus';
+const apiHandleOrders = 'https://us-central1-hain-402aa.cloudfunctions.net/api/newOrderStatus';
 
 export const GetOrders = () => {
     console.log('Fetching Data');
     axios.get(apiGetOrder).then(res => {
         console.log(res.data);
     }).catch(err => console.error(err));
-};  
+};
 
-export const handleOrders = async (post) => {   
-    console.log(post)
-    await axios.post(apiHandleOrders,{userId:post.userDetails.id,status:'onProcess',orderId:post.id}).then(res => {
-        console.log(res.data)
-        console.log('gumana')       
-    }).catch(err => {console.error(err); console.log('di gumana')}); 
-}
+export const handleOrders = async (post) => {
+    await axios.post(apiHandleOrders, {
+        userId: post.userDetails.id,
+        status: post.status,
+        orderId: post.id
+    }).then(res => {
+        console.log(res.data);
+    }).catch(err => { console.error(err); console.log('di gumana'); });
+};
 
 export const handleRejectOrder = async (post) => {
     await axios.post(apiReject, { id: post }).then(res => {

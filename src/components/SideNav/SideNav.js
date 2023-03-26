@@ -18,7 +18,7 @@ import { IoFastFoodOutline } from 'react-icons/io5';
 import { HiOutlineDocumentText } from 'react-icons/hi';
 import { IoMdPersonAdd } from 'react-icons/io';
 import { BiBorderRadius, BiLogOut } from 'react-icons/bi';
-import { IconButton } from '@chakra-ui/react';
+import { Flex, IconButton } from '@chakra-ui/react';
 import LogOutDialog from '../LogOutDialog';
 const SideNav = ({ logOut }) => {
     const [isDialogOpen, setIsDialogOpen] = useState(false);
@@ -37,9 +37,20 @@ const SideNav = ({ logOut }) => {
     };
     return (
         <>
-            <div className='container'>
-                <div
-                    className={`navigation ${cName}`}>
+            {/* <div className='container'> */}
+            <Flex
+            >
+                {/* <div
+                    className={`navigation ${cName}`}> */}
+                <Flex
+                    position='sticky'
+                    top='0'
+                    left='0'
+                    height='100vh'
+                    shadow='0 4px 12px 0 rgb(0,0,0,.05)'
+                    flexDirection='column'
+                    bgColor='rgb(85, 169, 149)'
+                >
                     <div className='navTopSection'>
                         <div
                             className={`navText ${cName}`}>
@@ -153,8 +164,12 @@ const SideNav = ({ logOut }) => {
                             </Link>
                         </li>
                     </ul>
-                </div>
-                <div className='main'>
+                </Flex>
+                {/* </div> */}
+                {/* <div className='main'> */}
+                <Flex
+                    flexDirection='column'
+                    flex={1}>
                     <React.Suspense fallback='Loading'>
                         <Routes>
                             <Route exact path='manage-account' element={<ManageAccount />}>
@@ -170,10 +185,11 @@ const SideNav = ({ logOut }) => {
                             <Route exact path='login' element={<UserAccount />} />
                         </Routes>
                     </React.Suspense>
-                </div>
-            </div >
+                </Flex>
+                {/* </div> */}
+            </Flex>
+            {/* </div > */}
             {isDialogOpen && <LogOutDialog isOpen={isDialogOpen} onClose={handleCloseDialog} logOut={logOut} />}
-
         </>
 
     );

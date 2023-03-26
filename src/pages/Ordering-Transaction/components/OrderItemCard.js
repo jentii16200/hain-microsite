@@ -2,7 +2,7 @@ import { StarIcon } from '@chakra-ui/icons';
 import { Badge, Box, Flex, Card } from '@chakra-ui/react';
 import React, { useState } from 'react';
 
-const OrderLogItem = ({ post, setItemInfo }) => {
+const OrderItemCard = ({ post, setItemInfo }) => {
     let found = false;
     post.order.map(p => {
         p.remarks ? found = true : '';
@@ -37,4 +37,4 @@ const OrderLogItem = ({ post, setItemInfo }) => {
     );
 };
 
-export default OrderLogItem;
+export default OrderItemCard;
