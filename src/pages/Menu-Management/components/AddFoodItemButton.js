@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react';
+
 import {
     Drawer, DrawerOverlay,
     DrawerContent,
@@ -29,8 +30,8 @@ const AddFoodItemButton = () => {
         type: '',
         quantity: ''
     });
-
     const handleImageUrl = (e) => {
+        console.log(URL.createObjectURL(e.target.files[0]));
         setFoodData({ ...foodData, imageUrl: e.target.files[0] });
     };
     const handleChange = (e) => {

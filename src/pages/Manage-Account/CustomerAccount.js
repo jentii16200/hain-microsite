@@ -14,6 +14,7 @@ import { DeleteIcon } from '@chakra-ui/icons';
 import { HandleDeleteAccount } from '../../api/account-api';
 import { DeleteButton } from './components/DeleteButton';
 import { Loading } from '../../components/Loading';
+import { GetAccounts } from './api/apiManageAccount';
 
 const apiEndPoint = 'https://us-central1-hain-402aa.cloudfunctions.net/api/getUserAccounts';
 
@@ -22,9 +23,8 @@ export const CustomerAccount = (props) => {
     const storedId = localStorage.getItem('userId');
     const [count, setCount] = useState(0);
     const [isLoading, setIsLoading] = useState(true);
-    useEffect(() => {
-        fetchData();
-    }, [count]);
+
+    useEffect(() => { fetchData(); }, [count]);
 
     const fetchData = async () => {
         await axios.get(apiEndPoint).then(
