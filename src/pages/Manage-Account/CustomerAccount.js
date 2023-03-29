@@ -15,6 +15,7 @@ import { HandleDeleteAccount } from '../../api/account-api';
 import { DeleteButton } from './components/DeleteButton';
 import { Loading } from '../../components/Loading';
 import { GetAccounts } from './api/apiManageAccount';
+import { EditButton } from './components/EditButton';
 
 const apiEndPoint = 'https://us-central1-hain-402aa.cloudfunctions.net/api/getUserAccounts';
 
@@ -65,6 +66,7 @@ export const CustomerAccount = (props) => {
                                             <Td>{post.name}</Td>
                                             <Td>{post.password}</Td>
                                             <Td isNumeric>
+                                                <EditButton handleClick={handleButtonClick} post={post} />
                                                 <DeleteButton handleClick={handleButtonClick} post={post} />
                                             </Td>
                                         </Tr>
