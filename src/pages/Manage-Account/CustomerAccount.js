@@ -9,6 +9,7 @@ import {
     Td,
     TableContainer,
     IconButton,
+    useToast,
 } from '@chakra-ui/react';
 import { DeleteIcon } from '@chakra-ui/icons';
 import { HandleDeleteAccount } from '../../api/account-api';
@@ -24,6 +25,7 @@ export const CustomerAccount = (props) => {
     const storedId = localStorage.getItem('userId');
     const [count, setCount] = useState(0);
     const [isLoading, setIsLoading] = useState(true);
+    const toast = useToast();
 
     useEffect(() => { fetchData(); }, [count]);
 
@@ -31,15 +33,26 @@ export const CustomerAccount = (props) => {
         await axios.get(apiEndPoint).then(
             res => {
                 setPosts(res.data);
-                setIsLoading(false);
-                console.log(res.data);
+                setTimeout(() => {
+                    setIsLoading(false);
+                }, 1000);
             }
         ).catch(err => { console.log(err); });
     };
     const handleButtonClick = () => {
         setIsLoading(true);
-        fetchData();
+        fetchData().then(res => {
+            toast({
+                title: `Account Successfully Updated`,
+                status: 'success',
+                position: 'top-right',
+                duration: 1000,
+                isClosable: true,
+            });
+        });
+
         setCount(prevCount => prevCount + 1);
+
     };
 
     return (
@@ -58,7 +71,7 @@ export const CustomerAccount = (props) => {
                         </Thead>
                         <Tbody>
                             {posts.map((post) => {
-                                if (post.authToken != 'employee')
+                                if (post.authToken != 'employee' && post.authToken != 'admin')
                                     return (
                                         <Tr key={post.id}>
                                             <Td>{post.id}</Td>

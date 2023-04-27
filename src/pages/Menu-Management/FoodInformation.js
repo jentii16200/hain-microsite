@@ -15,7 +15,7 @@ import {
 } from '@chakra-ui/react';
 import { DeleteFoodItemButton } from './components/DeleteFoodItemButton';
 import { EditFoodItemButton } from './components/EditFoodItemButton';
-const FoodInformation = ({ foodInfo }) => {
+const FoodInformation = ({ foodInfo, handleEdit, handleDelete, handleLoading }) => {
     if (foodInfo != null)
         return (
 
@@ -27,8 +27,8 @@ const FoodInformation = ({ foodInfo }) => {
                         padding='5px'
                         flexDir='row'>
                         <Flex gap='3'>
-                            <DeleteFoodItemButton foodInfo={foodInfo} />
-                            <EditFoodItemButton foodInfo={foodInfo} />
+                            <DeleteFoodItemButton foodInfo={foodInfo} handleDelete={handleDelete} handleLoading={handleLoading} />
+                            <EditFoodItemButton foodInfo={foodInfo} handleEdit={handleEdit} handleLoading={handleLoading} />
                         </Flex>
                         <Image
                             marginLeft='3rem'

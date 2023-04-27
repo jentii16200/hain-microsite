@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Box, Card, Heading, Image, Select, Tooltip } from '@chakra-ui/react';
+import { Box, Card, Heading, Image, Select, Tooltip, useToast } from '@chakra-ui/react';
 import menuStyle from './index.module.css';
 import { Flex } from '@chakra-ui/react';
 import FoodInformation from './FoodInformation';
@@ -15,21 +15,65 @@ const MenuManagement = () => {
     const [foodInfo, setFoodInfo] = useState();
     const [posts, setPosts] = useState();
     const [isLoading, setIsLoading] = useState(true);
+    const toast = useToast();
 
     useEffect(() => {
-        fetchData();
+        fetchData().then(() => {
+            setIsLoading(false);
+        });
     }, [menuName]);
 
-    const fetchData = () => {
-        axios.post(API_END_POINT, { type: menuName }).then(res => {
+    const handleLoading = () => {
+        setIsLoading(true);
+    };
+
+    const fetchData = async () => {
+        await axios.post(API_END_POINT, { type: menuName }).then(res => {
             setPosts(res.data);
-            setIsLoading(false);
             console.log(res.data);
         }).catch(err => {
             console.log(err);
         });
     };
-
+    const handleButtonClick = () => {
+        setIsLoading(true);
+        fetchData().then(res => {
+            setIsLoading(false);
+            toast({
+                title: `Menu Successfully Added`,
+                status: 'success',
+                position: 'top-right',
+                duration: 5000,
+                isClosable: true,
+            });
+        });
+    };
+    const handleEditButtonClick = () => {
+        setIsLoading(true);
+        fetchData().then(res => {
+            setIsLoading(false);
+            toast({
+                title: `Menu Successfully Updated`,
+                status: 'success',
+                position: 'top-right',
+                duration: 5000,
+                isClosable: true,
+            });
+        });
+    };
+    const handleDeleteButtonClick = () => {
+        setIsLoading(true);
+        fetchData().then(res => {
+            setIsLoading(false);
+            toast({
+                title: `Menu Successfully Deleted`,
+                status: 'success',
+                position: 'top-right',
+                duration: 5000,
+                isClosable: true,
+            });
+        });
+    };
     const handleChange = (e) => {
         setIsLoading(true);
         setMenuName(e.target.value);
@@ -68,7 +112,7 @@ const MenuManagement = () => {
                                             </option>
                                         )}
                                     </Select>
-                                    <AddFoodItemButton />
+                                    <AddFoodItemButton handleClick={handleButtonClick} handleLoading={handleLoading} />
                                 </Flex>
                                 <Flex
                                     justifyContent='center'
@@ -108,7 +152,11 @@ const MenuManagement = () => {
                             </div>
                         </div>
                         <div className={menuStyle.info}>
-                            <FoodInformation foodInfo={foodInfo} />
+                            <FoodInformation
+                                foodInfo={foodInfo}
+                                handleEdit={handleEditButtonClick}
+                                handleDelete={handleDeleteButtonClick}
+                                handleLoading={handleLoading} />
                         </div>
                     </div>
                 }

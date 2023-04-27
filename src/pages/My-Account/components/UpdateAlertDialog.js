@@ -10,6 +10,7 @@ import {
     Button,
     useToast,
 } from '@chakra-ui/react';
+import { HandleUpdateAccount } from '../../../api/account-api';
 
 const UpdateAlertDialog = ({ userInfo }) => {
     const { isOpen, onOpen, onClose } = useDisclosure();
@@ -18,6 +19,10 @@ const UpdateAlertDialog = ({ userInfo }) => {
 
     const HandleAccept = () => {
         console.log(userInfo);
+        HandleUpdateAccount(userInfo);
+        localStorage.setItem("email", userInfo.accountID);
+        localStorage.setItem("password", userInfo.password);
+        localStorage.setItem('currentUser', JSON.stringify(userInfo));
     };
     return (
         <>

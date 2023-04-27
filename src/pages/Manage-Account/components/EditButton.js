@@ -20,6 +20,7 @@ import {
     Text,
 } from '@chakra-ui/react';
 import React, { useState } from 'react';
+import { HandleUpdateAccount } from '../../../api/account-api';
 
 export const EditButton = ({ post, handleClick }) => {
     const { isOpen, onOpen, onClose } = useDisclosure();
@@ -33,6 +34,8 @@ export const EditButton = ({ post, handleClick }) => {
 
     const handleSubmit = () => {
         console.log(updateAccount);
+        HandleUpdateAccount(updateAccount);
+        handleClick();
     };
     console.log('nagrerender');
     return (

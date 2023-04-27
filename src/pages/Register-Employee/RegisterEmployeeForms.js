@@ -107,7 +107,6 @@ const RegisterEmployeeForms = () => {
           <FormLabel>Address</FormLabel>
           <Input
             placeholder="Address"
-            htmlSize={70} width='auto'
             type="address" value={address} onChange={handleAddress} />
         </FormControl>
         <FormControl marginLeft='6'>

@@ -19,7 +19,7 @@ const INITIAL_STATE = {
     type: ''
 };
 
-const AddFoodItemButton = () => {
+const AddFoodItemButton = ({ handleClick, handleLoading }) => {
     const { isOpen, onOpen, onClose } = useDisclosure();
     const [foodData, setFoodData] = useState({
         name: '',
@@ -30,10 +30,20 @@ const AddFoodItemButton = () => {
         type: '',
         quantity: ''
     });
+    const [foodImage, setFoodImage] = useState();
     const handleImageUrl = (e) => {
-        console.log(URL.createObjectURL(e.target.files[0]));
-        setFoodData({ ...foodData, imageUrl: e.target.files[0] });
+        const file = e.target.files[0];
+        const reader = new FileReader();
+        reader.onload = function () {
+            const base64String = reader.result.replace(/^data:image\/(png|jpg|jpeg);base64,/, '');
+            setFoodImage(base64String);
+            setFoodData({ ...foodData, imageUrl: base64String });
+            console.log(base64String);
+        };
+        reader.readAsDataURL(file);
+
     };
+
     const handleChange = (e) => {
         setFoodData({ ...foodData, [e.target.name]: e.target.value });
     };
@@ -42,9 +52,9 @@ const AddFoodItemButton = () => {
     };
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(foodData);
-        AddMenu(foodData);
-        handleClose();
+        handleLoading();
+        AddMenu({ foodData, foodImage }).then(() => { handleClose(); }).finally(() => { handleClick(); });
+        // handleClose();
     };
 
     const ingredientsRef = useRef();
@@ -55,6 +65,7 @@ const AddFoodItemButton = () => {
 
     const handleClose = () => {
         setFoodData(INITIAL_STATE);
+        setFoodImage(null);
         onClose();
     };
     const btnRef = useRef();
@@ -110,7 +121,7 @@ const AddFoodItemButton = () => {
                                 <Image
                                     onClick={uploadFile}
                                     boxSize='10rem'
-                                    src={foodData.imageUrl ? URL.createObjectURL(foodData.imageUrl) : ''} />
+                                    src={foodImage ? `data:image/png;base64,${foodImage}` : ''} />
                                 <Input
                                     id='imageUrl'
                                     type='file'

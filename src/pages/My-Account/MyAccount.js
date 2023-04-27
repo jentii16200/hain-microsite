@@ -12,6 +12,7 @@ import {
 } from '@chakra-ui/react';
 import React, { useState } from 'react';
 import UpdateAlertDialog from './components/UpdateAlertDialog';
+import { HandleUpdateAccount } from '../../api/account-api';
 
 const MyAccount = () => {
     const storedUser = JSON.parse(localStorage.getItem('currentUser'));

@@ -30,9 +30,10 @@ export const DeleteMenu = async (foodInfo) => {
     }).catch(e => console.log(e));
 };
 
-export const AddMenu = async (post) => {
+export const AddMenu = async ({ foodData, foodImage }) => {
     console.log('ADDING MENU');
-    await axios.post(API_ADDMENU, { data: post }).then(res => {
+    console.log(foodData);
+    await axios.post(API_ADDMENU, { data: foodData, base64Image: foodImage }).then(res => {
         console.log(res);
     }).catch(e => console.log(e));
 };

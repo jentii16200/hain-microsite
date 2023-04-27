@@ -20,7 +20,7 @@ import {
 import { EditIcon } from '@chakra-ui/icons';
 import { UpdateMenu } from '../../../api/menu-api';
 
-export const EditFoodItemButton = ({ foodInfo }) => {
+export const EditFoodItemButton = ({ foodInfo, handleEdit, handleLoading }) => {
     const { isOpen, onOpen, onClose } = useDisclosure();
     const [loading, setLoading] = useState(false);
     const toast = useToast();
@@ -40,7 +40,12 @@ export const EditFoodItemButton = ({ foodInfo }) => {
     };
 
     const handleSubmit = (e) => {
-        UpdateMenu(foodData);
+        handleLoading();
+        UpdateMenu(foodData).then(() => {
+            onClose();
+        }).finally(() => {
+            handleEdit();
+        });
     };
 
     return (
@@ -149,19 +154,8 @@ export const EditFoodItemButton = ({ foodInfo }) => {
                             isLoading={loading}
                             colorScheme='teal'
                             onClick={() => {
-                                setLoading(true);
+                                // setLoading(true);
                                 handleSubmit();
-                                setTimeout(() => {
-                                    toast({
-                                        title: 'Item Updated.',
-                                        description: "We've successfully updated the item in the menu.",
-                                        status: 'success',
-                                        duration: 2000,
-                                        isClosable: true,
-                                    });
-                                    setLoading(false);
-                                    onClose();
-                                }, 1000);
                             }}>
 
                             Update

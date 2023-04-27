@@ -44,10 +44,15 @@ const UserAccount = ({ logIn, isLoggedIn }) => {
     }, []);
 
     function isAccountExist() {
-        posts.map(post => {
+        setIsInCorrect(false);
+        let isCorrect = false;
+
+        posts.forEach(post => {
             if (email == post.accountID
                 && password == post.password
                 && (post.authToken == 'employee' || post.authToken == 'admin')) {
+                setIsInCorrect(false);
+
                 localStorage.setItem("email", email);
                 localStorage.setItem("password", password);
                 localStorage.setItem('currentUser', JSON.stringify(post));
@@ -56,7 +61,6 @@ const UserAccount = ({ logIn, isLoggedIn }) => {
                     setTimeout(resolve, 1000);
                     logIn();
                 }).then(() => {
-                    // setIsInCorrect(false);
                     setGoToContact(true);
                     toast({
                         title: 'Successfully login',
@@ -67,10 +71,13 @@ const UserAccount = ({ logIn, isLoggedIn }) => {
                         position: 'top-right'
                     });
                 });
+                isCorrect = true;
+
+            } else {
+                setIsInCorrect(true);
             }
         });
-        if (isInCorrect) {
-            setIsInCorrect(false);
+        if (!isCorrect) {
             isLoginFailed();
         }
     }
@@ -84,7 +91,7 @@ const UserAccount = ({ logIn, isLoggedIn }) => {
         );
 
     }
-    function isLoginFailed() {
+    const isLoginFailed = () => {
         new Promise(resolve => {
             setIsLoading(false);
             setTimeout(resolve, 1000);
@@ -99,7 +106,7 @@ const UserAccount = ({ logIn, isLoggedIn }) => {
                 position: 'top-right'
             });
         });
-    }
+    };
     return (
         isLoading ?
             <div className='bg'>

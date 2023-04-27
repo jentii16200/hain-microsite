@@ -65,9 +65,8 @@ const OrderInfoButton = ({ item, fetchingData, setIsLoadingTrue }) => {
             <Button colorScheme='green'
                 fontSize='20px'
                 onClick={() => {
-                    console.log(order);
-                    handleOrders(order);
-                    // fetchingData();
+                    setIsLoadingTrue();
+                    handleOrders(order).then(() => { fetchingData(); });
                 }
                 }
             >
@@ -80,9 +79,8 @@ const OrderInfoButton = ({ item, fetchingData, setIsLoadingTrue }) => {
             <Button colorScheme='green'
                 fontSize='20px'
                 onClick={() => {
-
-                    handleDoneOrder(item.id);
-                    fetchingData();
+                    setIsLoadingTrue();
+                    handleOrders(order).then(() => { fetchingData(); });
                 }
                 }
             >
@@ -106,7 +104,11 @@ const OrderInfoButton = ({ item, fetchingData, setIsLoadingTrue }) => {
                         {button}
                         <Button colorScheme='red'
                             fontSize='20px'
-                            onClick={() => { handleRejectOrder(item.id); }}
+                            onClick={() => {
+                                order = { ...order, status: 'rejected' };
+                                setIsLoadingTrue();
+                                handleOrders(order).then(() => { fetchingData(); });
+                            }}
 
                         >Cancel
                         </Button>

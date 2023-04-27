@@ -14,11 +14,16 @@ import {
 import { DeleteIcon, DragHandleIcon, EditIcon } from '@chakra-ui/icons';
 
 import { DeleteMenu } from '../../../api/menu-api';
-export const DeleteFoodItemButton = ({ foodInfo }) => {
+export const DeleteFoodItemButton = ({ foodInfo, handleDelete, handleLoading }) => {
     const { isOpen, onOpen, onClose } = useDisclosure();
     const cancelRef = React.useRef();
     const toast = useToast();
     const [loading, setLoading] = useState(false);
+
+    const handleConfirmDelete = () => {
+        handleLoading();
+        DeleteMenu(foodInfo).then(() => { onClose(); }).finally(() => { handleDelete(); });
+    };
     return (
         <>
             <IconButton colorScheme='red' icon={<DeleteIcon
@@ -43,19 +48,25 @@ export const DeleteFoodItemButton = ({ foodInfo }) => {
                             <Button
                                 isLoading={loading}
                                 colorScheme='red' onClick={() => {
-                                    DeleteMenu(foodInfo);
-                                    setLoading(true);
-                                    setTimeout(() => {
-                                        toast({
-                                            title: 'Item Deleted.',
-                                            description: "We've successfully deleted the item in the menu.",
-                                            status: 'success',
-                                            duration: 2000,
-                                            isClosable: true,
-                                        });
-                                        setLoading(false);
-                                        onClose();
-                                    }, 1000);
+                                    handleConfirmDelete();
+                                    // setLoading(true);
+                                    // DeleteMenu(foodInfo).then(() => {
+                                    //     setLoading(false);
+                                    //     onClose();
+                                    // }).finally(() => {
+                                    //     handleDelete();
+                                    // });
+                                    // setTimeout(() => {
+                                    //     toast({
+                                    //         title: 'Item Deleted.',
+                                    //         description: "We've successfully deleted the item in the menu.",
+                                    //         status: 'success',
+                                    //         duration: 2000,
+                                    //         isClosable: true,
+                                    //     });
+                                    //     setLoading(false);
+                                    //     onClose();
+                                    // }, 1000);
                                 }} ml={3}>
                                 Delete
                             </Button>
