@@ -123,7 +123,7 @@ const SideNav = ({ logOut }) => {
                                 </div>
                             </NavLink>
                         </li>
-                        <li>
+                        {/* <li>
                             <NavLink
                                 className={({ isActive }) => (isActive ? 'active' : '')}
                                 to='remarks'>
@@ -134,7 +134,7 @@ const SideNav = ({ logOut }) => {
                                     Remarks
                                 </div>
                             </NavLink>
-                        </li>
+                        </li> */}
                         <li>
                             <NavLink
                                 className={({ isActive }) => (isActive ? 'active' : '')}
