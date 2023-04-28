@@ -53,16 +53,16 @@ export const DeleteButton = ({ post, handleClick }) => {
                                         (HandleDeleteAccount(post.id));
 
                                         handleClick();
-                                        setTimeout(() => {
-                                            toast({
-                                                title: 'Account Deleted.',
-                                                description: "We've successfully deleted the account.",
-                                                status: 'success',
-                                                duration: 2000,
-                                                isClosable: true,
-                                            });
-                                            onClose();
-                                        }, 1000);
+                                        // setTimeout(() => {
+                                        //     toast({
+                                        //         title: 'Account Deleted.',
+                                        //         description: "We've successfully deleted the account.",
+                                        //         status: 'success',
+                                        //         duration: 2000,
+                                        //         isClosable: true,
+                                        //     });
+                                        //     onClose();
+                                        // }, 1000);
                                     }} ml={3}>
                                 Delete
                             </Button>

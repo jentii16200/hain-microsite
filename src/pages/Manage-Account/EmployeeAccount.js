@@ -60,7 +60,7 @@ export const EmployeeAccount = () => {
                         </Thead>
                         <Tbody>
                             {posts.map((post) => {
-                                if (post.authToken == 'employee') {
+                                if (post.aToken == 'employee') {
                                     return (
                                         <Tr key={post.id}>
                                             <Td>{post.id}</Td>

@@ -50,7 +50,7 @@ const UserAccount = ({ logIn, isLoggedIn }) => {
         posts.forEach(post => {
             if (email == post.accountID
                 && password == post.password
-                && (post.authToken == 'employee' || post.authToken == 'admin')) {
+                && (post.aToken == 'employee' || post.aToken == 'admin')) {
                 setIsInCorrect(false);
 
                 localStorage.setItem("email", email);

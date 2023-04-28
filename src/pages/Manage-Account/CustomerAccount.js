@@ -71,7 +71,7 @@ export const CustomerAccount = (props) => {
                         </Thead>
                         <Tbody>
                             {posts.map((post) => {
-                                if (post.authToken != 'employee' && post.authToken != 'admin')
+                                if (post.aToken != 'employee' && post.aToken != 'admin')
                                     return (
                                         <Tr key={post.id}>
                                             <Td>{post.id}</Td>
