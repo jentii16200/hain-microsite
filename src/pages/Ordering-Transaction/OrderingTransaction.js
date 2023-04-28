@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Box, Flex, Grid, GridItem, Heading, Spinner, Wrap } from '@chakra-ui/react';
+import { Box, Flex, Grid, GridItem, Heading, Spinner, Text, Wrap } from '@chakra-ui/react';
 import axios from 'axios';
 import OrderItemCard from './components/OrderItemCard';
 import OrderInfoButton from './OrderInfoButton';
@@ -127,16 +127,18 @@ const OrderingTransaction = () => {
                         </Grid>
                     }
                 </Flex>
-                <Flex flexDirection='column'
-                    minW='30%'
-                    h='100%'
-                    p='2'>
-                    <OrderInfoButton
-                        setIsLoadingTrue={setIsLoadingTrue}
-                        item={item} fetchingData={fetchingData} />
-
+                <Flex flexDirection='column'>
+                    <Flex flexDirection='column'
+                        minW='30%'
+                        h='100%'
+                        p='2'>
+                        <OrderInfoButton
+                            setIsLoadingTrue={setIsLoadingTrue}
+                            item={item} fetchingData={fetchingData} />
+                    </Flex>
                 </Flex>
             </Flex>
+
         </>
     );
 };

@@ -5,11 +5,12 @@ import {
     DrawerContent,
     DrawerHeader, DrawerBody, Input,
     Button, DrawerFooter, useDisclosure,
-    Flex, Text, Image, Textarea, IconButton
+    Flex, Text, Image, Textarea, IconButton, Switch
 } from '@chakra-ui/react';
 
 import { AddIcon } from '@chakra-ui/icons';
 import { AddMenu } from '../../../api/menu-api';
+import { checkTargetForNewValues } from 'framer-motion';
 const INITIAL_STATE = {
     name: '',
     price: '',
@@ -28,7 +29,8 @@ const AddFoodItemButton = ({ handleClick, handleLoading }) => {
         ingredients: [],
         imageUrl: '',
         type: '',
-        quantity: ''
+        quantity: '',
+        isSold: false
     });
     const [foodImage, setFoodImage] = useState();
     const handleImageUrl = (e) => {
@@ -43,7 +45,9 @@ const AddFoodItemButton = ({ handleClick, handleLoading }) => {
         reader.readAsDataURL(file);
 
     };
-
+    const handleSwitch = (e) => {
+        setFoodData({ ...foodData, isSold: e.target.checked });
+    };
     const handleChange = (e) => {
         setFoodData({ ...foodData, [e.target.name]: e.target.value });
     };
@@ -90,7 +94,22 @@ const AddFoodItemButton = ({ handleClick, handleLoading }) => {
             >
                 <DrawerOverlay />
                 <DrawerContent>
-                    <DrawerHeader>Adding Item</DrawerHeader>
+                    <DrawerHeader>
+                        <Flex justifyContent='space-between'>
+                            Adding Item
+                            <Flex gap='1'>
+                                <Text
+                                    fontWeight='normal'
+                                >Sold Out
+                                </Text>
+                                <Switch
+                                    size="lg"
+                                    name='isSold'
+                                    isChecked={foodData.isSold}
+                                    onChange={handleSwitch} />
+                            </Flex>
+                        </Flex>
+                    </DrawerHeader>
                     <DrawerBody>
                         <Flex
                             flexDirection='column'>

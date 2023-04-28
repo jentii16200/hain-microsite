@@ -13,7 +13,7 @@ import {
     Text
 } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
-import { handleAcceptOrder, handleRejectOrder, handleOnProcessOrder, handleDoneOrder, handleOrders } from './api/HandleStatus';
+import { handleOrders } from './api/HandleStatus';
 import { OrderInfoCard } from './components/OrderInfoCard';
 
 const OrderInfoButton = ({ item, fetchingData, setIsLoadingTrue }) => {
@@ -27,18 +27,19 @@ const OrderInfoButton = ({ item, fetchingData, setIsLoadingTrue }) => {
     var hours = currentDateTime.getHours();
     var minutes = currentDateTime.getMinutes();
     var seconds = currentDateTime.getSeconds();
+    let order = item;
 
     const handleUpdate = () => {
         setUpdateItem({
-            ...item,
+            ...order,
             currentTime: `${hours}:${minutes}:${seconds}`,
             currentDate: `${day}/${month}/${year}`,
             handledBy: user.employeeFirstName + ' ' + user.employeeLastName
         });
     };
-
-    let order = item;
-
+    useEffect(() => {
+        handleOrders({ updateItem }).then(() => { fetchingData(); });
+    }, [updateItem]);
     let button = null;
     const i = false;
     if (item?.status == 'pending') {
@@ -49,8 +50,10 @@ const OrderInfoButton = ({ item, fetchingData, setIsLoadingTrue }) => {
                 onClick={
                     () => {
                         setIsLoadingTrue();
-                        handleOrders(order);
-                        fetchingData();
+                        handleUpdate();
+                        // handleOrders({ order, updateItem });
+                        // fetchingData();
+                        // console.log(updateItem);
 
                     }
 
@@ -66,7 +69,8 @@ const OrderInfoButton = ({ item, fetchingData, setIsLoadingTrue }) => {
                 fontSize='20px'
                 onClick={() => {
                     setIsLoadingTrue();
-                    handleOrders(order).then(() => { fetchingData(); });
+                    handleUpdate();
+                    // handleOrders({ order }).then(() => { fetchingData(); });
                 }
                 }
             >
@@ -80,7 +84,8 @@ const OrderInfoButton = ({ item, fetchingData, setIsLoadingTrue }) => {
                 fontSize='20px'
                 onClick={() => {
                     setIsLoadingTrue();
-                    handleOrders(order).then(() => { fetchingData(); });
+                    handleUpdate();
+                    // handleOrders({ order }).then(() => { fetchingData(); });
                 }
                 }
             >
@@ -107,18 +112,11 @@ const OrderInfoButton = ({ item, fetchingData, setIsLoadingTrue }) => {
                             onClick={() => {
                                 order = { ...order, status: 'rejected' };
                                 setIsLoadingTrue();
-                                handleOrders(order).then(() => { fetchingData(); });
+                                handleUpdate();
+                                // handleOrders({ updateItem }).then(() => { fetchingData(); });
                             }}
 
                         >Cancel
-                        </Button>
-                        <Button colorScheme='green'
-                            fontSize='20px'
-                            onClick={() => {
-                                handleUpdate();
-                            }}
-
-                        >Update
                         </Button>
                     </Flex>
                 </Flex>

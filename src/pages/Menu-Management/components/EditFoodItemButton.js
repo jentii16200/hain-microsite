@@ -15,7 +15,8 @@ import {
     Input,
     Image,
     Textarea,
-    useToast
+    useToast,
+    Switch
 } from '@chakra-ui/react';
 import { EditIcon } from '@chakra-ui/icons';
 import { UpdateMenu } from '../../../api/menu-api';
@@ -26,6 +27,9 @@ export const EditFoodItemButton = ({ foodInfo, handleEdit, handleLoading }) => {
     const toast = useToast();
     const [foodData, setFoodData] = useState(foodInfo);
 
+    const handleSwitch = (e) => {
+        setFoodData({ ...foodData, isSold: e.target.checked });
+    };
     const handleChange = (e) => {
         setFoodData({ ...foodData, [e.target.name]: e.target.value });
     };
@@ -62,7 +66,21 @@ export const EditFoodItemButton = ({ foodInfo, handleEdit, handleLoading }) => {
                 <ModalContent
                     borderRadius='lg'>
                     <ModalHeader>
-                        EDITING
+                        <Flex
+                            justifyContent='space-between'>
+                            EDITING
+                            <Flex gap='1'>
+                                <Text
+                                    fontWeight='normal'
+                                >Sold Out
+                                </Text>
+                                <Switch
+                                    size="lg"
+                                    name='isSold'
+                                    isChecked={foodData.isSold}
+                                    onChange={handleSwitch} />
+                            </Flex>
+                        </Flex>
                     </ModalHeader>
                     <ModalBody
                         borderTopRadius='lg'

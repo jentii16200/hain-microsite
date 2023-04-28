@@ -16,11 +16,14 @@ export const GetOrders = () => {
     }).catch(err => console.error(err));
 };
 
-export const handleOrders = async (post) => {
+export const handleOrders = async ({ updateItem }) => {
+    console.log("napasa");
+    console.log(updateItem);
     await axios.post(apiHandleOrders, {
-        userId: post.userDetails.id,
-        status: post.status,
-        orderId: post.id
+        userId: updateItem.userDetails.id,
+        status: updateItem.status,
+        orderId: updateItem.id,
+        data: updateItem
     }).then(res => {
         console.log(res.data);
     }).catch(err => { console.error(err); console.log('di gumana'); });

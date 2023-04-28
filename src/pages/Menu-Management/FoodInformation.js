@@ -46,22 +46,29 @@ const FoodInformation = ({ foodInfo, handleEdit, handleDelete, handleLoading }) 
                     <Text
                         marginTop='0'
                         alignSelf='start'
-                        fontSize='25px'>
+                        fontSize='20px'>
                         Price (₱): {foodInfo.price}
                     </Text>
                     <Text
-                        marginBottom='10'
                         marginTop='0'
                         alignSelf='flex-start'
-                        fontSize='25px'>
+                        fontSize='20px'>
                         Stock: {foodInfo.quantity}
+                    </Text>
+                    <Text
+                        marginBottom='5'
+                        marginTop='0'
+                        alignSelf='flex-start'
+                        fontSize='20px'>
+                        Sold Out: {foodInfo.isSold ? "Yes" : "No"}
                     </Text>
                     <Text
                         fontSize='18    '>
                         {foodInfo.description}
                     </Text>
                     <Text as='b'
-                        fontSize='20px'>
+                        fontSize='20px'
+                        marginTop='5'>
                         Ingredients
                     </Text>
                     <ul>

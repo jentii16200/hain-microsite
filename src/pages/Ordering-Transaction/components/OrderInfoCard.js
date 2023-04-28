@@ -21,7 +21,10 @@ export const OrderInfoCard = ({ item }) => {
                 marginTop='2rem'
                 flexDir='column'
                 gap='10px'>
-                <Heading>{item.userDetails.name}</Heading>
+                <Text fontSize='25'
+                    fontWeight='semibold'>
+                    {item.userDetails.email}
+                </Text>
                 <Flex
                     flex='1'
                     gap='5px'>
@@ -152,6 +155,21 @@ export const OrderInfoCard = ({ item }) => {
                 color='black'>
                 <Box>TOTAL PRICE</Box>
                 <Box>{item.totalPrice}</Box>
+            </Flex>
+            <Flex>
+                <Text
+                    marginLeft='3.5'
+                    paddingTop='5'
+                    fontSize='15'
+                    fontWeight='semibold'
+                    color='black'>TimeStamp:
+                </Text>
+                <Text
+                    marginInline='3.5'
+                    paddingTop='5'
+                    fontSize='15'
+                    color='black'>{item.timestamp}
+                </Text>
             </Flex>
 
         </>
