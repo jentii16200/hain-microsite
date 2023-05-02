@@ -37,7 +37,6 @@ export const EditButton = ({ post, handleClick }) => {
         HandleUpdateAccount(updateAccount);
         handleClick();
     };
-    console.log('nagrerender');
     return (
         <>
             <IconButton

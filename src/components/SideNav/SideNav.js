@@ -7,6 +7,7 @@ import {
     EmployeeAccount,
     MenuManagement,
     OrderLog,
+    Reports,
     RegisterEmployee,
     OrderingTransaction,
     Remarks,
@@ -20,6 +21,7 @@ import { IoMdPersonAdd } from 'react-icons/io';
 import { BiBorderRadius, BiLogOut } from 'react-icons/bi';
 import { Flex, IconButton } from '@chakra-ui/react';
 import LogOutDialog from '../LogOutDialog';
+import { Analytics } from '../../pages/Order-Log/Analytics';
 const SideNav = ({ logOut }) => {
     const [isDialogOpen, setIsDialogOpen] = useState(false);
     const handleOpenDialog = () => {
@@ -90,7 +92,7 @@ const SideNav = ({ logOut }) => {
                         <li>
                             <NavLink
                                 className={({ isActive }) => (isActive ? 'active' : '')}
-                                to='order-log'>
+                                to='analytics/order-log'>
                                 <div className={`navIcon ${cName}`} >
                                     <HiOutlineDocumentText />
                                 </div>
@@ -177,7 +179,10 @@ const SideNav = ({ logOut }) => {
                                 <Route exact path='employee' element={<EmployeeAccount />} />
                             </Route>
                             <Route exact path='menu-management' element={<MenuManagement />} />
-                            <Route exact path='order-log' element={<OrderLog />} />
+                            <Route exact path='analytics' element={<Analytics />}>
+                                <Route exact path='order-log' element={<OrderLog />} />
+                                <Route exact path='reports' element={<Reports />} />
+                            </Route>
                             <Route exact path='register-employee' element={<RegisterEmployee />} />
                             <Route exact path='ordering-transaction' element={<OrderingTransaction />} />
                             <Route exact path='remarks' element={<Remarks />} />

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Heading } from '@chakra-ui/react';
+import { Heading, Text } from '@chakra-ui/react';
 import axios from 'axios';
 import {
     Table, Thead, Tbody, Tfoot, Tr, Th, Td, TableCaption,
@@ -28,16 +28,10 @@ const OrderLog = () => {
             setPosts(x);
         };
     }, []);
-
-    // let orderlog = posts.map(post => {
-    //     if (post.status != 'completed') return;
-    // })
-
     return (
         <>
-            <Heading className='title'>ORDER LOG</Heading>
             <TableContainer
-                paddingInline='10'>
+                padding='10'>
                 <Table>
                     <Thead>
                         <Tr>
