@@ -10,6 +10,7 @@ import {
     TableContainer,
     IconButton,
     useToast,
+    Flex,
 } from '@chakra-ui/react';
 import { DeleteIcon } from '@chakra-ui/icons';
 import { HandleDeleteAccount } from '../../api/account-api';
@@ -56,9 +57,9 @@ export const CustomerAccount = (props) => {
     };
 
     return (
-        <>
+        <Flex>
             {isLoading ? <Loading /> :
-                <TableContainer className='table'>
+                <TableContainer className='table' w='100%'>
                     <Table size='sm'>
                         <Thead>
                             <Tr>
@@ -90,6 +91,6 @@ export const CustomerAccount = (props) => {
                     </Table>
                 </TableContainer>
             }
-        </>
+        </Flex>
     );
 };

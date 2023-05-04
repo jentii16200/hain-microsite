@@ -13,10 +13,15 @@ const OrderLog = () => {
     const [posts, setPosts] = useState([]);
     useEffect(() => {
         let isCancelled = false;
-        let x;
+        // let x;
         axios.get(API_ORDERS).then(res => {
             if (isCancelled) return;
-            x = res.data;
+            // x = res.data;
+            let x = res.data.sort((a, b) => {
+                const dateA = new Date(a.currentDate + ' ' + a.currentTime);
+                const dateB = new Date(b.currentDate + ' ' + b.currentTime);
+                return dateB - dateA; // Sort in descending order
+            });
             setPosts(x);
             console.log(x);
 
@@ -25,14 +30,14 @@ const OrderLog = () => {
         });
         return () => {
             isCancelled = true;
-            setPosts(x);
+            // setPosts(x);
         };
     }, []);
     return (
         <>
             <TableContainer
                 padding='10'>
-                <Table>
+                <Table size='sm'>
                     <Thead>
                         <Tr>
                             <Th
@@ -41,6 +46,9 @@ const OrderLog = () => {
                             <Th>NAME</Th>
                             <Th>ORDERS</Th>
                             <Th>STATUS</Th>
+                            <Th>TIME</Th>
+                            <Th>DATE</Th>
+                            <Th>HANDLED BY</Th>
                             <Th>PRICE</Th>
                         </Tr>
                     </Thead>
@@ -53,6 +61,9 @@ const OrderLog = () => {
                                         <Td>{post.userDetails.email}</Td>
                                         <Td width='6'>{post.order?.map(ord => ord.name + ",")}</Td>
                                         <Td>{post.status}</Td>
+                                        <Td>{post.currentTime}</Td>
+                                        <Td>{post.currentDate}</Td>
+                                        <Td>{post.handledBy}</Td>
                                         <Td>{post.totalPrice}</Td>
                                     </Tr>
                                 );

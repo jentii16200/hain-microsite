@@ -1,5 +1,6 @@
 import {
     Box,
+    Divider,
     Flex,
     Heading,
     Table,
@@ -156,22 +157,47 @@ export const OrderInfoCard = ({ item }) => {
                 <Box>TOTAL PRICE</Box>
                 <Box>{item.totalPrice}</Box>
             </Flex>
-            <Flex>
-                <Text
-                    marginLeft='3.5'
-                    paddingTop='5'
-                    fontSize='15'
-                    fontWeight='semibold'
-                    color='black'>TimeStamp:
-                </Text>
-                <Text
-                    marginInline='3.5'
-                    paddingTop='5'
-                    fontSize='15'
-                    color='black'>{item.timestamp}
-                </Text>
-            </Flex>
-
+            <Divider borderColor='gray' marginBlock='2' />
+            {item.status == 'pending' ? null : item.currentTime == null ? null :
+                <>
+                    <Box marginLeft='2'>
+                        <Flex>
+                            <Text
+                                fontSize='15'
+                                fontWeight='semibold'
+                                color='black'>Time:
+                            </Text>
+                            <Text
+                                marginInline='1.5'
+                                fontSize='15'
+                                color='black'>{item.currentTime}
+                            </Text>
+                            <Text
+                                fontSize='15'
+                                fontWeight='semibold'
+                                color='black'>Date:
+                            </Text>
+                            <Text
+                                marginInline='1.5'
+                                fontSize='15'
+                                color='black'>{item.currentDate}
+                            </Text>
+                        </Flex>
+                        <Flex>
+                            <Text
+                                fontSize='15'
+                                fontWeight='semibold'
+                                color='black'>Handled By:
+                            </Text>
+                            <Text
+                                marginInline='1.5'
+                                fontSize='15'
+                                color='black'>{item.handledBy}
+                            </Text>
+                        </Flex>
+                    </Box>
+                    <Divider borderColor='gray' marginBlock='2' />
+                </>}
         </>
     );
 };
