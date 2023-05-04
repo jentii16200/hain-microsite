@@ -2,7 +2,14 @@ import { Box, Card, CardBody, Flex, Text } from '@chakra-ui/react';
 import { GiCycle } from 'react-icons/gi';
 import React from 'react';
 
-export const TransactionCard = () => {
+export const TransactionCard = ({ posts }) => {
+    let totalTransaction = 0;
+    posts?.map(post => {
+        // totalTransaction += parseInt(post.amount);
+        if (post.status == 'rejected' || post.status == 'completed') {
+            totalTransaction++;
+        }
+    });
     return (
         <Card minHeight="100%" minWidth="50px">
             <CardBody>
@@ -19,7 +26,7 @@ export const TransactionCard = () => {
                     <Flex flexDirection='column'
                         marginLeft='5'>
                         <Text fontSize='xl' fontFamily='sans-serif' fontWeight='bold' color='black'>
-                            10,000
+                            {totalTransaction}
                         </Text>
                         <Text fontSize='sm' fontFamily='monospace' fontWeight='bold' color='gray.400'>
                             Total Transaction

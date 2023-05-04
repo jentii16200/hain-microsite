@@ -2,7 +2,13 @@ import { CloseIcon } from '@chakra-ui/icons';
 import { Box, Card, CardBody, Flex, Text } from '@chakra-ui/react';
 import React from 'react';
 
-export const RejectedCard = () => {
+export const RejectedCard = ({ posts }) => {
+    let rejectedStatus = 0;
+    posts?.map(post => {
+        if (post.status == 'rejected') {
+            rejectedStatus++;
+        }
+    });
     return (
         <Card minHeight="100%" minWidth="50px">
             <CardBody>
@@ -21,7 +27,7 @@ export const RejectedCard = () => {
                     <Flex flexDirection='column'
                         marginLeft='5'>
                         <Text fontSize='xl' fontFamily='sans-serif' fontWeight='bold' color='black'>
-                            10,000
+                            {rejectedStatus}
                         </Text>
                         <Text fontSize='sm' fontFamily='monospace' fontWeight='bold' color='gray.400'>
                             Orders

@@ -2,12 +2,20 @@ import { Box, Card, CardBody, Flex, Text } from '@chakra-ui/react';
 import React from 'react';
 import { MdSupervisorAccount } from 'react-icons/md';
 
-export const UserCard = () => {
+export const UserCard = ({ userData }) => {
+    let countUser = 1;
+    userData?.map(post => {
+        if (post.authToken == 'customer'
+            && post.aToken != 'employee'
+        ) {
+            countUser++;
+        }
+    });
     return (
         <Card minHeight="100%" minWidth="50px">
             <CardBody>
                 <Text fontSize='xl' fontFamily='monospace' fontWeight='bold' color='black'>
-                    User
+                    Customer
                 </Text>
                 <Flex paddingInline=''>
                     <Box boxSize='60px'
@@ -19,10 +27,10 @@ export const UserCard = () => {
                     <Flex flexDirection='column'
                         marginLeft='5'>
                         <Text fontSize='xl' fontFamily='sans-serif' fontWeight='bold' color='black'>
-                            10,000
+                            {countUser}
                         </Text>
                         <Text fontSize='sm' fontFamily='monospace' fontWeight='bold' color='gray.400'>
-                            Total User
+                            Total Customer
                         </Text>
                     </Flex>
                 </Flex>
