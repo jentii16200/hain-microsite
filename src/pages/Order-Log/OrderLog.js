@@ -13,17 +13,23 @@ const OrderLog = () => {
     const [posts, setPosts] = useState([]);
     useEffect(() => {
         let isCancelled = false;
-        // let x;
+        let x;
         axios.get(API_ORDERS).then(res => {
             if (isCancelled) return;
+            const sortedPosts = res.data
+                .filter(post => post.status === 'completed' || post.status === 'rejected')
+                .sort((a, b) => {
+                    const aDate = new Date(`${a.currentDate} ${a.currentTime}`);
+                    const bDate = new Date(`${b.currentDate} ${b.currentTime}`);
+                    return bDate - aDate;
+                });
+            console.log(sortedPosts);
+            setPosts(sortedPosts);
+
             // x = res.data;
-            let x = res.data.sort((a, b) => {
-                const dateA = new Date(a.currentDate + ' ' + a.currentTime);
-                const dateB = new Date(b.currentDate + ' ' + b.currentTime);
-                return dateB - dateA; // Sort in descending order
-            });
-            setPosts(x);
-            console.log(x);
+
+            // setPosts(x);
+            // console.log(x);
 
         }).catch(err => {
             console.log(err);

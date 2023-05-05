@@ -55,7 +55,7 @@ export const OrderInfoCard = ({ item }) => {
                         <Box
                             fontWeight='bold'
                             fontSize='2xl'>
-                            15
+                            {item.tableNumber ? item.tableNumber : 25}
                         </Box>
                         <Box>
                             Table #

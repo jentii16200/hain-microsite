@@ -27,7 +27,7 @@ export const CustomerAccount = (props) => {
     const [count, setCount] = useState(0);
     const [isLoading, setIsLoading] = useState(true);
     const toast = useToast();
-
+    let q = 1;
     useEffect(() => { fetchData(); }, [count]);
 
     const fetchData = async () => {
@@ -57,40 +57,42 @@ export const CustomerAccount = (props) => {
     };
 
     return (
-        <Flex>
+        <>
             {isLoading ? <Loading /> :
-                <TableContainer className='table' w='100%'>
-                    <Table size='sm'>
-                        <Thead>
-                            <Tr>
-                                <Th>ID #</Th>
-                                <Th>USERNAME</Th>
-                                <Th>NAME</Th>
-                                <Th>PASSWORD</Th>
-                                <Th> </Th>
-                            </Tr>
-                        </Thead>
-                        <Tbody>
-                            {posts.map((post) => {
-                                if (post.aToken != 'employee' && post.aToken != 'admin')
-                                    return (
-                                        <Tr key={post.id}>
-                                            <Td>{post.id}</Td>
-                                            <Td>{post.userName}</Td>
-                                            <Td>{post.name}</Td>
-                                            <Td>{post.password}</Td>
-                                            <Td isNumeric>
-                                                <EditButton handleClick={handleButtonClick} post={post} />
-                                                <DeleteButton handleClick={handleButtonClick} post={post} />
-                                            </Td>
-                                        </Tr>
-                                    );
-                            }
-                            )}
-                        </Tbody>
-                    </Table>
-                </TableContainer>
+                <Flex>
+                    <TableContainer className='table' w='100%'>
+                        <Table size='sm'>
+                            <Thead>
+                                <Tr>
+                                    <Th>ID #</Th>
+                                    <Th>USERNAME</Th>
+                                    <Th>NAME</Th>
+                                    <Th>PASSWORD</Th>
+                                    <Th> </Th>
+                                </Tr>
+                            </Thead>
+                            <Tbody>
+                                {posts.map((post) => {
+                                    if (post.aToken != 'employee' && post.aToken != 'admin')
+                                        return (
+                                            <Tr key={post.id}>
+                                                <Td>{q++}</Td>
+                                                <Td>{post.userName}</Td>
+                                                <Td>{post.name}</Td>
+                                                <Td>{post.password}</Td>
+                                                <Td isNumeric>
+                                                    <EditButton handleClick={handleButtonClick} post={post} />
+                                                    <DeleteButton handleClick={handleButtonClick} post={post} />
+                                                </Td>
+                                            </Tr>
+                                        );
+                                }
+                                )}
+                            </Tbody>
+                        </Table>
+                    </TableContainer>
+                </Flex>
             }
-        </Flex>
+        </>
     );
 };
