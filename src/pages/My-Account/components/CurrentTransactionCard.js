@@ -38,7 +38,7 @@ export const CurrentTransactionCard = ({ posts }) => {
                                     return (
                                         <Tr key={post.id}>
                                             <Td>{q = q + 1}</Td>
-                                            <Td>{post.userDetails.email}</Td>
+                                            <Td>{post.fullName ? post.fullName : post.userDetails.email}</Td>
                                             <Td width='6'>{post.order?.map(ord => ord.name + ",")}</Td>
                                             <Td>{post.status}</Td>
                                             <Td>{post.currentTime}</Td>

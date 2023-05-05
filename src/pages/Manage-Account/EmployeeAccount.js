@@ -17,6 +17,7 @@ export const EmployeeAccount = () => {
     const [count, setCount] = useState(0);
     const [isLoading, setIsLoading] = useState(true);
     const toast = useToast();
+    let q = 1;
 
     useEffect(() => {
         fetchData();
@@ -63,7 +64,7 @@ export const EmployeeAccount = () => {
                                 if (post.aToken == 'employee') {
                                     return (
                                         <Tr key={post.id}>
-                                            <Td>{post.id}</Td>
+                                            <Td>{q++}</Td>
                                             <Td>{post.accountID}</Td>
                                             <Td>{post.employeeFirstName} {post.employeeLastName}</Td>
                                             <Td>{post.password}</Td>

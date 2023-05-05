@@ -1,5 +1,5 @@
 import { StarIcon } from '@chakra-ui/icons';
-import { Badge, Box, Flex, Card } from '@chakra-ui/react';
+import { Badge, Box, Flex, Card, Text } from '@chakra-ui/react';
 import React, { useState } from 'react';
 
 const OrderItemCard = ({ post, setItemInfo }) => {
@@ -22,14 +22,21 @@ const OrderItemCard = ({ post, setItemInfo }) => {
                     {found ?
                         <Box bg='yellow'
                             h='15px' w='50%' /> : ''}
+                    <Box display='flex' paddingLeft='2' paddingTop='2'>
+                        <Text fontSize='xl' fontFamily='monospace' fontWeight='semibold' color='black'>
+                            Table #
+                        </Text>
+                        <Text fontSize='xl' color='black'> {post.tableNumber ? post.tableNumber : 25}</Text>
+                    </Box>
                     <Box display='flex'
                         alignItems='center'
-                        pt='2'
                         paddingInline='2'>
-                        {post.userDetails.email}
-                    </Box>
-                    <Box p='2' display='flex' alignItems='baseline'>
-                        {post.userDetails.name}
+                        <Text fontSize='xl' fontFamily='monospace'
+                            // fontWeight='semibold'
+                            color='black'>
+                            Name:
+                        </Text>
+                        <Text fontSize='xl' color='black'> {post.fullName ? post.fullName : "No Name"}</Text>
                     </Box>
                 </Box>
             </Box>

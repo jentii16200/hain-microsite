@@ -24,7 +24,7 @@ export const OrderInfoCard = ({ item }) => {
                 gap='10px'>
                 <Text fontSize='25'
                     fontWeight='semibold'>
-                    {item.userDetails.email}
+                    {item.fullName ? item.fullName : 'No Name'}
                 </Text>
                 <Flex
                     flex='1'
