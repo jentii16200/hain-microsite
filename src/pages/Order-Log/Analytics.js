@@ -1,8 +1,10 @@
 import { Flex, Heading, Tab, TabIndicator, TabList, TabPanel, TabPanels, Tabs, Text } from '@chakra-ui/react';
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, Outlet } from 'react-router-dom';
 
 export const Analytics = () => {
+    const storedUser = JSON.parse(localStorage.getItem('currentUser'));
+    const [user,] = useState(storedUser);
     return (
         <Flex
             flexDirection='column'
@@ -17,13 +19,14 @@ export const Analytics = () => {
                             Order Log
                         </Text>
                     </Tab>
-                    <Tab
-                        _selected={{ fontSize: 30, fontWeight: 'bold' }}
-                        as={Link} to='reports'>
-                        <Text>
-                            Reports
-                        </Text>
-                    </Tab>
+                    {user.aToken == 'admin' &&
+                        <Tab
+                            _selected={{ fontSize: 30, fontWeight: 'bold' }}
+                            as={Link} to='reports'>
+                            <Text>
+                                Reports
+                            </Text>
+                        </Tab>}
                 </TabList>
                 <TabIndicator
                     mt="-1.5px"

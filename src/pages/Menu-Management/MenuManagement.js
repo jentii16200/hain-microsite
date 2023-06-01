@@ -11,6 +11,9 @@ import { Loading } from '../../components/Loading';
 const API_END_POINT = 'https://us-central1-hain-402aa.cloudfunctions.net/api/getMenu';
 
 const MenuManagement = () => {
+    const storedUser = JSON.parse(localStorage.getItem('currentUser'));
+    const [user,] = useState(storedUser);
+
     const [menuName, setMenuName] = useState(FOOD_TYPE[0].name);
     const [foodInfo, setFoodInfo] = useState();
     const [posts, setPosts] = useState();
@@ -112,7 +115,7 @@ const MenuManagement = () => {
                                             </option>
                                         )}
                                     </Select>
-                                    <AddFoodItemButton handleClick={handleButtonClick} handleLoading={handleLoading} />
+                                    {user.aToken == 'admin' && <AddFoodItemButton handleClick={handleButtonClick} handleLoading={handleLoading} />}
                                 </Flex>
                                 <Flex
                                     justifyContent='center'

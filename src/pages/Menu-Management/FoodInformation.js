@@ -16,6 +16,8 @@ import {
 import { DeleteFoodItemButton } from './components/DeleteFoodItemButton';
 import { EditFoodItemButton } from './components/EditFoodItemButton';
 const FoodInformation = ({ foodInfo, handleEdit, handleDelete, handleLoading }) => {
+    const storedUser = JSON.parse(localStorage.getItem('currentUser'));
+    const [user,] = useState(storedUser);
     if (foodInfo != null)
         return (
 
@@ -27,7 +29,7 @@ const FoodInformation = ({ foodInfo, handleEdit, handleDelete, handleLoading }) 
                         padding='5px'
                         flexDir='row'>
                         <Flex gap='3'>
-                            <DeleteFoodItemButton foodInfo={foodInfo} handleDelete={handleDelete} handleLoading={handleLoading} />
+                            {user.aToken == 'admin' && <DeleteFoodItemButton foodInfo={foodInfo} handleDelete={handleDelete} handleLoading={handleLoading} />}
                             <EditFoodItemButton foodInfo={foodInfo} handleEdit={handleEdit} handleLoading={handleLoading} />
                         </Flex>
                         <Image

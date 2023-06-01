@@ -6,8 +6,8 @@ export const CurrentTransactionCard = ({ posts }) => {
 
     let x = posts?.filter(post => post.status == 'completed' || post.status == 'rejected')
         .sort((a, b) => {
-            const aDate = new Date(`${a.currentDate} ${a.currentTime}`);
-            const bDate = new Date(`${b.currentDate} ${b.currentTime}`);
+            const aDate = new Date(`${b.currentDate} ${b.currentTime}`);
+            const bDate = new Date(`${a.currentDate} ${a.currentTime}`);
             return bDate - aDate;
         });
     return (

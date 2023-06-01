@@ -23,6 +23,8 @@ import { Flex, IconButton } from '@chakra-ui/react';
 import LogOutDialog from '../LogOutDialog';
 import { Analytics } from '../../pages/Order-Log/Analytics';
 const SideNav = ({ logOut }) => {
+    const storedUser = JSON.parse(localStorage.getItem('currentUser'));
+    const [user,] = useState(storedUser);
     const [isDialogOpen, setIsDialogOpen] = useState(false);
     const handleOpenDialog = () => {
         setIsDialogOpen(true);
@@ -101,18 +103,19 @@ const SideNav = ({ logOut }) => {
                                 </div>
                             </NavLink>
                         </li>
-                        <li>
-                            <NavLink
-                                className={({ isActive }) => (isActive ? 'active' : '')}
-                                to='register-employee'>
-                                <div className={`navIcon ${cName}`} >
-                                    <IoMdPersonAdd />
-                                </div>
-                                <div className={`navText ${cName}`}>
-                                    Register Emploee
-                                </div>
-                            </NavLink>
-                        </li>
+                        {user.aToken == 'admin' &&
+                            <li>
+                                <NavLink
+                                    className={({ isActive }) => (isActive ? 'active' : '')}
+                                    to='register-employee'>
+                                    <div className={`navIcon ${cName}`} >
+                                        <IoMdPersonAdd />
+                                    </div>
+                                    <div className={`navText ${cName}`}>
+                                        Register Emploee
+                                    </div>
+                                </NavLink>
+                            </li>}
                         <li>
                             <NavLink
                                 className={({ isActive }) => (isActive ? 'active' : '')}

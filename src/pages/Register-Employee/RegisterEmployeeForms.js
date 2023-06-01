@@ -34,7 +34,7 @@ const RegisterEmployeeForms = () => {
     employeeFirstName: employeeFirstName,
     employeeLastName: employeeLastName,
     accountID: accountID,
-    address: address,
+    homeAddress: address,
     email: email,
     contactNum: contactNum,
     password: password,

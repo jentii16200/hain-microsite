@@ -87,8 +87,8 @@ const MyAccount = () => {
                             Address
                         </FormLabel>
                         <Input
-                            name='address'
-                            value={user.address}
+                            name='homeAddress'
+                            value={user.homeAddress}
                             placeholder="Enter your address"
                             onChange={HandleUpdate} />
                     </FormControl>

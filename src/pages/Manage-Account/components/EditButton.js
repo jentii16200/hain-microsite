@@ -56,8 +56,8 @@ export const EditButton = ({ post, handleClick }) => {
                                     <FormControl>
                                         <FormLabel>Username</FormLabel>
                                         <Input
-                                            name='userName'
-                                            defaultValue={post.userName}
+                                            name={post.aToken == 'employee' ? 'accountID' : 'userName'}//'userName'
+                                            defaultValue={post.aToken == 'employee' ? post.accountID : post.userName}//{post.userName}
                                             onChange={handleChange}
                                             placeholder='Enter Username' />
                                     </FormControl>

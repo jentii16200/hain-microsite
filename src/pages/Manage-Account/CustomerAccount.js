@@ -34,6 +34,7 @@ export const CustomerAccount = (props) => {
         await axios.get(apiEndPoint).then(
             res => {
                 setPosts(res.data);
+                console.log(res.data);
                 setTimeout(() => {
                     setIsLoading(false);
                 }, 1000);
@@ -65,8 +66,8 @@ export const CustomerAccount = (props) => {
                             <Thead>
                                 <Tr>
                                     <Th>ID #</Th>
-                                    <Th>USERNAME</Th>
                                     <Th>NAME</Th>
+                                    <Th>USERNAME</Th>
                                     <Th>PASSWORD</Th>
                                     <Th> </Th>
                                 </Tr>
@@ -77,8 +78,8 @@ export const CustomerAccount = (props) => {
                                         return (
                                             <Tr key={post.id}>
                                                 <Td>{q++}</Td>
+                                                <Td>{post.firstName} {post.lastName}</Td>
                                                 <Td>{post.userName}</Td>
-                                                <Td>{post.name}</Td>
                                                 <Td>{post.password}</Td>
                                                 <Td isNumeric>
                                                     <EditButton handleClick={handleButtonClick} post={post} />
