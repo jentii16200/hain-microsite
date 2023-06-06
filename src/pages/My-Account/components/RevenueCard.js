@@ -1,73 +1,24 @@
-import { Box, Card, CardBody, Flex, Text } from '@chakra-ui/react';
-import React from 'react';
+import { Box, Card, CardBody, Flex, Select, Text } from '@chakra-ui/react';
+import React, { useState } from 'react';
 import { VscGraphLine } from 'react-icons/vsc';
 import { Area, AreaChart, Tooltip, XAxis, YAxis, CartesianGrid, ResponsiveContainer } from 'recharts';
+import { MONTHS, YEAR } from '../../Order-Log/api/DateData';
 
 export const RevenueCard = ({ posts }) => {
 
-    let totalRevenue = 0;
-    posts?.map(post => {
-        if (post.status == 'completed') {
-            totalRevenue += parseInt(post.totalPrice);
-        }
-    });
-    // const data = [
-    //     {
-    //         name: "Page A",
-    //         pv: 2400,
-    //         amt: 2400
-    //     },
-    //     {
-    //         name: "Page B",
-    //         pv: 1398,
-    //         amt: 2210
-    //     },
-    //     {
-    //         name: "Page C",
-    //         pv: 9800,
-    //         amt: 2290
-    //     },
-    //     {
-    //         name: "Page D",
-    //         pv: 3908,
-    //         amt: 2000
-    //     },
-    //     {
-    //         name: "Page E",
-    //         pv: 4800,
-    //         amt: 2181
-    //     },
-    //     {
-    //         name: "Page F",
-    //         pv: 3800,
-    //         amt: 2500
-    //     },
-    //     {
-    //         name: "Page G",
-    //         pv: 4300,
-    //         amt: 2100
-    //     },
-    //     {
-    //         name: "Page H",
-    //         pv: 4300,
-    //         amt: 2100
+    const [selectedMonth, setSelectedMonth] = useState();
+    const [selectedYear, setSelectedYear] = useState();
+    
+
+    // let totalRevenue = 0;
+    // posts?.map(post => {
+    //     if (post.status == 'completed') {
+    //         totalRevenue += parseInt(post.totalPrice);
     //     }
-    // ];
-
-    // const chartData = [];
-    // posts?.forEach(item => {
-    //   const date = item.currentDate?.split('/')[1];
-    //   const amount = parseInt(item.totalPrice);
-  
-    //   const existingData = chartData.find(d => d.date === date);
-    //   if (existingData) {
-    //     existingData.revenue += amount;
-    //   } else {
-    //     chartData.push({ date, revenue: amount });
-    //   }
     // });
+    
 
-    const chartData = [];
+const chartData = [];
   const currentDate = new Date();
   const currentMonth = currentDate.getMonth();
   const currentYear = currentDate.getFullYear();
@@ -75,17 +26,79 @@ export const RevenueCard = ({ posts }) => {
 
   for (let i = 1; i <= daysInMonth; i++) {
     const day=i;
-    const date = `${i}/${currentMonth + 1}/${currentYear}`;
+    const date = `${i}/${selectedMonth}/${selectedYear}`;
+    // const date = `${i}/${currentMonth + 1}/${currentYear}`;
     const revenue = posts?.filter(item => item.currentDate === date && item.status === 'completed')
       .reduce((sum, item) => sum + parseInt(item.totalPrice), 0);
-    chartData.push({ day,date, revenue });
+    let completedOrder = 0;
+    posts?.map(item => 
+        {if(item.currentDate === date && item.status === 'completed'){
+        completedOrder++;}
+    })
+    let rejectedOrder = 0;
+    posts?.map(item => 
+        {if(item.currentDate === date && item.status === 'completed'){
+        rejectedOrder++;}
+    })
+    chartData.push({ day, date, revenue, completedOrder, rejectedOrder });
   }
+ 
+    let totalRevenue = 0;
+  
+    posts?.forEach(post => {
+        if (post.currentDate && post.status === 'completed') {
+          const [day, month, year] = post.currentDate.split('/');
+          if (
+            parseInt(month) == selectedMonth &&
+            parseInt(year) == selectedYear
+          ) {
+            totalRevenue += parseInt(post.totalPrice);
+          }
+        }
+      });
+  
+  
+
+
+
+  const handleMonthChange = (event) => {
+    const selectMonth = event.target.value;
+    setSelectedMonth(selectMonth);
+  };
+  const handleYearChange = (event) => {
+    const selectYear = event.target.value;
+    setSelectedYear(selectYear);
+  };
     return (
         <Card minHeight="100%" minWidth="50px">
             <CardBody >
-                <Text fontSize='xl' fontFamily='monospace' fontWeight='bold' color='black'>
-                    Revenue
-                </Text>
+                <Flex justifyContent='space-between'>
+                    <Text fontSize='xl' fontFamily='monospace' fontWeight='bold' color='black'>
+                        Revenue
+                    </Text>
+                    <Box flex={1} />
+                    <Flex gap='5'>
+                        <Box width="150px"
+                        >
+                              <Select placeholder="Select a month" onChange={handleMonthChange} defaultValue={selectedMonth}>
+                                {MONTHS.map((month) => (
+                                  <option key={month.value} value={month.value}>
+                                    {month.label}
+                                  </option>
+                                ))}
+                              </Select>
+                            </Box>
+                            <Box width="100px">
+                              <Select placeholder="Select a year" onChange={handleYearChange} defaultValue={selectedYear}>
+                                {YEAR.map((year) => (
+                                  <option key={year.value} value={year.value}>
+                                    {year.label}
+                                  </option>
+                                ))}
+                              </Select>
+                            </Box>
+                    </Flex>
+                </Flex>
                 <Flex>
                     <Flex flexDirection='column'
                         marginTop='10'
@@ -111,7 +124,8 @@ export const RevenueCard = ({ posts }) => {
                                 <XAxis dataKey='day' />
                                 <YAxis />
                                 <CartesianGrid strokeDasharray="3 3" />
-                                <Tooltip />
+                                <Tooltip
+                                labelFormatter={(label) => `Day: ${label}`} />
                                 <Area type="monotone" dataKey="revenue" stroke="#82ca9d" fillOpacity={1} fill="url(#colorPv)" />
                             </AreaChart>
                         </ResponsiveContainer>

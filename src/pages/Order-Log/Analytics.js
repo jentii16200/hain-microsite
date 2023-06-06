@@ -1,6 +1,7 @@
 import { Flex, Heading, Tab, TabIndicator, TabList, TabPanel, TabPanels, Tabs, Text } from '@chakra-ui/react';
 import React, { useState } from 'react';
 import { Link, Outlet } from 'react-router-dom';
+import MonthDropdown from './components/MonthDropdown';
 
 export const Analytics = () => {
     const storedUser = JSON.parse(localStorage.getItem('currentUser'));

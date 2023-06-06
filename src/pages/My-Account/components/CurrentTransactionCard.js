@@ -8,7 +8,7 @@ export const CurrentTransactionCard = ({ posts }) => {
         .sort((a, b) => {
             const aDate = new Date(`${b.currentDate} ${b.currentTime}`);
             const bDate = new Date(`${a.currentDate} ${a.currentTime}`);
-            return bDate - aDate;
+            return aDate - bDate;
         });
     return (
         <Card minHeight="100%" minWidth="50px" overflowY='auto'>

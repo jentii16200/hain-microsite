@@ -1,4 +1,5 @@
-import { Card, CardBody, Flex, Grid, GridItem, Text } from '@chakra-ui/react';
+import { Card, CardBody, Flex, Grid, GridItem, Text,
+Box, Select } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
 import { UserCard } from '../My-Account/components/UserCard';
 import { TransactionCard } from '../My-Account/components/TransactionCard';
@@ -9,6 +10,8 @@ import { RejectedCard } from '../My-Account/components/RejectedCard';
 import { CurrentTransactionCard } from '../My-Account/components/CurrentTransactionCard';
 import axios from 'axios';
 import { Loading } from '../../components/Loading';
+import MonthDropdown from './components/MonthDropdown';
+
 
 const API = 'https://us-central1-hain-402aa.cloudfunctions.net/api/';
 const ENDPOINT = ['getOrderLogs', 'getUserAccounts'];
@@ -43,10 +46,14 @@ export const Reports = () => {
             setIsLoading(false);
         }).catch(err => { console.log(err); });
     };
+
+    
+
     return (
         <>
             {isLoading ? <Loading /> :
                 <Flex
+                direction='column'
                     minWidth='500px'
                     bg='gray.200'>
                     <Grid
