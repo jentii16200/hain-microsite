@@ -5,23 +5,16 @@ import {
     DrawerContent,
     DrawerHeader, DrawerBody, Input,
     Button, DrawerFooter, useDisclosure,
-    Flex, Text, Image, Textarea, IconButton, Switch
+    Flex, Text, Image, Textarea, IconButton, Switch, Box
 } from '@chakra-ui/react';
 
 import { AddIcon } from '@chakra-ui/icons';
-import { AddMenu } from '../../../api/menu-api';
+import { AddMenu, UpdateBestSeller } from '../../../api/menu-api';
 import { checkTargetForNewValues } from 'framer-motion';
-const INITIAL_STATE = {
-    name: '',
-    price: '',
-    description: '',
-    ingredients: [],
-    imageUrl: '',
-    type: ''
-};
 
 const AddFoodItemButton = ({ handleClick, handleLoading }) => {
     const { isOpen, onOpen, onClose } = useDisclosure();
+    const [isBestSeller, setIseBestSeller] = checkTargetForNewValues
     const [foodData, setFoodData] = useState({
         name: '',
         price: 0,
@@ -30,7 +23,8 @@ const AddFoodItemButton = ({ handleClick, handleLoading }) => {
         imageUrl: '',
         type: '',
         quantity: '',
-        isSold: false
+        isSold: false,
+        isBestSeller: false
     });
     const [foodImage, setFoodImage] = useState();
     const handleImageUrl = (e) => {
@@ -48,6 +42,9 @@ const AddFoodItemButton = ({ handleClick, handleLoading }) => {
     const handleSwitch = (e) => {
         setFoodData({ ...foodData, isSold: e.target.checked });
     };
+    const handleBestSeller = (e) => {
+        setFoodData({ ...foodData, isBestSeller: e.target.checked });
+    };
     const handleChange = (e) => {
         setFoodData({ ...foodData, [e.target.name]: e.target.value });
     };
@@ -57,6 +54,8 @@ const AddFoodItemButton = ({ handleClick, handleLoading }) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         handleLoading();
+        // if(foodData.isBestSeller != )
+        UpdateBestSeller(foodData.name);
         AddMenu({ foodData, foodImage }).then(() => { handleClose(); }).finally(() => { handleClick(); });
         // handleClose();
     };
@@ -68,7 +67,7 @@ const AddFoodItemButton = ({ handleClick, handleLoading }) => {
     };
 
     const handleClose = () => {
-        setFoodData(INITIAL_STATE);
+        // setFoodData(INITIAL_STATE);
         setFoodImage(null);
         onClose();
     };
@@ -97,16 +96,30 @@ const AddFoodItemButton = ({ handleClick, handleLoading }) => {
                     <DrawerHeader>
                         <Flex justifyContent='space-between'>
                             Adding Item
-                            <Flex gap='1'>
-                                <Text
-                                    fontWeight='normal'
-                                >Sold Out
-                                </Text>
-                                <Switch
-                                    size="lg"
-                                    name='isSold'
-                                    isChecked={foodData.isSold}
-                                    onChange={handleSwitch} />
+                            <Box flex='1'/>
+                            <Flex direction='column'>
+                                <Flex justifyContent='space-between' gap='1'>
+                                    <Text
+                                        fontWeight='normal'
+                                    >Sold Out
+                                    </Text>
+                                    <Switch
+                                        size="lg"
+                                        name='isSold'
+                                        isChecked={foodData.isSold}
+                                        onChange={handleSwitch} />
+                                </Flex>
+                                <Flex justifyContent='space-between' gap='1'>
+                                    <Text
+                                        fontWeight='normal'
+                                    >Best Seller
+                                    </Text>
+                                    <Switch
+                                        size="lg"
+                                        name='isBestSeller'
+                                        isChecked={foodData.isBestSeller}
+                                        onChange={handleBestSeller} />
+                                </Flex>
                             </Flex>
                         </Flex>
                     </DrawerHeader>
