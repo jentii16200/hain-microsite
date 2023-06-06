@@ -1,3 +1,4 @@
+
 import React, { useRef, useState } from 'react';
 import {
     Modal,
@@ -19,14 +20,17 @@ import {
     Switch
 } from '@chakra-ui/react';
 import { EditIcon } from '@chakra-ui/icons';
-import { UpdateMenu } from '../../../api/menu-api';
+import { UpdateBestSeller, UpdateMenu } from '../../../api/menu-api';
 
 export const EditFoodItemButton = ({ foodInfo, handleEdit, handleLoading }) => {
     const { isOpen, onOpen, onClose } = useDisclosure();
     const [loading, setLoading] = useState(false);
     const toast = useToast();
     const [foodData, setFoodData] = useState(foodInfo);
-
+    const bestSeller = foodInfo.isBestSeller;
+    const handleBestSeller = (e) => {
+        setFoodData({ ...foodData, isBestSeller: e.target.checked });
+    };
     const handleSwitch = (e) => {
         setFoodData({ ...foodData, isSold: e.target.checked });
     };
@@ -45,6 +49,9 @@ export const EditFoodItemButton = ({ foodInfo, handleEdit, handleLoading }) => {
 
     const handleSubmit = (e) => {
         handleLoading();
+        if(bestSeller != foodData.isBestSeller){
+            UpdateBestSeller(foodData.name);
+        }
         UpdateMenu(foodData).then(() => {
             onClose();
         }).finally(() => {
@@ -69,16 +76,29 @@ export const EditFoodItemButton = ({ foodInfo, handleEdit, handleLoading }) => {
                         <Flex
                             justifyContent='space-between'>
                             EDITING
-                            <Flex gap='1'>
-                                <Text
-                                    fontWeight='normal'
-                                >Sold Out
-                                </Text>
-                                <Switch
-                                    size="lg"
-                                    name='isSold'
-                                    isChecked={foodData.isSold}
-                                    onChange={handleSwitch} />
+                            <Flex flexDirection='column'>
+                                <Flex gap='1'>
+                                    <Text
+                                        fontWeight='normal'
+                                    >Sold Out
+                                    </Text>
+                                    <Switch
+                                        size="lg"
+                                        name='isSold'
+                                        isChecked={foodData.isSold}
+                                        onChange={handleSwitch} />
+                                </Flex>
+                                <Flex gap='1'>
+                                    <Text
+                                        fontWeight='normal'
+                                    >Sold Out
+                                    </Text>
+                                    <Switch
+                                        size="lg"
+                                        name='isSold'
+                                        isChecked={foodData.isBestSeller}
+                                        onChange={handleBestSeller} />
+                                </Flex>
                             </Flex>
                         </Flex>
                     </ModalHeader>

@@ -6,7 +6,7 @@ const API_GETMENU = 'https://us-central1-hain-402aa.cloudfunctions.net/api/getMe
 const API_DELETEMENU = 'https://us-central1-hain-402aa.cloudfunctions.net/api/deleteMenu';
 const API_ADDMENU = 'https://us-central1-hain-402aa.cloudfunctions.net/api/addMenu';
 const API_UPDATEMENU = 'https://us-central1-hain-402aa.cloudfunctions.net/api/updateMenu';
-const API_UPDATEBESTSELLER = 'https://us-central1-hain-402aa.cloudfunctions.net/api/updateMenu';
+const API_UPDATEBESTSELLER = 'https://us-central1-hain-402aa.cloudfunctions.net/api/updateBestSeller';
 
 
 export const GetMenu = async (type) => {

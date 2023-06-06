@@ -1,3 +1,4 @@
+
 import React, { useState, useRef } from 'react';
 
 import {
@@ -14,7 +15,6 @@ import { checkTargetForNewValues } from 'framer-motion';
 
 const AddFoodItemButton = ({ handleClick, handleLoading }) => {
     const { isOpen, onOpen, onClose } = useDisclosure();
-    const [isBestSeller, setIseBestSeller] = checkTargetForNewValues
     const [foodData, setFoodData] = useState({
         name: '',
         price: 0,
@@ -42,9 +42,7 @@ const AddFoodItemButton = ({ handleClick, handleLoading }) => {
     const handleSwitch = (e) => {
         setFoodData({ ...foodData, isSold: e.target.checked });
     };
-    const handleBestSeller = (e) => {
-        setFoodData({ ...foodData, isBestSeller: e.target.checked });
-    };
+    
     const handleChange = (e) => {
         setFoodData({ ...foodData, [e.target.name]: e.target.value });
     };
@@ -108,17 +106,6 @@ const AddFoodItemButton = ({ handleClick, handleLoading }) => {
                                         name='isSold'
                                         isChecked={foodData.isSold}
                                         onChange={handleSwitch} />
-                                </Flex>
-                                <Flex justifyContent='space-between' gap='1'>
-                                    <Text
-                                        fontWeight='normal'
-                                    >Best Seller
-                                    </Text>
-                                    <Switch
-                                        size="lg"
-                                        name='isBestSeller'
-                                        isChecked={foodData.isBestSeller}
-                                        onChange={handleBestSeller} />
                                 </Flex>
                             </Flex>
                         </Flex>
