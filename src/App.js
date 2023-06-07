@@ -13,6 +13,7 @@ function App() {
         setIsLoggedIn(false);
     };
     return (
+        <>
         <Router>
             <Routes>
                 <Route exact path='/' element={<UserAccount logIn={logIn} />} />
@@ -25,6 +26,7 @@ function App() {
                 } />
             </Routes>
         </Router>
+        </>
 
     );
 

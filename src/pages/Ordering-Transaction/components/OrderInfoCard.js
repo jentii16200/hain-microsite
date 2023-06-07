@@ -16,6 +16,16 @@ import {
 import React from 'react';
 
 export const OrderInfoCard = ({ item }) => {
+    let stat = "";
+    if(item.status == 'toServer'){
+        stat = 'Serve';
+    }
+    if(item.status == 'onProcess'){
+        stat = 'onProcess';
+    }
+    if(item.status == 'pending'){
+        stat= 'Pending';    
+    }
     return (
         <>
             <Flex className='top-part'
@@ -29,7 +39,7 @@ export const OrderInfoCard = ({ item }) => {
                 <Flex
                     flex='1'
                     gap='5px'>
-                    <Box w='100%' borderWidth='1px' borderRadius='lg' overflow='hidden'
+                    {/* <Box w='100%' borderWidth='1px' borderRadius='lg' overflow='hidden'
                         bgColor='teal.200'
                         display='flex'
                         flexDir='column'
@@ -44,7 +54,7 @@ export const OrderInfoCard = ({ item }) => {
                         <Box>
                             Order #
                         </Box>
-                    </Box>
+                    </Box> */}
                     <Box w='100%' borderWidth='1px' borderRadius='lg' overflow='hidden'
                         bgColor='teal.200'
                         display='flex'
@@ -72,7 +82,7 @@ export const OrderInfoCard = ({ item }) => {
                         <Box
                             fontWeight='bold'
                             fontSize='large'>
-                            {item.status}
+                            {/* {item.status} */} {stat}
                         </Box>
                         <Box
                             paddingTop='1'>

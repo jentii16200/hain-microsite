@@ -27,6 +27,7 @@ const OrderingTransaction = () => {
             console.log(res.data);
         }).catch(err => { console.log(err); });
     };
+
     return (
         <>
             <Heading padding='2'>ORDERING TRANSACTION</Heading>

@@ -77,7 +77,7 @@ export const EditFoodItemButton = ({ foodInfo, handleEdit, handleLoading }) => {
                             justifyContent='space-between'>
                             EDITING
                             <Flex flexDirection='column'>
-                                <Flex gap='1'>
+                                <Flex gap='1' justifyContent='space-between'>
                                     <Text
                                         fontWeight='normal'
                                     >Sold Out
@@ -91,7 +91,7 @@ export const EditFoodItemButton = ({ foodInfo, handleEdit, handleLoading }) => {
                                 <Flex gap='1'>
                                     <Text
                                         fontWeight='normal'
-                                    >Sold Out
+                                    >Specialty
                                     </Text>
                                     <Switch
                                         size="lg"

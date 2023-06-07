@@ -3,10 +3,7 @@ export const FOOD_TYPE = [
         id: '1',
         name: 'Pulutan'
     },
-    {
-        id: '2',
-        name: 'dish'
-    },
+
     {
         id: '4',
         name: 'Rice Meal'
@@ -27,16 +24,16 @@ export const FOOD_TYPE = [
         id: '8',
         name: 'Seafood Dish'
     },
-    {
-        id: '9',
-        name: 'Starter'
-    },
+    // {
+    //     id: '9',
+    //     name: 'Starter'
+    // },
     {
         id: '10',
         name: 'Seafood Dish'
     },
-    {
-        id: '11',
-        name: 'Veggies and Meat'
-    }
+    // {
+    //     id: '11',
+    //     name: 'Veggies and Meat'
+    // }
 ];
