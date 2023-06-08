@@ -6,23 +6,24 @@ import {
     DrawerContent,
     DrawerHeader, DrawerBody, Input,
     Button, DrawerFooter, useDisclosure,
-    Flex, Text, Image, Textarea, IconButton, Switch, Box
+    Flex, Text, Image, Textarea, IconButton, Switch, Box, Select
 } from '@chakra-ui/react';
 
 import { AddIcon } from '@chakra-ui/icons';
 import { AddMenu, UpdateBestSeller } from '../../../api/menu-api';
 import { checkTargetForNewValues } from 'framer-motion';
+import { FOOD_TYPE } from '../api/foodType';
 
 const AddFoodItemButton = ({ handleClick, handleLoading }) => {
     const { isOpen, onOpen, onClose } = useDisclosure();
     const [foodData, setFoodData] = useState({
         name: '',
-        price: 0,
+        price: 1,
         description: '',
         ingredients: [],
         imageUrl: '',
         type: '',
-        quantity: '',
+        quantity: 1,
         isSold: false,
         isBestSeller: false
     });
@@ -53,7 +54,7 @@ const AddFoodItemButton = ({ handleClick, handleLoading }) => {
         e.preventDefault();
         handleLoading();
         // if(foodData.isBestSeller != )
-        UpdateBestSeller(foodData.name);
+        // UpdateBestSeller(foodData.name);
         AddMenu({ foodData, foodImage }).then(() => { handleClose(); }).finally(() => { handleClick(); });
         // handleClose();
     };
@@ -74,7 +75,10 @@ const AddFoodItemButton = ({ handleClick, handleLoading }) => {
     const uploadFile = () => {
         document.getElementById('imageUrl').click();
     };
-
+    const handleFoodType = (e) => {
+        // setIsLoading(true);
+        setFoodData({...foodData,type:e.target.value});
+      };
     return (
         <>
             <IconButton
@@ -175,17 +179,36 @@ const AddFoodItemButton = ({ handleClick, handleLoading }) => {
                                 <Flex
                                     flexDirection='column'>
                                     <Text>
-                                        Type:
+                                        Category:
                                     </Text>
-                                    <Input
+                                    <Select
+                                    placeholder='select category'
+                                    isRequired={true}
+                    // fontSize="2xl"
+                    // icon="none"
+                    // size="lg"
+                    // variant="flushed"
+                    // marginBottom="1rem"
+                    // maxWidth="10rem"
+                    // value={menuName}
+                    onChange={handleFoodType}
+                  >
+                    {FOOD_TYPE.map((v) => (
+                      <option key={v.id} value={v.name}>
+                        {v.name}
+                      </option>
+                    ))}
+                  </Select>
+                                    {/* <Input
                                         name='type'
                                         value={foodData.type}
-                                        onChange={handleChange} />
+                                        onChange={handleChange} /> */}
                                     <Text>
                                         Quantity:
                                     </Text>
                                     <Input
                                         name='quantity'
+                                        type='number'
                                         value={foodData.quantity}
                                         onChange={handleChange} />
                                 </Flex>

@@ -120,6 +120,7 @@ export const EditFoodItemButton = ({ foodInfo, handleEdit, handleLoading }) => {
                                             Name:
                                         </Text>
                                         <Input
+                                        isReadOnly={true}
                                             name='name'
                                             value={foodData.name}
                                             onChange={handleChange} />

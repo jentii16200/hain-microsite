@@ -28,10 +28,10 @@ export const FOOD_TYPE = [
     //     id: '9',
     //     name: 'Starter'
     // },
-    {
-        id: '10',
-        name: 'Seafood Dish'
-    },
+    // {
+    //     id: '10',
+    //     name: 'Seafood Dish'
+    // },
     // {
     //     id: '11',
     //     name: 'Veggies and Meat'

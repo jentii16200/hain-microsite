@@ -58,11 +58,18 @@ const FoodInformation = ({ foodInfo, handleEdit, handleDelete, handleLoading }) 
                         Stock: {foodInfo.quantity}
                     </Text>
                     <Text
-                        marginBottom='5'
+                        marginBottom='0'
                         marginTop='0'
                         alignSelf='flex-start'
                         fontSize='20px'>
                         Sold Out: {foodInfo.isSold ? "Yes" : "No"}
+                    </Text>
+                    <Text
+                        marginBottom='5'
+                        marginTop='0'
+                        alignSelf='flex-start'
+                        fontSize='20px'>
+                        Specialty: {foodInfo.isBestSeller ? "Yes" : "No"}
                     </Text>
                     <Text
                         fontSize='18    '>
