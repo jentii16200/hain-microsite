@@ -1,5 +1,6 @@
 import {
     Box,
+    Button,
     Divider,
     Flex,
     Heading,
@@ -17,14 +18,27 @@ import React from 'react';
 
 export const OrderInfoCard = ({ item }) => {
     let stat = "";
-    if(item.status == 'toServer'){
+    if (item.status == 'toServer') {
         stat = 'Serve';
     }
-    if(item.status == 'onProcess'){
+    if (item.status == 'onProcess') {
         stat = 'onProcess';
     }
-    if(item.status == 'pending'){
-        stat= 'Pending';    
+    if (item.status == 'pending') {
+        stat = 'Pending';
+    }
+    let billingStatus = '';
+    let confirmPaymentButton = false;
+    if (item.requestBillOut == true) {
+        if (item.isPaid == true) {
+            confirmPaymentButton = false;
+            billingStatus = 'Paid';
+        } else {
+            confirmPaymentButton = true;
+            billingStatus = 'Requested for Payment';
+        }
+    } else {
+        billingStatus = 'Not Yet Paid';
     }
     return (
         <>
@@ -208,6 +222,30 @@ export const OrderInfoCard = ({ item }) => {
                     </Box>
                     <Divider borderColor='gray' marginBlock='2' />
                 </>}
+            {/* {item.requestBillOut ? */}
+            <>
+                <Flex marginLeft='2' justifyContent='space-between'>
+                    <Flex
+                        // bg='blue'
+                        // h='20'
+                        align='center'
+                        // marginTop='2'
+                        justifyItems='center'
+                    >
+                        <Text
+                            fontSize='15'
+                            fontWeight='semibold'
+                            color='black'>Billing:
+                        </Text>
+                        <Text marginLeft='1.5'>
+                            {billingStatus}
+                        </Text>
+                    </Flex>
+                    {confirmPaymentButton ? <Button colorScheme='blue' size='sm'>Confirm</Button> : null}
+                </Flex>
+                <Divider borderColor='gray' marginBlock='2' />
+            </>
+            {/* : ''} */}
         </>
     );
 };

@@ -5,9 +5,9 @@ import React, { useState } from 'react';
 const OrderItemCard = ({ post, setItemInfo }) => {
     let found = false;
     post.order.map(p => {
-        p.remarks ? found = true : '';
+        p.remarks ? found = true : false;
     });
-
+    // let requestBillOut = post.requestBillOut;
     return (
         <Card>
             <Box
@@ -18,10 +18,12 @@ const OrderItemCard = ({ post, setItemInfo }) => {
             >
                 <Box bg='teal.100'
                     borderRadius='md'>
-
+                    {post.requestBillOut ?
+                        <Box bg='blue' h='15px' w='50%' />
+                        : ''}
                     {found ?
                         <Box bg='yellow'
-                            h='15px' w='50%' /> : ''}
+                            h='15px' w='25%' /> : ''}
                     <Box display='flex' paddingLeft='2' paddingTop='2'>
                         <Text fontSize='xl' fontFamily='monospace' fontWeight='semibold' color='black'>
                             Table #
