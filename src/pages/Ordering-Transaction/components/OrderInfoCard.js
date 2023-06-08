@@ -29,17 +29,27 @@ export const OrderInfoCard = ({ item }) => {
     }
     let billingStatus = '';
     let confirmPaymentButton = false;
-    if (item.requestBillOut == true) {
-        if (item.isPaid == true) {
-            confirmPaymentButton = false;
-            billingStatus = 'Paid';
-        } else {
-            confirmPaymentButton = true;
+    // if (item.requestBillOut == true) {
+    //     if (item.isPaid == true) {
+    //         confirmPaymentButton = false;
+    //         billingStatus = 'Paid';
+    //     } else {
+    //         confirmPaymentButton = true;
+    //         billingStatus = 'Requested for Payment';
+    //     }
+    // } else {
+    //     billingStatus = 'Not Yet Paid';
+    // }
+    if (item.billing == '' || item.billing == 'call') {
+        confirmPaymentButton = true;
+        item.billing == '' ?
+            billingStatus = 'Not Yet Paid' :
             billingStatus = 'Requested for Payment';
-        }
-    } else {
-        billingStatus = 'Not Yet Paid';
+    } else if (item.billing == 'paid') {
+        confirmPaymentButton = false;
+        billingStatus = 'Paid';
     }
+
     return (
         <>
             <Flex className='top-part'

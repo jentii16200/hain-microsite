@@ -18,9 +18,11 @@ const OrderItemCard = ({ post, setItemInfo }) => {
             >
                 <Box bg='teal.100'
                     borderRadius='md'>
-                    {post.requestBillOut ?
+                    {post.billing == 'call' ?
                         <Box bg='blue' h='15px' w='50%' />
-                        : ''}
+                        : post.billing == 'paid' ?
+                            <Box bgColor='green.400' h='15px' w='50%' /> :
+                            ''}
                     {found ?
                         <Box bg='yellow'
                             h='15px' w='25%' /> : ''}
