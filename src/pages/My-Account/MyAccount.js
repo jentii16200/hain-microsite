@@ -99,6 +99,7 @@ const MyAccount = () => {
             <FormControl mb={4}>
               <FormLabel fontSize="15">Contact #</FormLabel>
               <Input
+              type='number'
                 name="contactNum"
                 value={user.contactNum}
                 placeholder="Enter your number"
@@ -110,7 +111,8 @@ const MyAccount = () => {
             <FormLabel fontSize="15">Password</FormLabel>
             <InputGroup>
               <Input
-                name="password"
+                name="password" 
+                maxLength={11}  
                 type={show ? "text" : "password"}
                 value={user.password}
                 placeholder="Enter your password"
