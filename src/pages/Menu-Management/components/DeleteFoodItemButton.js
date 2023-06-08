@@ -22,7 +22,13 @@ export const DeleteFoodItemButton = ({ foodInfo, handleDelete, handleLoading }) 
 
     const handleConfirmDelete = () => {
         handleLoading();
-        DeleteMenu(foodInfo).then(() => { onClose(); }).finally(() => { handleDelete(); });
+        DeleteMenu(foodInfo).then(() => { 
+            // handleDelete();
+            onClose(); }).finally(() => {  });
+            setTimeout(() => {
+            handleDelete();
+            },2000)
+
     };
     return (
         <>
