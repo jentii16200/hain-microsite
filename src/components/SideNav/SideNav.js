@@ -112,7 +112,7 @@ const SideNav = ({ logOut }) => {
                                         <IoMdPersonAdd />
                                     </div>
                                     <div className={`navText ${cName}`}>
-                                        Register Emploee
+                                        Register Employee
                                     </div>
                                 </NavLink>
                             </li>}
