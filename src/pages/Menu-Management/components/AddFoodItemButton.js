@@ -132,7 +132,7 @@ const AddFoodItemButton = ({ handleClick, handleLoading }) => {
                                         value={foodData.name}
                                         onChange={handleChange} />
                                     <Text>
-                                        Price:
+                                        (₱) Price: 
                                     </Text>
                                     <Input
                                         name='price'

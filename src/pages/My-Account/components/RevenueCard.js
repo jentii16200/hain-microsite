@@ -104,10 +104,10 @@ const chartData = [];
                         marginTop='10'
                         marginLeft='5'>
                         <Text fontSize='xl' fontFamily='sans-serif' fontWeight='bold' color='black'>
-                            {totalRevenue}
+                        ₱ {totalRevenue}
                         </Text>
                         <Text fontSize='sm' fontFamily='monospace' fontWeight='bold' color='gray.400'>
-                            Total Revenue
+                             Total Revenue
                         </Text>
                     </Flex>
                     <Box width='100%' minHeight='100%'>

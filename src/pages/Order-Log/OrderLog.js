@@ -74,13 +74,13 @@ const OrderLog = () => {
                       {post.fullName ? post.fullName : post.userDetails.email}
                     </Td>
                     <Td width="6">
-                      {post.order?.map((ord) => ord.name + ",")}
+                      {post.order?.map((ord) => ord.name +"*"+ord.quantity+",")}
                     </Td>
                     <Td>{post.status}</Td>
                     <Td>{post.currentTime}</Td>
                     <Td>{post.currentDate}</Td>
                     <Td>{post.handledBy}</Td>
-                    <Td>{post.totalPrice}</Td>
+                    <Td>₱ {post.totalPrice}</Td>
                   </Tr>
                 );
               }
