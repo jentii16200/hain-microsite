@@ -1,5 +1,5 @@
 import './SideNav.css';
-import React, { lazy, useState } from 'react';
+import React, { lazy, useEffect, useState } from 'react';
 import { Link, Routes, Route, Outlet, NavLink } from 'react-router-dom';
 import {
     ManageAccount,
@@ -19,10 +19,25 @@ import { IoFastFoodOutline } from 'react-icons/io5';
 import { HiOutlineDocumentText } from 'react-icons/hi';
 import { IoMdPersonAdd } from 'react-icons/io';
 import { BiBorderRadius, BiLogOut } from 'react-icons/bi';
-import { Flex, IconButton } from '@chakra-ui/react';
+import { Flex, IconButton, useToast } from '@chakra-ui/react';
 import LogOutDialog from '../LogOutDialog';
 import { Analytics } from '../../pages/Order-Log/Analytics';
 const SideNav = ({ logOut }) => {
+    const [showToast, setShowToast] = useState(false);
+    const toast = useToast();
+    useEffect(() => {
+        if (showToast) {
+            toast({
+                title: 'Notification',
+                description: 'This is a toast notification!',
+                status: 'info',
+                duration: 5000,
+                isClosable: true,
+            });
+        }
+        setShowToast(false);
+    }, [showToast, toast]);
+
     const storedUser = JSON.parse(localStorage.getItem('currentUser'));
     const [user,] = useState(storedUser);
     const [isDialogOpen, setIsDialogOpen] = useState(false);

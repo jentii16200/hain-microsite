@@ -29,26 +29,27 @@ export const OrderInfoCard = ({ item }) => {
     }
     let billingStatus = '';
     let confirmPaymentButton = false;
-    // if (item.requestBillOut == true) {
-    //     if (item.isPaid == true) {
-    //         confirmPaymentButton = false;
-    //         billingStatus = 'Paid';
-    //     } else {
-    //         confirmPaymentButton = true;
-    //         billingStatus = 'Requested for Payment';
-    //     }
-    // } else {
-    //     billingStatus = 'Not Yet Paid';
-    // }
-    if (item.billing == '' || item.billing == 'call') {
-        confirmPaymentButton = true;
-        item.billing == '' ?
-            billingStatus = 'Not Yet Paid' :
+    if (item.isBillOut == true) {
+        if (item.isPaid == true) {
+            confirmPaymentButton = false;
+            billingStatus = 'Paid';
+        } else {
+            confirmPaymentButton = true;
             billingStatus = 'Requested for Payment';
-    } else if (item.billing == 'paid') {
-        confirmPaymentButton = false;
-        billingStatus = 'Paid';
+        }
+    } else {
+        confirmPaymentButton = true;
+        billingStatus = 'Not Yet Paid';
     }
+    // if (item.billing == '' || item.billing == 'call') {
+    //     confirmPaymentButton = true;
+    //     item.billing == '' ?
+    //         billingStatus = 'Not Yet Paid' :
+    //         billingStatus = 'Requested for Payment';
+    // } else if (item.billing == 'paid') {
+    //     confirmPaymentButton = false;
+    //     billingStatus = 'Paid';
+    // }
 
     return (
         <>
@@ -155,21 +156,35 @@ export const OrderInfoCard = ({ item }) => {
                                 minW='100px'
                                 size='xl'
                                 hasArrow
-                                defaultIsOpen
                                 label={
-                                    orders.remarks ?
+                                    orders.options?.map((opt, i) =>
                                         <Text
+                                            key={opt}
                                             padding='1.5'
                                             border='1px solid white'
+                                            textColor='black'
+
                                         >
-                                            {orders.remarks}
-                                        </Text> : ''}
+                                            {i == 0 ?
+                                                <Text
+                                                    borderBottom='1px'
+                                                    // bg='blue'
+                                                    fontWeight='bold'
+                                                    fontSize='25'>
+                                                    {opt}
+                                                </Text>
+                                                : i + ". " + opt}
+                                        </Text>
+                                    )
+                                    // > : ''}
+                                }
                                 placement='left-start'
-                                bg='teal.500'>
+                                bg='white.500'
+                            >
                                 <Tr
                                     cursor='pointer'
-                                    bgColor={orders.remarks ? 'teal.500' : 'white'}
-                                    color={orders.remarks ? 'white' : 'black'}
+                                    bgColor={orders.options?.length > 0 && orders.options ? 'teal.500' : 'white'}
+                                    color={orders.options?.length > 0 && orders.options ? 'white' : 'black'}
                                 >
                                     <Td w='160px'>{orders.name}</Td>
                                     <Td textAlign='center'>{orders.quantity}</Td>

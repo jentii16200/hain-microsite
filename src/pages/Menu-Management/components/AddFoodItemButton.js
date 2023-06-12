@@ -43,7 +43,7 @@ const AddFoodItemButton = ({ handleClick, handleLoading }) => {
     const handleSwitch = (e) => {
         setFoodData({ ...foodData, isSold: e.target.checked });
     };
-    
+
     const handleChange = (e) => {
         setFoodData({ ...foodData, [e.target.name]: e.target.value });
     };
@@ -77,8 +77,8 @@ const AddFoodItemButton = ({ handleClick, handleLoading }) => {
     };
     const handleFoodType = (e) => {
         // setIsLoading(true);
-        setFoodData({...foodData,type:e.target.value});
-      };
+        setFoodData({ ...foodData, type: e.target.value });
+    };
     return (
         <>
             <IconButton
@@ -98,7 +98,7 @@ const AddFoodItemButton = ({ handleClick, handleLoading }) => {
                     <DrawerHeader>
                         <Flex justifyContent='space-between'>
                             Adding Item
-                            <Box flex='1'/>
+                            <Box flex='1' />
                             <Flex direction='column'>
                                 <Flex justifyContent='space-between' gap='1'>
                                     <Text
@@ -132,7 +132,7 @@ const AddFoodItemButton = ({ handleClick, handleLoading }) => {
                                         value={foodData.name}
                                         onChange={handleChange} />
                                     <Text>
-                                        (₱) Price: 
+                                        (₱) Price:
                                     </Text>
                                     <Input
                                         name='price'
@@ -182,23 +182,23 @@ const AddFoodItemButton = ({ handleClick, handleLoading }) => {
                                         Category:
                                     </Text>
                                     <Select
-                                    placeholder='select category'
-                                    isRequired={true}
-                    // fontSize="2xl"
-                    // icon="none"
-                    // size="lg"
-                    // variant="flushed"
-                    // marginBottom="1rem"
-                    // maxWidth="10rem"
-                    // value={menuName}
-                    onChange={handleFoodType}
-                  >
-                    {FOOD_TYPE.map((v) => (
-                      <option key={v.id} value={v.name}>
-                        {v.name}
-                      </option>
-                    ))}
-                  </Select>
+                                        placeholder='select category'
+                                        isRequired={true}
+                                        // fontSize="2xl"
+                                        // icon="none"
+                                        // size="lg"
+                                        // variant="flushed"
+                                        // marginBottom="1rem"
+                                        // maxWidth="10rem"
+                                        // value={menuName}
+                                        onChange={handleFoodType}
+                                    >
+                                        {FOOD_TYPE.map((v) => (
+                                            <option key={v.id} value={v.name}>
+                                                {v.name}
+                                            </option>
+                                        ))}
+                                    </Select>
                                     {/* <Input
                                         name='type'
                                         value={foodData.type}

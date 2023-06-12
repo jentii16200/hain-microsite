@@ -28,7 +28,3 @@ const MonthDropdown = () => {
 };
 
 export default MonthDropdown;
-
-
-
-

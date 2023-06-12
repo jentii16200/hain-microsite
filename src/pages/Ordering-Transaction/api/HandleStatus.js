@@ -4,11 +4,8 @@ const apiAccept = 'https://us-central1-hain-402aa.cloudfunctions.net/api/acceptO
 const apiOnGoing = 'https://us-central1-hain-402aa.cloudfunctions.net/api/onGoingOrder';
 const apiDone = 'https://us-central1-hain-402aa.cloudfunctions.net/api/doneOrder';
 const apiReject = 'https://us-central1-hain-402aa.cloudfunctions.net/api/rejectOrder';
-
 const apiGetOrder = 'https://us-central1-hain-402aa.cloudfunctions.net/api/getOrderLogs';
-
 const apiHandleOrders = 'https://us-central1-hain-402aa.cloudfunctions.net/api/newOrderStatus';
-
 export const GetOrders = () => {
     console.log('Fetching Data');
     axios.get(apiGetOrder).then(res => {
