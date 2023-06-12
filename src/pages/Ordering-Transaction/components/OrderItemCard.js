@@ -5,7 +5,10 @@ import React, { useState } from 'react';
 const OrderItemCard = ({ post, setItemInfo }) => {
     let found = false;
     post.order.map(p => {
-        p.remarks ? found = true : false;
+        if (p.options > 0) {
+            p.options ? found = true : false;
+
+        }
     });
     // let requestBillOut = post.requestBillOut;
     return (
