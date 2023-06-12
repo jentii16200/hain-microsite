@@ -11,8 +11,9 @@ import {
   InputRightElement,
   Text,
 } from "@chakra-ui/react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import UpdateAlertDialog from "./components/UpdateAlertDialog";
+import { db } from '../../util/firebase';
 
 const MyAccount = () => {
   const storedUser = JSON.parse(localStorage.getItem("currentUser"));
@@ -26,6 +27,29 @@ const MyAccount = () => {
 
   const [show, setShow] = React.useState(false);
   const handleShowPassword = () => setShow(!show);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const collectionRef = db.collection('Order');
+        const snapshot = await collectionRef.get();
+        const data = snapshot.docs.map(doc => doc.data());
+        console.log(data);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+    fetchData();
+  }, []);
+  // useEffect(() => {
+  //   // Use Firebase here
+  //   const fetchData = async () => {
+  //     const data = await db.collection('Order').get();
+  //     // Do something with the data
+  //     console.log(data.docs.map(doc => doc.data()));
+  //   };
+  //   fetchData();
+  // }, []);
   return (
     <>
       <Heading className="title">MY ACCOUNT</Heading>
@@ -99,7 +123,7 @@ const MyAccount = () => {
             <FormControl mb={4}>
               <FormLabel fontSize="15">Contact #</FormLabel>
               <Input
-              type='number'
+                type='number'
                 name="contactNum"
                 value={user.contactNum}
                 placeholder="Enter your number"
@@ -111,8 +135,8 @@ const MyAccount = () => {
             <FormLabel fontSize="15">Password</FormLabel>
             <InputGroup>
               <Input
-                name="password" 
-                maxLength={11}  
+                name="password"
+                maxLength={11}
                 type={show ? "text" : "password"}
                 value={user.password}
                 placeholder="Enter your password"

@@ -22,21 +22,49 @@ import { BiBorderRadius, BiLogOut } from 'react-icons/bi';
 import { Flex, IconButton, useToast } from '@chakra-ui/react';
 import LogOutDialog from '../LogOutDialog';
 import { Analytics } from '../../pages/Order-Log/Analytics';
+// import initializeApp from 'firebase/app';
+// import 'firebase/firestore';
+
+// import firebase from 'firebase/compat/app';
+// import 'firebase/compat/firestore';
 const SideNav = ({ logOut }) => {
     const [showToast, setShowToast] = useState(false);
     const toast = useToast();
-    useEffect(() => {
-        if (showToast) {
-            toast({
-                title: 'Notification',
-                description: 'This is a toast notification!',
-                status: 'info',
-                duration: 5000,
-                isClosable: true,
-            });
-        }
-        setShowToast(false);
-    }, [showToast, toast]);
+    // useEffect(() => {
+    //     if (showToast) {
+    //         toast({
+    //             title: 'Notification',
+    //             description: 'This is a toast notification!',
+    //             status: 'info',
+    //             duration: 5000,
+    //             isClosable: true,
+    //         });
+    //     }
+    //     setShowToast(false);
+    // }, [showToast, toast]);
+    // useEffect(() => {
+    //     // const firestore = firebase.firestore();
+    //     // const orderRef = firestore.collection('Order').doc('ID');
+
+    //     const unsubscribe = orderRef.onSnapshot((doc) => {
+    //         const orderData = doc.data();
+    //         const showToast = orderData?.isBillOut;
+
+    //         if (showToast) {
+    //             toast({
+    //                 title: 'Notification',
+    //                 description: 'This is a toast notification!',
+    //                 status: 'info',
+    //                 duration: 3000,
+    //                 isClosable: true,
+    //             });
+    //         }
+    //     });
+    //     // Clean up the listener on component unmount
+    //     return () => {
+    //         unsubscribe();
+    //     };
+    // }, [toast]);
 
     const storedUser = JSON.parse(localStorage.getItem('currentUser'));
     const [user,] = useState(storedUser);
