@@ -40,7 +40,7 @@ const SideNav = ({ logOut }) => {
           // Display toast notification
           toast({
             title: 'Notification',
-            description: `Document with ID ${doc.id} has isBillOut set to true.`,
+            description: `Table# ${data.tableNumber} named ${data.fullName} is billing out.`,
             status: 'success',
             duration: 5000,
             isClosable: true,
