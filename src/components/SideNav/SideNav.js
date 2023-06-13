@@ -23,6 +23,7 @@ import {
 import { apoy } from "../../util/firebase";
 import LogOutDialog from "../LogOutDialog";
 import "./SideNav.css";
+import { handleDialogue } from '../../api/ordering-transaction-api';
 const SideNav = ({ logOut }) => {
   const [showToast, setShowToast] = useState(false);
   const toast = useToast();
@@ -36,10 +37,7 @@ const SideNav = ({ logOut }) => {
         const doc = change.doc;
         const data = doc.data();
 
-        if (change.type === 'modified' && data.isBillOut === true
-          // && data.isShown === false
-        ) {
-          // Display toast notification
+        if (change.type === 'modified' && data.isBillOut === true && data.isDialogueShown === false) {
           toast({
             title: 'Billing Out',
             description: `Table#${data.tableNumber} named ${data.fullName} is billing out.`,
@@ -48,6 +46,7 @@ const SideNav = ({ logOut }) => {
             position: 'top-right',
             isClosable: true,
           });
+          handleDialogue(data.id);
           // window.location.reload();
         }
       });
