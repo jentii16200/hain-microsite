@@ -1,6 +1,6 @@
 import { apoy, db } from '../util/firebase';
 
-export const cancelOrder = async (id) => {
+export const handlePayment = async (id) => {
     // const id = req.body.id;
     await apoy
         .collection("Order")

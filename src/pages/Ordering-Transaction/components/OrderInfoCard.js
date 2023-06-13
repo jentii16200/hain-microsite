@@ -15,8 +15,9 @@ import {
     Tr
 } from '@chakra-ui/react';
 import React from 'react';
+import { handlePayment } from '../../../api/ordering-transaction-api';
 
-export const OrderInfoCard = ({ item }) => {
+export const OrderInfoCard = ({ item, setIsLoading, fetchingData }) => {
     let stat = "";
     if (item.status == 'toServer') {
         stat = 'Serve';
@@ -169,7 +170,7 @@ export const OrderInfoCard = ({ item }) => {
                                     // > : ''}
                                 }
                                 placement='left-start'
-                                bg='white.500'
+                                bg='white'
                             >
                                 <Tr
                                     cursor='pointer'
@@ -259,7 +260,8 @@ export const OrderInfoCard = ({ item }) => {
                     {confirmPaymentButton ?
                         <Button colorScheme='blue' size='sm'
                             onClick={() => {
-
+                                setIsLoading();
+                                handlePayment(item.id).then(() => { fetchingData(); });
                             }}>
                             Confirm
                         </Button> : null}

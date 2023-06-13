@@ -31,26 +31,24 @@ const SideNav = ({ logOut }) => {
 
   useEffect(() => {
     // retrieveDocuments();
-
     const unsubscribe = apoy.collection('Order').onSnapshot((snapshot) => {
       snapshot.docChanges().forEach((change) => {
         const doc = change.doc;
         const data = doc.data();
-        if (change.type === 'modified' && data.isBillOut === true) {
+
+        if (change.type === 'modified' && data.isBillOut === true
+          // && data.isShown === false
+        ) {
           // Display toast notification
           toast({
-            title: 'Notification',
-            description: `Table# ${data.tableNumber} named ${data.fullName} is billing out.`,
+            title: 'Billing Out',
+            description: `Table#${data.tableNumber} named ${data.fullName} is billing out.`,
             status: 'success',
-            duration: 5000,
-            isClosable: true,
+            duration: 9000,
             position: 'top-right',
-            render: () => (
-              <Box color="white" p={3} bg="green.400" borderRadius="md" display="flex" alignItems="center">
-                <Text>{`Document with ID ${doc.id} has isBillOut set to true.`}</Text>
-              </Box>
-            ),
+            isClosable: true,
           });
+          // window.location.reload();
         }
       });
     });

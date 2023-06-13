@@ -5,12 +5,17 @@ import React, { useState } from 'react';
 const OrderItemCard = ({ post, setItemInfo }) => {
     let found = false;
     post.order.map(p => {
-        if (p.options > 0) {
-            p.options ? found = true : false;
+        if (p.options?.length > 0) {
+            found = true;
 
         }
     });
     // let requestBillOut = post.requestBillOut;
+    if (post.isBillOut == true && post.isPaid == false) {
+        <Box bg='blue' h='15px' w='50%' />;
+    } else if (post.isBillOut && post.isPaid) {
+        <Box bg='green' h='15px' w='50%' />;
+    }
     return (
         <Card>
             <Box
@@ -21,13 +26,12 @@ const OrderItemCard = ({ post, setItemInfo }) => {
             >
                 <Box bg='teal.100'
                     borderRadius='md'>
-                    {post.billing == 'call' ?
-                        <Box bg='blue' h='15px' w='50%' />
-                        : post.billing == 'paid' ?
-                            <Box bgColor='green.400' h='15px' w='50%' /> :
-                            ''}
+                    {post.isBillOut == true && post.isPaid == false ?
+                        <Box bg='blue.300' h='15px' w='50%' /> : post.isBillOut && post.isPaid ?
+                            <Box bg='green.300' h='15px' w='50%' /> : null
+                    }
                     {found ?
-                        <Box bg='yellow'
+                        <Box bg='yellow.300'
                             h='15px' w='25%' /> : ''}
                     <Box display='flex' paddingLeft='2' paddingTop='2'>
                         <Text fontSize='xl' fontFamily='monospace' fontWeight='semibold' color='black'>
