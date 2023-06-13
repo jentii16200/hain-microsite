@@ -41,16 +41,6 @@ export const OrderInfoCard = ({ item }) => {
         confirmPaymentButton = true;
         billingStatus = 'Not Yet Paid';
     }
-    // if (item.billing == '' || item.billing == 'call') {
-    //     confirmPaymentButton = true;
-    //     item.billing == '' ?
-    //         billingStatus = 'Not Yet Paid' :
-    //         billingStatus = 'Requested for Payment';
-    // } else if (item.billing == 'paid') {
-    //     confirmPaymentButton = false;
-    //     billingStatus = 'Paid';
-    // }
-
     return (
         <>
             <Flex className='top-part'
@@ -266,7 +256,13 @@ export const OrderInfoCard = ({ item }) => {
                             {billingStatus}
                         </Text>
                     </Flex>
-                    {confirmPaymentButton ? <Button colorScheme='blue' size='sm'>Confirm</Button> : null}
+                    {confirmPaymentButton ?
+                        <Button colorScheme='blue' size='sm'
+                            onClick={() => {
+
+                            }}>
+                            Confirm
+                        </Button> : null}
                 </Flex>
                 <Divider borderColor='gray' marginBlock='2' />
             </>

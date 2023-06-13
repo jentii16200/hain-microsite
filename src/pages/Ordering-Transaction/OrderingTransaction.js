@@ -78,6 +78,7 @@ const OrderingTransaction = () => {
                       return (
                         <div key={post.id}>
                           <OrderItemCard
+                            setIsLoadingTrue={setIsLoadingTrue}
                             post={post}
                             setItemInfo={setItemInfo}
                           />
@@ -102,6 +103,7 @@ const OrderingTransaction = () => {
                       return (
                         <div key={post.id}>
                           <OrderItemCard
+                            setIsLoadingTrue={setIsLoadingTrue}
                             post={post}
                             setItemInfo={setItemInfo}
                           />
@@ -121,6 +123,7 @@ const OrderingTransaction = () => {
                       return (
                         <div key={post.id}>
                           <OrderItemCard
+                            setIsLoadingTrue={setIsLoadingTrue}
                             post={post}
                             setItemInfo={setItemInfo}
                           />

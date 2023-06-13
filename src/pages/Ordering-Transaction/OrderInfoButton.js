@@ -101,7 +101,10 @@ const OrderInfoButton = ({ item, fetchingData, setIsLoadingTrue }) => {
                     flexDirection='column'
                     p='2'
                 >
-                    <OrderInfoCard item={item} />
+                    <OrderInfoCard
+                        item={item}
+                        setIsLoading={setIsLoadingTrue}
+                        fetchingData={fetchingData} />
                     <Flex
                         marginTop='10'
                         justifyContent='end'
